@@ -1,5 +1,5 @@
 <?php
-	$link = mysqli_connect("syazwan.jkomp.my","syazwan_admin","onepixel123456789","syazwan_tasdb");
+	$link = mysqli_connect("localhost","root","","ghunt");
 	// Check connection
 	if (mysqli_connect_errno())
 	  {
