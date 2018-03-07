@@ -1,14 +1,12 @@
-
 <?php
 include("auth.php");
 ?>
 <html>
 
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>TeacAttSys | SRITI</title>
+    <title>gHunt | Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -34,8 +32,7 @@ include("auth.php");
 	
     <style>
 		/* Full-width input fields */
-		input[type=text], input[type=password], input[type=email] {
-			width: 54%;
+		input[type=text], input[type=password], input[type=email], select[name=sortC] {	
 			padding: 12px 20px;
 			margin: 8px 0;
 			display: inline-block;
@@ -153,7 +150,52 @@ include("auth.php");
 		}
 	</style>
 </head>
+<div id="id01" class="modal">
+<form class="modal-content animate" action="updateAdmin.php" method="POST">
+	
 
+	<div class="container">
+	  <label><b>ID</b></label>
+	  <br>
+	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
+	  <br>
+
+	  <label><b>Fullname</b></label>
+	  <br>
+	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
+	  <br>
+	  
+	  <label><b>Email</b></label>
+	  <br>
+	  <input type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
+	  <br>
+	  
+	  <label><b>Phone Number</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
+	  <br>
+	  
+	  <label><b>Password</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+	  
+	  <label><b>Repeat password</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+		
+	  <button type="submit">Update</button>
+	  <br>
+	  
+	</div>
+
+	<div  style="background-color:#f1f1f1">
+	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
+	  
+	</div>
+	</form>
+</div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -161,7 +203,7 @@ include("auth.php");
         <!-- HEADER SECTION -->
         <header class="main-header" >
             <!-- Logo -->
-            <a href="dashboard.php" class="logo" style="background-color: #3CBCB5; color: #3CBCB5;">
+            <a href="dashboard.php" class="logo" style="background-color: #179BD7; color: #179BD7;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
                 <!--<img src="" width="50px"></img>-->            
@@ -170,7 +212,7 @@ include("auth.php");
             <span class="logo-lg">                  
 <!--                <img src="template/images/jata.png" width="50px"></img>
                 &nbsp;&nbsp;-->
-                <img src="images/logo/sriti_png_logo.png" width="50px" height="45px">
+                <img src="assets/img/logo_gh.png" width="60px" height="45px">
                 &nbsp;&nbsp;&nbsp;
                 <!--<img src="template/images/eSmartBlue.png" width="60px" height="50px"></img>-->
             </span>
@@ -179,13 +221,13 @@ include("auth.php");
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #3CBCB5;"> 
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #179BD7;"> 
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
-                    <div style="font-size:large;font-weight:bold;color: #d8e4fd;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
-                        <font color="white"><strong>Sistem Kehadiran Guru</strong></font>
+                    <div style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size:large;font-weight:bold;color: white;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
+                        <p>gHunt Management</p>
                     </div>
                 </a>
                 <div class="navbar-custom-menu">
@@ -194,28 +236,31 @@ include("auth.php");
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="images/logo/adminLogo.png" class="user-image" alt="">
-                                <span class="hidden-xs"><?PHP echo $fn['fullname']; ?></span>
+                                <span class="hidden-xs"><?PHP echo $fn['name']; ?></span>
                             </a>
                             <ul class="dropdown-menu" >
                                 <!-- User image -->
-                                <li class="user-header" style="background-color: #3CBCB5; height: 151px;">
+                                <li class="user-header" style="background-color: #179BD7; height: 151px;">
                                     <img src="images/logo/adminLogo.png" class="user-image" alt="">
                                     <p style="color: white;">
-                                       <?PHP echo $fn['fullname']; ?>
+                                       <?PHP echo $fn['name']; ?>
                                     </p>
                                 </li>
 								<li class="user-body">
 									<p>
 									   Email: <strong style="color: #3c763d;"><?PHP echo $fn['email']; ?></strong>
 									   <br>
-									   Nombor Telefon: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
+									   Phone Number: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
 
                                     </p>
 								<li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="logout.php" style="background-color: #f44336; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Log keluar</a>
+                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Logout</a>
+                                    </div>
+									<div class="pull-left">
+                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Edit Info</a>
                                     </div>
                                 </li>
                             </ul>
@@ -247,60 +292,54 @@ include("auth.php");
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="header">MENU UTAMA</li>
+                    <li class="header">MAIN MENU</li>
 
                     <li class="treeview">
                         <a href="dashboard.php">
-                            <i class="fa fa-dashboard"></i>  <span>Paparan utama</span>
+                            <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
-					<li class="treeview">
-                        <a href="takeAttend.php">
-                            <i class="fa fa-dashboard"></i>  <span>Kehadiran</span>
-                        </a>
-                    </li>
-					<li class="treeview">
+					<li class="treeview active">
                         <a href="#">
-                            <i class="fa fa-user"></i>  <span>Kelas Ganti</span>
+                            <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: block;">
+                            <li class="active">
+                                <a href="ITlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="ITadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="ITfeat.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
-                                <a href="listReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Kelas Ganti</a>
-                            </li>
-                            <li class="">
-                                <a href="addReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Kelas Ganti</a>
-                            </li>
-							<li class="">
-                                <a href="timeTableView.php">
-                                    <i class="fa fa-long-arrow-right"></i>Semak Jadual Kelas</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="treeview active">
-                        <a href="#">
-                            <i class="fa fa-user"></i>  <span>Pengurusan</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu menu-open" style="display: block;">
-                            <li class="">
                                 <a href="teacherList.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
                             <li class="">
                                 <a href="addUser.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="addUser.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
                             </li>
 
                         </ul>
-                    </li>
-					<li class="treeview">
-                        <a href="report.php">
-                            <i class="fa fa-dashboard"></i>  <span>Laporan Kehadiran</span>
-                        </a>
                     </li>
                 </ul>
             </section>
@@ -315,8 +354,8 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-            Kemaskini maklumat guru            
-        </h1> 
+					Industrial and Teaching training directory
+				</h1> 
             </section>
 
             <!-- Main content -->
@@ -325,99 +364,97 @@ include("auth.php");
 							<div class="col-md-12">
 								<div class="box box-info">
 									<div class="box-header with-border">
-											<h3 class="box-title">Kemaskini</h3>
-											
+											<form action="ITlist.php" method="POST">
+												<input class="form-control" type="text" placeholder="Search directory" name="searchdir" style="width: 150px;">
+												<button type="submit" name="search" class="btn btn-info" style="margin: auto; width: 40px; height: 35px;"><i class="fa fa-search"></i></button>
+											</form>
+											<p><b>Sort directory list</b></p>
+											<form action="" method="post" >
+												<select type="text" name="sortC" onchange="submit()" >
+												  <option value="" selected>Select sort option</option>
+												  <option value="alpA" onchange="submit()" >alphabetically</option>
+												  <option value="latestR">by latest added record</option>
+												</select>
+											</form>
 									</div>
 										<div class="box-body">
-											<?PHP
-											require ('config.php');
-											if (isset($_POST['id'])){
-												$id = $_POST['id'];
-												$name = $_POST['name'];
-												$address = $_POST['address'];
-												$postcode = $_POST['postcode'];
-												$state = $_POST['state'];
-												$phone = $_POST['phone'];
-												$email = $_POST['email'];
-												$website = $_POST['website'];
-												$category = $_POST['category'];
-											}
-											mysqli_close($link);
-											
-											?>	
-											<form action="" method="POST">
-												
-												<div class="container">
-												  <label><b>Institute or company name</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan ID guru" name="idTeacher" value="<?PHP echo $name; ?>" required>
-												  <br>
-
-												  <label><b>Address</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $address; ?>"  required>
-												  <br>
-												  
-												  <label><b>Postcode</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $postcode; ?>"  required>
-												  <br>
-												  
-												  <label><b>State</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $state; ?>"  required>
-												  <br>
-												  <label><b>Phone Number</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $phone; ?>"  required>
-												  <br>
-												  
-												  <label><b>Email</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $email; ?>"  required>
-												  <br>
-												  
-												  <label><b>Website</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $website; ?>"  required>
-												  <br>
-												  
-												  <label><b>Category</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $category; ?>"  required>
-												  <br>
+											<table class="table table-bordered table-hover">
+												<tbody>
+													<tr>
+														<th style="width: 10px" class="text-center">No</th>
+														<th class="text-center">Record information</th>
+														<th class="text-center">Update record</th>
+														<th class="text-center">Remove record</th>
+													</tr>
+												</tbody>
+												<tbody id="table">
 													
-												  <button type="submit">Update</button>
-												  <br>
-												</div>
+													<?php
+													require('config.php');	
 
-												<div  style="background-color:#f1f1f1">
-												  <button type="button" onclick="location.href = 'teacherList.php';" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-												  
-												</div>
-											</form>
-											<?PHP
-											require ('config.php');
-
-												if (isset($_POST['idTeacher'])){
-												$idTeacher = $_POST['idTeacher'];
-												$nameTeacher = $_POST['nameTeacher'];
-												$pwd = $_POST['pwd'];
-												$idT = $_POST['idT'];
-
-												$sql = "UPDATE teacher SET iduser='$idTeacher', fullname='$nameTeacher', password='$pwd'  WHERE iduser = '$idT'";
-												if(mysqli_query($link, $sql)){
-													echo '<script type="text/javascript">
-																alert("Rekod berjaya dikemaskini");
-																window.location.href="teacherList.php";
-														 </script>';
-													} else{
-														echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-												}
-												}
-												mysqli_close($link);
-											?>
-																	
+													$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
+													
+													if (isset($_POST['search'])){
+														$search = $_POST['searchdir'];
+														$sql = "SELECT * FROM li_lm_list WHERE name LIKE '%$search%' OR negeri LIKE '%$search%' OR alamat LIKE '%$search%' OR poskod LIKE '%$search%' OR category LIKE '%$search%' ORDER BY name ASC";
+													}
+													
+													elseif (isset($_POST['sortC'])){
+														$sortC = $_POST['sortC'];
+														if ($sortC == "alpA"){
+															$sql = "SELECT * FROM li_lm_list ORDER BY name ASC";
+														}
+														elseif ($sortC == "latestR"){
+															$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
+														}
+													}
+													
+													$result = mysqli_query($link, $sql);
+													$counter = 1;
+													if (mysqli_num_rows($result) > 0) {
+														// output data of each row
+														while($row = mysqli_fetch_assoc($result)) {
+															echo '<tr>
+																	<td class="text-center" ><strong>'.$counter.'</strong></td>
+																	<td class="text-left">
+																	<p><strong>Name:</strong> '.$row["name"].'</p><br>
+																	<p><strong>Address:</strong> '.$row["alamat"].'</p><br>
+																	<p><strong>Postcode:</strong> '.$row["poskod"].'</p><br>
+																	<p><strong>State:</strong> '.$row["negeri"].'</p><br>
+																	<p><strong>Phone number:</strong> '.$row["phone"].'</p><br>
+																	<p><strong>Email:</strong> '.$row["email"].'</p><br>
+																	<p><strong>Website:</strong> '.$row["website"].'</p><br>
+																	<p><strong>Category:</strong> '.$row["category"].'</p></td>
+																	<td class="text-center" >
+																	<form action="updateIT.php" method="POST">
+																		<input type="hidden" name="id" value="'.$row["id"].'">
+																		<input type="hidden" name="name" value="'.$row["name"].'">
+																		<input type="hidden" name="address" value="'.$row["alamat"].'">
+																		<input type="hidden" name="postcode" value="'.$row["poskod"].'">
+																		<input type="hidden" name="state" value="'.$row["negeri"].'">
+																		<input type="hidden" name="phone" value="'.$row["phone"].'">
+																		<input type="hidden" name="email" value="'.$row["email"].'">
+																		<input type="hidden" name="website" value="'.$row["website"].'">
+																		<input type="hidden" name="category" value="'.$row["category"].'">
+																		<button type="submit" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
+																	</form>
+																	</td>
+																	<td class="text-center" >
+																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
+																			<input type="hidden" name="idIT" value="'.$row["id"].'">
+																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
+																		</form>
+																	</td>
+																 </tr>';
+																 $counter++;
+														}
+													} else {
+														echo "No record";
+													}
+													mysqli_close($link);
+													?>			
+												</tbody>
+											</table>
 										</div>
 										<div class="overlay" id="overlay" style="display: none;">
 											<i class="fa fa-spinner fa-spin"></i>
@@ -429,13 +466,12 @@ include("auth.php");
 				
             </section>
             <!-- /.content -->
-			
         </div>
-		
-		<div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+        <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div>
     <!-- ./wrapper -->
-
+	
+	
     <!-- jQuery 2.1.4 -->
     <script src="./style-file/jQuery-2.1.4.min.js.download"></script>
     <!-- Bootstrap 3.3.2 JS -->
@@ -459,23 +495,21 @@ include("auth.php");
     <!-- Demo -->
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
 	
-	<!-- alert message -->
-	
 	<script>
-		var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+	// Get the modal
+	var modal = document.getElementById('id01');
 
-		function validatePassword(){
-		  if(password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Passwords Don't Match");
-		  } else {
-			confirm_password.setCustomValidity('');
-		  }
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
 		}
-
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
+	}
 	</script>
 	
+
+
+
 </body>
 
 </html>

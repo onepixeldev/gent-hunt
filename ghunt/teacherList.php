@@ -205,11 +205,16 @@ include("auth.php");
 												<tbody>
 													<tr>
 														<th style="width: 10px" class="text-center">No</th>
-														<th class="text-center">ID Guru</th>
-														<th class="text-center">Nama Penuh</th>
-														<th class="text-center">Kata Laluan</th>
-														<th class="text-center">Kemaskini Maklumat</th>
-														<th class="text-center">Padam akaun</th>
+														<th class="text-center">Name</th>
+														<th class="text-center">Address</th>
+														<th class="text-center">Postcode</th>
+														<th class="text-center">State</th>
+														<th class="text-center">Phone</th>
+														<th class="text-center">Email</th>
+														<th class="text-center">Website</th>
+														<th class="text-center">Category</th>
+														<th class="text-center">Update</th>
+														<th class="text-center">Delete</th>
 													</tr>
 												</tbody>
 												<tbody id="table">
@@ -217,7 +222,7 @@ include("auth.php");
 													<?php
 													require('config.php');	
 
-													$sql = "SELECT * FROM teacher ORDER BY fullname ASC";
+													$sql = "SELECT * FROM li_lm_list ORDER BY name ASC";
 													$result = mysqli_query($link, $sql);
 
 													if (mysqli_num_rows($result) > 0) {
@@ -225,21 +230,32 @@ include("auth.php");
 														while($row = mysqli_fetch_assoc($result)) {
 															echo '<tr>
 																	<td class="text-center" ></td>
-																	<td class="text-center" >'.$row["iduser"].'</td>
-																	<td class="text-center" >'.$row["fullname"].'</td>
-																	<td class="text-center" >'.$row["password"].'</td>
+																	<td class="text-center" >'.$row["name"].'</td>
+																	<td class="text-center" >'.$row["alamat"].'</td>
+																	<td class="text-center" >'.$row["poskod"].'</td>
+																	<td class="text-center" >'.$row["negeri"].'</td>
+																	<td class="text-center" >'.$row["phone"].'</td>
+																	<td class="text-center" >'.$row["email"].'</td>
+																	<td class="text-center" >'.$row["website"].'</td>
+																	<td class="text-center" >'.$row["category"].'</td>
 																	<td class="text-center" >
-																	<form action="updateTeacher.php" method="POST">
-																		<input type="hidden" name="iduser" value="'.$row["iduser"].'">
-																		<input type="hidden" name="fullname" value="'.$row["fullname"].'">
-																		<input type="hidden" name="password" value="'.$row["password"].'">
-																		<button type="submit" style="background-color: #33ccff; width:auto;" class="btn btn-warning btn-lg">Kemaskini</button>
+																	<form action="updateTL.php" method="POST">
+																		<input type="hidden" name="id" value="'.$row["id"].'">
+																		<input type="hidden" name="name" value="'.$row["name"].'">
+																		<input type="hidden" name="address" value="'.$row["alamat"].'">
+																		<input type="hidden" name="postcode" value="'.$row["poskod"].'">
+																		<input type="hidden" name="state" value="'.$row["negeri"].'">
+																		<input type="hidden" name="phone" value="'.$row["phone"].'">
+																		<input type="hidden" name="email" value="'.$row["email"].'">
+																		<input type="hidden" name="website" value="'.$row["website"].'">
+																		<input type="hidden" name="category" value="'.$row["category"].'">
+																		<button type="submit" style="background-color: #33ccff; width:auto;" class="btn btn-warning btn-lg">Update</button>
 																	</form>
 																	</td>
 																	<td class="text-center" >
 																		<form action="delete_usr.php" method="post" onsubmit="return confirm(\'Padam akaun kehadiran?\');"> 
-																			<input type="hidden" name="iduser" value="'.$row["iduser"].'">
-																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Padam</button>
+																			<input type="hidden" name="iduser" value="'.$row["id"].'">
+																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Delete</button>
 																		</form>
 																	</td>
 																 </tr>';

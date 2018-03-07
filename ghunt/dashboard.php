@@ -6,7 +6,7 @@ include("auth.php");
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>TeacAttSys | SRITI</title>
+    <title>gHunt | Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -158,12 +158,12 @@ include("auth.php");
 	<div class="container">
 	  <label><b>ID</b></label>
 	  <br>
-	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['username']; ?>" required>
+	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
 	  <br>
 
-	  <label><b>Nama Penuh</b></label>
+	  <label><b>Fullname</b></label>
 	  <br>
-	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['fullname']; ?>"  required>
+	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
 	  <br>
 	  
 	  <label><b>Email</b></label>
@@ -171,28 +171,28 @@ include("auth.php");
 	  <input type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
 	  <br>
 	  
-	  <label><b>Nombor Telefon</b></label>
+	  <label><b>Phone Number</b></label>
 	  <br>
 	  <input type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
 	  <br>
 	  
-	  <label><b>Kata Laluan</b></label>
+	  <label><b>Password</b></label>
 	  <br>
 	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
 	  <br>
 	  
-	  <label><b>Ulang Kata Laluan</b></label>
+	  <label><b>Repeat password</b></label>
 	  <br>
 	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
 	  <br>
 		
-	  <button type="submit">Kemaskini</button>
+	  <button type="submit">Update</button>
 	  <br>
 	  
 	</div>
 
 	<div  style="background-color:#f1f1f1">
-	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Batalkan</button>
+	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
 	  
 	</div>
 	</form>
@@ -204,7 +204,7 @@ include("auth.php");
         <!-- HEADER SECTION -->
         <header class="main-header" >
             <!-- Logo -->
-            <a href="dashboard.php" class="logo" style="background-color: #3CBCB5; color: #3CBCB5;">
+            <a href="dashboard.php" class="logo" style="background-color: #179BD7; color: #179BD7;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
                 <!--<img src="" width="50px"></img>-->            
@@ -213,7 +213,7 @@ include("auth.php");
             <span class="logo-lg">                  
 <!--                <img src="template/images/jata.png" width="50px"></img>
                 &nbsp;&nbsp;-->
-                <img src="images/logo/sriti_png_logo.png" width="50px" height="45px">
+                <img src="assets/img/logo_gh.png" width="60px" height="45px">
                 &nbsp;&nbsp;&nbsp;
                 <!--<img src="template/images/eSmartBlue.png" width="60px" height="50px"></img>-->
             </span>
@@ -222,13 +222,13 @@ include("auth.php");
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #3CBCB5;"> 
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #179BD7;"> 
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
-                    <div style="font-size:large;font-weight:bold;color: #d8e4fd;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
-                        <font color="white"><strong>Sistem Kehadiran Guru</strong></font>
+                    <div style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size:large;font-weight:bold;color: white;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
+                        <p>gHunt Management</p>
                     </div>
                 </a>
                 <div class="navbar-custom-menu">
@@ -237,31 +237,31 @@ include("auth.php");
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="images/logo/adminLogo.png" class="user-image" alt="">
-                                <span class="hidden-xs"><?PHP echo $fn['fullname']; ?></span>
+                                <span class="hidden-xs"><?PHP echo $fn['name']; ?></span>
                             </a>
                             <ul class="dropdown-menu" >
                                 <!-- User image -->
-                                <li class="user-header" style="background-color: #3CBCB5; height: 151px;">
+                                <li class="user-header" style="background-color: #179BD7; height: 151px;">
                                     <img src="images/logo/adminLogo.png" class="user-image" alt="">
                                     <p style="color: white;">
-                                       <?PHP echo $fn['fullname']; ?>
+                                       <?PHP echo $fn['name']; ?>
                                     </p>
                                 </li>
 								<li class="user-body">
 									<p>
 									   Email: <strong style="color: #3c763d;"><?PHP echo $fn['email']; ?></strong>
 									   <br>
-									   Nombor Telefon: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
+									   Phone Number: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
 
                                     </p>
 								<li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Keluar</a>
+                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Logout</a>
                                     </div>
 									<div class="pull-left">
-                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Tukar Maklumat</a>
+                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Edit Info</a>
                                     </div>
                                 </li>
                             </ul>
@@ -293,39 +293,54 @@ include("auth.php");
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="header">MENU UTAMA</li>
+                    <li class="header">MAIN MENU</li>
 
                     <li class="treeview active">
                         <a href="dashboard.php">
-                            <i class="fa fa-dashboard"></i>  <span>Paparan utama</span>
+                            <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
 					<li class="treeview">
-                        <a href="takeAttend.php">
-                            <i class="fa fa-dashboard"></i>  <span>Kehadiran</span>
+                        <a href="#">
+                            <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
+                            <i class="fa fa-angle-left pull-right"></i>
                         </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
+                                <a href="ITlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="ITadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="ITfeat.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
+                            </li>
+
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i>  <span>Pengurusan</span>
+                            <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
                                 <a href="teacherList.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
                             <li class="">
                                 <a href="addUser.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="addUser.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
                             </li>
 
                         </ul>
-                    </li>
-					<li class="treeview">
-                        <a href="report.php">
-                            <i class="fa fa-dashboard"></i>  <span>Laporan Kehadiran</span>
-                        </a>
                     </li>
                 </ul>
             </section>
@@ -340,7 +355,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Paparan utama 
+					Dashboard
 				</h1> 
             </section>
 
@@ -356,12 +371,12 @@ include("auth.php");
 									<div class="box-body">
 										<table class="table table-bordered table-hover">
 											<div class="alert alert-success alert-dismissable">                            
-												<h4>SELAMAT DATANG <?PHP echo $fn['fullname']; ?></h4>
-												<p>Nota : Maklumat pentadbir hanya boleh dikemaskini pada <strong style="color: #a0192b;"> Paparan Utama</strong> sahaja.</p>
-												<p>Pastikan perkara dibawah dilakukan :</p>
-												<p><i class="icon fa fa-check"></i>Pastikan panel kehadiran dibuka untuk pengambilan kehadiran masuk dan keluar.</p>
-												<p><i class="icon fa fa-check"></i>Semak senarai guru yang terkini dan tambah guru baru daftar.</p>
-												<p><i class="icon fa fa-check"></i>Maklumat kehadiran guru boleh disemak dan dicetak dalam bahagian laporan kehadiran.</p>
+												<h4>Welcome <?PHP echo $fn['name']; ?></h4>
+												<p></p>
+												<p>Make sure all things listed below is done accordingly :</p>
+												<p><i class="icon fa fa-check"></i></p>
+												<p><i class="icon fa fa-check"></i></p>
+												<p><i class="icon fa fa-check"></i></p>
 											</div>
 										</table>
 									</div>

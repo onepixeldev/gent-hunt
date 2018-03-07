@@ -1,14 +1,12 @@
-
 <?php
 include("auth.php");
 ?>
 <html>
 
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>TeacAttSys | SRITI</title>
+    <title>gHunt | Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -153,7 +151,52 @@ include("auth.php");
 		}
 	</style>
 </head>
+<div id="id01" class="modal">
+<form class="modal-content animate" action="updateAdmin.php" method="POST">
+	
 
+	<div class="container">
+	  <label><b>ID</b></label>
+	  <br>
+	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['username']; ?>" required>
+	  <br>
+
+	  <label><b>Nama Penuh</b></label>
+	  <br>
+	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['fullname']; ?>"  required>
+	  <br>
+	  
+	  <label><b>Email</b></label>
+	  <br>
+	  <input type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
+	  <br>
+	  
+	  <label><b>Nombor Telefon</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
+	  <br>
+	  
+	  <label><b>Kata Laluan</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+	  
+	  <label><b>Ulang Kata Laluan</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+		
+	  <button type="submit">Kemaskini</button>
+	  <br>
+	  
+	</div>
+
+	<div  style="background-color:#f1f1f1">
+	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Batalkan</button>
+	  
+	</div>
+	</form>
+</div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -161,7 +204,7 @@ include("auth.php");
         <!-- HEADER SECTION -->
         <header class="main-header" >
             <!-- Logo -->
-            <a href="dashboard.php" class="logo" style="background-color: #3CBCB5; color: #3CBCB5;">
+            <a href="dashboard.php" class="logo" style="background-color: #179BD7; color: #179BD7;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
                 <!--<img src="" width="50px"></img>-->            
@@ -170,7 +213,7 @@ include("auth.php");
             <span class="logo-lg">                  
 <!--                <img src="template/images/jata.png" width="50px"></img>
                 &nbsp;&nbsp;-->
-                <img src="images/logo/sriti_png_logo.png" width="50px" height="45px">
+                <img src="assets/img/logo_gh.png" width="60px" height="45px">
                 &nbsp;&nbsp;&nbsp;
                 <!--<img src="template/images/eSmartBlue.png" width="60px" height="50px"></img>-->
             </span>
@@ -179,13 +222,13 @@ include("auth.php");
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #3CBCB5;"> 
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #179BD7;"> 
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
-                    <div style="font-size:large;font-weight:bold;color: #d8e4fd;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
-                        <font color="white"><strong>Sistem Kehadiran Guru</strong></font>
+                    <div style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size:large;font-weight:bold;color: white;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
+                        <p>gHunt Management</p>
                     </div>
                 </a>
                 <div class="navbar-custom-menu">
@@ -194,28 +237,31 @@ include("auth.php");
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="images/logo/adminLogo.png" class="user-image" alt="">
-                                <span class="hidden-xs"><?PHP echo $fn['fullname']; ?></span>
+                                <span class="hidden-xs"><?PHP echo $fn['name']; ?></span>
                             </a>
                             <ul class="dropdown-menu" >
                                 <!-- User image -->
-                                <li class="user-header" style="background-color: #3CBCB5; height: 151px;">
+                                <li class="user-header" style="background-color: #179BD7; height: 151px;">
                                     <img src="images/logo/adminLogo.png" class="user-image" alt="">
                                     <p style="color: white;">
-                                       <?PHP echo $fn['fullname']; ?>
+                                       <?PHP echo $fn['name']; ?>
                                     </p>
                                 </li>
 								<li class="user-body">
 									<p>
 									   Email: <strong style="color: #3c763d;"><?PHP echo $fn['email']; ?></strong>
 									   <br>
-									   Nombor Telefon: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
+									   Phone Number: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
 
                                     </p>
 								<li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="logout.php" style="background-color: #f44336; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Log keluar</a>
+                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Keluar</a>
+                                    </div>
+									<div class="pull-left">
+                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Tukar Maklumat</a>
                                     </div>
                                 </li>
                             </ul>
@@ -247,59 +293,55 @@ include("auth.php");
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="header">MENU UTAMA</li>
+                    <li class="header">MAIN MENU</li>
 
-                    <li class="treeview">
+                    <li class="treeview active">
                         <a href="dashboard.php">
-                            <i class="fa fa-dashboard"></i>  <span>Paparan utama</span>
+                            <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
 					<li class="treeview">
                         <a href="takeAttend.php">
-                            <i class="fa fa-dashboard"></i>  <span>Kehadiran</span>
+                            <i class="fa fa-dashboard"></i><span>Directory Management</span>
                         </a>
                     </li>
 					<li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i>  <span>Kelas Ganti</span>
+                            <i class="fa fa-user"></i>  <span>Directory Management</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
-                                <a href="listReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Kelas Ganti</a>
+                                <a href="teacherList.php">
+                                    <i class="fa fa-long-arrow-right"></i>Directory</a>
                             </li>
                             <li class="">
-                                <a href="addReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Kelas Ganti</a>
-                            </li>
-							<li class="">
-                                <a href="timeTableView.php">
-                                    <i class="fa fa-long-arrow-right"></i>Semak Jadual Kelas</a>
+                                <a href="addUser.php">
+                                    <i class="fa fa-long-arrow-right"></i>Featured List</a>
                             </li>
 
                         </ul>
                     </li>
-                    <li class="treeview active">
+                    <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i>  <span>Pengurusan</span>
+                            <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu menu-open" style="display: block;">
+                        <ul class="treeview-menu" style="display: none;">
                             <li class="">
                                 <a href="teacherList.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Directory</a>
                             </li>
                             <li class="">
                                 <a href="addUser.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Featured List</a>
                             </li>
 
                         </ul>
                     </li>
 					<li class="treeview">
                         <a href="report.php">
-                            <i class="fa fa-dashboard"></i>  <span>Laporan Kehadiran</span>
+                            <i class="fa fa-dashboard"></i><span>Laporan Kehadiran</span>
                         </a>
                     </li>
                 </ul>
@@ -315,8 +357,8 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-            Kemaskini maklumat guru            
-        </h1> 
+					Dashboard
+				</h1> 
             </section>
 
             <!-- Main content -->
@@ -429,13 +471,12 @@ include("auth.php");
 				
             </section>
             <!-- /.content -->
-			
         </div>
-		
-		<div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+        <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div>
     <!-- ./wrapper -->
-
+	
+	
     <!-- jQuery 2.1.4 -->
     <script src="./style-file/jQuery-2.1.4.min.js.download"></script>
     <!-- Bootstrap 3.3.2 JS -->
@@ -459,23 +500,21 @@ include("auth.php");
     <!-- Demo -->
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
 	
-	<!-- alert message -->
-	
 	<script>
-		var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+	// Get the modal
+	var modal = document.getElementById('id01');
 
-		function validatePassword(){
-		  if(password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Passwords Don't Match");
-		  } else {
-			confirm_password.setCustomValidity('');
-		  }
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
 		}
-
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
+	}
 	</script>
 	
+
+
+
 </body>
 
 </html>

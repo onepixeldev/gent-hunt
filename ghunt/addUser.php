@@ -237,42 +237,41 @@ button {
 							<div class="col-md-12">
 								<div class="box box-info">
 									<div class="box-header with-border">
-											<h3 class="box-title">Daftar</h3>
+											<h3 class="box-title">Add new IT directory record</h3>
 									</div>
 										<div class="box-body">
 											<form action="insert.php" style="border:1px solid #ccc" method="POST">
 											  <div class="container">
-												<label><b>ID Guru</b></label><br>
-												<input type="text" placeholder="Nombor kad pengenalan" name="iduser" maxlength="12" required>
+												<br><label><b>Institute or company name</b></label><br>
+												<input type="text" placeholder="Institute or company name" name="fullname" required>
 												
-												<br><label><b>Nama Penuh</b></label><br>
-												<input type="text" placeholder="Nama penuh" name="fullname" required>
+												<br><label><b>Address</b></label><br>
+												<input type="text" placeholder="Location" name="fullname" required>
 												
-												<br><label><b>Kata Laluan</b></label><br>
-												<input type="password" placeholder="Kata laluan" name="password" id="password" required>
+												<br><label><b>Postcode</b></label><br>
+												<input type="text" placeholder="Postcode" name="fullname" required>
 												
-												<br><label><b>Pengesahan Kata Laluan</b></label><br>
-												<input type="password" placeholder="Pengesahan kata laluan" id="confirm_password" required>
+												<br><label><b>State</b></label><br>
+												<input type="text" placeholder="State" name="fullname" required>
+												
+												<br><label><b>Phone number</b></label><br>
+												<input type="text" placeholder="Phone number" name="fullname">
+												
+												<br><label><b>Email</b></label><br>
+												<input type="text" placeholder="Email" name="fullname">
+												
+												<br><label><b>Website</b></label><br>
+												<input type="text" placeholder="Website" name="fullname">
+												
+												<br><label><b>Category</b></label><br>
+												<input type="text" placeholder="Category" name="fullname" required>
+												
 												<div class="clearfix">
-												  <button type="submit" class="signupbtn">DAFTAR</button>
+												  <button type="submit" class="signupbtn">Add record</button>
 												</div>
 											  </div>
 											</form>
 										</div>
-										<script>
-											var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
-
-											function validatePassword(){
-											  if(password.value != confirm_password.value) {
-												confirm_password.setCustomValidity("Passwords Don't Match");
-											  } else {
-												confirm_password.setCustomValidity('');
-											  }
-											}
-
-											password.onchange = validatePassword;
-											confirm_password.onkeyup = validatePassword;
-										</script>
 										<div class="overlay" id="overlay" style="display: none;">
 											<i class="fa fa-spinner fa-spin"></i>
 										</div>

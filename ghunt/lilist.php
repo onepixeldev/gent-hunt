@@ -1,4 +1,3 @@
-
 <?php
 include("auth.php");
 ?>
@@ -8,7 +7,7 @@ include("auth.php");
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>TeacAttSys | SRITI</title>
+    <title>gHunt | Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -33,127 +32,21 @@ include("auth.php");
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 	
     <style>
-		/* Full-width input fields */
-		input[type=text], input[type=password], input[type=email] {
-			width: 54%;
-			padding: 12px 20px;
-			margin: 8px 0;
-			display: inline-block;
-			border: 1px solid #ccc;
-			box-sizing: border-box;
+	<!-- table num row -->
+		table {
+			counter-reset: rowNumber;
 		}
 
-		/* Set a style for all buttons */
-		button {
-			background-color: #4CAF50;
-			color: white;
-			padding: 14px 20px;
-			margin: 8px 0;
-			border: none;
-			cursor: pointer;
-			width: 54%;
+		table tr {
+			counter-increment: rowNumber;
 		}
 
-		button:hover {
-			opacity: 0.8;
-		}
-
-		/* Extra styles for the cancel button */
-		.cancelbtn {
-			width: auto;
-			padding: 10px 18px;
-			background-color: #f44336;
-		}
-
-		/* Center the image and position the close button */
-		.imgcontainer {
-			text-align: center;
-			margin: 24px 0 12px 0;
-			position: relative;
-		}
-
-		img.avatar {
-			width: 40%;
-			border-radius: 50%;
-		}
-
-		.container {
-			padding: 16px;
-		}
-
-		span.psw {
-			float: right;
-			padding-top: 16px;
-		}
-
-		/* The Modal (background) */
-		.modal {
-			display: none; /* Hidden by default */
-			position: fixed; /* Stay in place */
-			z-index: 1; /* Sit on top */
-			left: 80px;
-			top: 0;
-			width: 100%; /* Full width */
-			height: 100%; /* Full height */
-			overflow: auto; /* Enable scroll if needed */
-			background-color: rgb(0,0,0); /* Fallback color */
-			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-			padding-top: 60px;
-		}
-
-		/* Modal Content/Box */
-		.modal-content {
-			background-color: #fefefe;
-			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-			border: 1px solid #888;
-			width: 43%; /* Could be more or less, depending on screen size */
-		}
-
-		/* The Close Button (x) */
-		.close {
-			position: absolute;
-			right: 25px;
-			top: 0;
-			color: #000;
-			font-size: 35px;
-			font-weight: bold;
-		}
-
-		.close:hover,
-		.close:focus {
-			color: red;
-			cursor: pointer;
-		}
-
-		/* Add Zoom Animation */
-		.animate {
-			-webkit-animation: animatezoom 0.6s;
-			animation: animatezoom 0.6s
-		}
-
-		@-webkit-keyframes animatezoom {
-			from {-webkit-transform: scale(0)} 
-			to {-webkit-transform: scale(1)}
-		}
-			
-		@keyframes animatezoom {
-			from {transform: scale(0)} 
-			to {transform: scale(1)}
-		}
-
-		/* Change styles for span and cancel button on extra small screens */
-		@media screen and (max-width: 300px) {
-			span.psw {
-			   display: block;
-			   float: none;
-			}
-			.cancelbtn {
-			   width: 100%;
-			}
+		table tr td:first-child::before {
+			content: counter(rowNumber);
+			min-width: 1em;
+			margin-right: 0.5em;
 		}
 	</style>
-</head>
-
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -161,7 +54,7 @@ include("auth.php");
         <!-- HEADER SECTION -->
         <header class="main-header" >
             <!-- Logo -->
-            <a href="dashboard.php" class="logo" style="background-color: #3CBCB5; color: #3CBCB5;">
+            <a href="dashboard.php" class="logo" style="background-color: #179BD7; color: #179BD7;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
                 <!--<img src="" width="50px"></img>-->            
@@ -179,13 +72,13 @@ include("auth.php");
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #3CBCB5;"> 
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #179BD7;"> 
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
-                    <div style="font-size:large;font-weight:bold;color: #d8e4fd;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
-                        <font color="white"><strong>Sistem Kehadiran Guru</strong></font>
+                    <div style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size:large;font-weight:bold;color: white;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
+                        <p>gHunt Management</p>
                     </div>
                 </a>
                 <div class="navbar-custom-menu">
@@ -194,28 +87,31 @@ include("auth.php");
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="images/logo/adminLogo.png" class="user-image" alt="">
-                                <span class="hidden-xs"><?PHP echo $fn['fullname']; ?></span>
+                                <span class="hidden-xs"><?PHP echo $fn['name']; ?></span>
                             </a>
                             <ul class="dropdown-menu" >
                                 <!-- User image -->
-                                <li class="user-header" style="background-color: #3CBCB5; height: 151px;">
+                                <li class="user-header" style="background-color: #179BD7; height: 151px;">
                                     <img src="images/logo/adminLogo.png" class="user-image" alt="">
                                     <p style="color: white;">
-                                       <?PHP echo $fn['fullname']; ?>
+                                       <?PHP echo $fn['name']; ?>
                                     </p>
                                 </li>
 								<li class="user-body">
 									<p>
 									   Email: <strong style="color: #3c763d;"><?PHP echo $fn['email']; ?></strong>
 									   <br>
-									   Nombor Telefon: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
+									   Phone Number: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
 
                                     </p>
 								<li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="logout.php" style="background-color: #f44336; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Log keluar</a>
+                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Logout</a>
+                                    </div>
+									<div class="pull-left">
+                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Edit Info</a>
                                     </div>
                                 </li>
                             </ul>
@@ -259,27 +155,6 @@ include("auth.php");
                             <i class="fa fa-dashboard"></i>  <span>Kehadiran</span>
                         </a>
                     </li>
-					<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-user"></i>  <span>Kelas Ganti</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu" style="display: none;">
-                            <li class="">
-                                <a href="listReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Kelas Ganti</a>
-                            </li>
-                            <li class="">
-                                <a href="addReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Kelas Ganti</a>
-                            </li>
-							<li class="">
-                                <a href="timeTableView.php">
-                                    <i class="fa fa-long-arrow-right"></i>Semak Jadual Kelas</a>
-                            </li>
-
-                        </ul>
-                    </li>
                     <li class="treeview active">
                         <a href="#">
                             <i class="fa fa-user"></i>  <span>Pengurusan</span>
@@ -315,7 +190,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-            Kemaskini maklumat guru            
+            Senarai guru            
         </h1> 
             </section>
 
@@ -325,99 +200,76 @@ include("auth.php");
 							<div class="col-md-12">
 								<div class="box box-info">
 									<div class="box-header with-border">
-											<h3 class="box-title">Kemaskini</h3>
+											<h3 class="box-title">Senarai</h3>
 											
 									</div>
 										<div class="box-body">
-											<?PHP
-											require ('config.php');
-											if (isset($_POST['id'])){
-												$id = $_POST['id'];
-												$name = $_POST['name'];
-												$address = $_POST['address'];
-												$postcode = $_POST['postcode'];
-												$state = $_POST['state'];
-												$phone = $_POST['phone'];
-												$email = $_POST['email'];
-												$website = $_POST['website'];
-												$category = $_POST['category'];
-											}
-											mysqli_close($link);
-											
-											?>	
-											<form action="" method="POST">
-												
-												<div class="container">
-												  <label><b>Institute or company name</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan ID guru" name="idTeacher" value="<?PHP echo $name; ?>" required>
-												  <br>
-
-												  <label><b>Address</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $address; ?>"  required>
-												  <br>
-												  
-												  <label><b>Postcode</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $postcode; ?>"  required>
-												  <br>
-												  
-												  <label><b>State</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $state; ?>"  required>
-												  <br>
-												  <label><b>Phone Number</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $phone; ?>"  required>
-												  <br>
-												  
-												  <label><b>Email</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $email; ?>"  required>
-												  <br>
-												  
-												  <label><b>Website</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $website; ?>"  required>
-												  <br>
-												  
-												  <label><b>Category</b></label>
-												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $category; ?>"  required>
-												  <br>
+											<table class="table table-bordered table-hover">
+												<tbody>
+													<tr>
+														<th style="width: 10px" class="text-center">No</th>
+														<th class="text-center">Name</th>
+														<th class="text-center">Address</th>
+														<th class="text-center">Postcode</th>
+														<th class="text-center">State</th>
+														<th class="text-center">Phone</th>
+														<th class="text-center">Email</th>
+														<th class="text-center">Website</th>
+														<th class="text-center">Category</th>
+														<th class="text-center">Update</th>
+														<th class="text-center">Delete</th>
+													</tr>
+												</tbody>
+												<tbody id="table">
 													
-												  <button type="submit">Update</button>
-												  <br>
-												</div>
+													<?php
+													require('config.php');	
 
-												<div  style="background-color:#f1f1f1">
-												  <button type="button" onclick="location.href = 'teacherList.php';" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-												  
-												</div>
-											</form>
-											<?PHP
-											require ('config.php');
+													$sql = "SELECT * FROM li_lm_list ORDER BY name ASC";
+													$result = mysqli_query($link, $sql);
 
-												if (isset($_POST['idTeacher'])){
-												$idTeacher = $_POST['idTeacher'];
-												$nameTeacher = $_POST['nameTeacher'];
-												$pwd = $_POST['pwd'];
-												$idT = $_POST['idT'];
-
-												$sql = "UPDATE teacher SET iduser='$idTeacher', fullname='$nameTeacher', password='$pwd'  WHERE iduser = '$idT'";
-												if(mysqli_query($link, $sql)){
-													echo '<script type="text/javascript">
-																alert("Rekod berjaya dikemaskini");
-																window.location.href="teacherList.php";
-														 </script>';
-													} else{
-														echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-												}
-												}
-												mysqli_close($link);
-											?>
-																	
+													if (mysqli_num_rows($result) > 0) {
+														// output data of each row
+														while($row = mysqli_fetch_assoc($result)) {
+															echo '<tr>
+																	<td class="text-center" ></td>
+																	<td class="text-center" >'.$row["name"].'</td>
+																	<td class="text-center" >'.$row["alamat"].'</td>
+																	<td class="text-center" >'.$row["poskod"].'</td>
+																	<td class="text-center" >'.$row["negeri"].'</td>
+																	<td class="text-center" >'.$row["phone"].'</td>
+																	<td class="text-center" >'.$row["email"].'</td>
+																	<td class="text-center" >'.$row["website"].'</td>
+																	<td class="text-center" >'.$row["category"].'</td>
+																	<td class="text-center" >
+																	<form action="updateTL.php" method="POST">
+																		<input type="hidden" name="id" value="'.$row["id"].'">
+																		<input type="hidden" name="name" value="'.$row["name"].'">
+																		<input type="hidden" name="address" value="'.$row["alamat"].'">
+																		<input type="hidden" name="postcode" value="'.$row["poskod"].'">
+																		<input type="hidden" name="state" value="'.$row["negeri"].'">
+																		<input type="hidden" name="phone" value="'.$row["phone"].'">
+																		<input type="hidden" name="email" value="'.$row["email"].'">
+																		<input type="hidden" name="website" value="'.$row["website"].'">
+																		<input type="hidden" name="category" value="'.$row["category"].'">
+																		<button type="submit" style="background-color: #33ccff; width:auto;" class="btn btn-warning btn-lg">Update</button>
+																	</form>
+																	</td>
+																	<td class="text-center" >
+																		<form action="delete_usr.php" method="post" onsubmit="return confirm(\'Padam akaun kehadiran?\');"> 
+																			<input type="hidden" name="iduser" value="'.$row["id"].'">
+																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Delete</button>
+																		</form>
+																	</td>
+																 </tr>';
+														}
+													} else {
+														echo "Tiada rekod";
+													}
+													mysqli_close($link);
+													?>			
+												</tbody>
+											</table>
 										</div>
 										<div class="overlay" id="overlay" style="display: none;">
 											<i class="fa fa-spinner fa-spin"></i>
@@ -460,22 +312,7 @@ include("auth.php");
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
 	
 	<!-- alert message -->
-	
-	<script>
-		var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
 
-		function validatePassword(){
-		  if(password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Passwords Don't Match");
-		  } else {
-			confirm_password.setCustomValidity('');
-		  }
-		}
-
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
-	</script>
-	
 </body>
 
 </html>

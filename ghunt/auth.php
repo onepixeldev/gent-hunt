@@ -9,7 +9,7 @@
 	}
 	
 	$idAdmin = $_SESSION['username'];
-	$fullname = "SELECT * FROM admin WHERE username='$idAdmin'";
+	$fullname = "SELECT * FROM admin WHERE id_admin='$idAdmin'";
 	
 	$result = mysqli_query($link, $fullname);
 	$fn = mysqli_fetch_assoc($result);

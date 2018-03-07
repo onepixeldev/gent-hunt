@@ -1,14 +1,12 @@
-
 <?php
 include("auth.php");
 ?>
 <html>
 
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>TeacAttSys | SRITI</title>
+    <title>gHunt | Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -34,26 +32,39 @@ include("auth.php");
 	
     <style>
 		/* Full-width input fields */
-		input[type=text], input[type=password], input[type=email] {
-			width: 54%;
+		input[type=text], input[type=password], input[type=email], select[name=category] {
+			width: 70%;
 			padding: 12px 20px;
 			margin: 8px 0;
 			display: inline-block;
 			border: 1px solid #ccc;
 			box-sizing: border-box;
 		}
-
+		
+		select[name=category] {
+			width: 16%;
+		}
+		
 		/* Set a style for all buttons */
 		button {
-			background-color: #4CAF50;
+			background-color: #179BD7;
 			color: white;
 			padding: 14px 20px;
-			margin: 8px 0;
+			margin: 8px 0px;
 			border: none;
 			cursor: pointer;
-			width: 54%;
+			width: 10%;
 		}
-
+		
+		button[type=up]{
+			margin: 8px 340px;
+		}
+		
+		button[type=button]{
+			margin: 8px -300px;
+			background-color: #e50431;
+		}
+		
 		button:hover {
 			opacity: 0.8;
 		}
@@ -153,7 +164,52 @@ include("auth.php");
 		}
 	</style>
 </head>
+<div id="id01" class="modal">
+<form class="modal-content animate" action="updateAdmin.php" method="POST">
+	
 
+	<div class="container">
+	  <label><b>ID</b></label>
+	  <br>
+	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
+	  <br>
+
+	  <label><b>Fullname</b></label>
+	  <br>
+	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
+	  <br>
+	  
+	  <label><b>Email</b></label>
+	  <br>
+	  <input type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
+	  <br>
+	  
+	  <label><b>Phone Number</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
+	  <br>
+	  
+	  <label><b>Password</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+	  
+	  <label><b>Repeat password</b></label>
+	  <br>
+	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
+	  <br>
+		
+	  <button type="submit">Update</button>
+	  <br>
+	  
+	</div>
+
+	<div  style="background-color:#f1f1f1">
+	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
+	  
+	</div>
+	</form>
+</div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -161,7 +217,7 @@ include("auth.php");
         <!-- HEADER SECTION -->
         <header class="main-header" >
             <!-- Logo -->
-            <a href="dashboard.php" class="logo" style="background-color: #3CBCB5; color: #3CBCB5;">
+            <a href="dashboard.php" class="logo" style="background-color: #179BD7; color: #179BD7;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
                 <!--<img src="" width="50px"></img>-->            
@@ -170,7 +226,7 @@ include("auth.php");
             <span class="logo-lg">                  
 <!--                <img src="template/images/jata.png" width="50px"></img>
                 &nbsp;&nbsp;-->
-                <img src="images/logo/sriti_png_logo.png" width="50px" height="45px">
+                <img src="assets/img/logo_gh.png" width="60px" height="45px">
                 &nbsp;&nbsp;&nbsp;
                 <!--<img src="template/images/eSmartBlue.png" width="60px" height="50px"></img>-->
             </span>
@@ -179,13 +235,13 @@ include("auth.php");
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #3CBCB5;"> 
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: #179BD7;"> 
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
-                    <div style="font-size:large;font-weight:bold;color: #d8e4fd;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
-                        <font color="white"><strong>Sistem Kehadiran Guru</strong></font>
+                    <div style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size:large;font-weight:bold;color: white;margin-left:45px;margin-top:-20px;position:absolute;z-index:1;">
+                        <p>gHunt Management</p>
                     </div>
                 </a>
                 <div class="navbar-custom-menu">
@@ -194,28 +250,31 @@ include("auth.php");
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="images/logo/adminLogo.png" class="user-image" alt="">
-                                <span class="hidden-xs"><?PHP echo $fn['fullname']; ?></span>
+                                <span class="hidden-xs"><?PHP echo $fn['name']; ?></span>
                             </a>
                             <ul class="dropdown-menu" >
                                 <!-- User image -->
-                                <li class="user-header" style="background-color: #3CBCB5; height: 151px;">
+                                <li class="user-header" style="background-color: #179BD7; height: 151px;">
                                     <img src="images/logo/adminLogo.png" class="user-image" alt="">
                                     <p style="color: white;">
-                                       <?PHP echo $fn['fullname']; ?>
+                                       <?PHP echo $fn['name']; ?>
                                     </p>
                                 </li>
 								<li class="user-body">
 									<p>
 									   Email: <strong style="color: #3c763d;"><?PHP echo $fn['email']; ?></strong>
 									   <br>
-									   Nombor Telefon: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
+									   Phone Number: <strong style="color: #3c763d;"><?PHP echo $fn['phone']; ?></strong>
 
                                     </p>
 								<li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="logout.php" style="background-color: #f44336; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Log keluar</a>
+                                        <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Logout</a>
+                                    </div>
+									<div class="pull-left">
+                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Edit Info</a>
                                     </div>
                                 </li>
                             </ul>
@@ -247,60 +306,54 @@ include("auth.php");
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="header">MENU UTAMA</li>
+                    <li class="header">MAIN MENU</li>
 
                     <li class="treeview">
                         <a href="dashboard.php">
-                            <i class="fa fa-dashboard"></i>  <span>Paparan utama</span>
+                            <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
-					<li class="treeview">
-                        <a href="takeAttend.php">
-                            <i class="fa fa-dashboard"></i>  <span>Kehadiran</span>
-                        </a>
-                    </li>
-					<li class="treeview">
+					<li class="treeview active">
                         <a href="#">
-                            <i class="fa fa-user"></i>  <span>Kelas Ganti</span>
+                            <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: block;">
+                            <li class="">
+                                <a href="ITlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="ITadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="ITfeat.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
-                                <a href="listReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Kelas Ganti</a>
-                            </li>
-                            <li class="">
-                                <a href="addReliefClass.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Kelas Ganti</a>
-                            </li>
-							<li class="">
-                                <a href="timeTableView.php">
-                                    <i class="fa fa-long-arrow-right"></i>Semak Jadual Kelas</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="treeview active">
-                        <a href="#">
-                            <i class="fa fa-user"></i>  <span>Pengurusan</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu menu-open" style="display: block;">
-                            <li class="">
                                 <a href="teacherList.php">
-                                    <i class="fa fa-long-arrow-right"></i>Senarai Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
                             <li class="">
                                 <a href="addUser.php">
-                                    <i class="fa fa-long-arrow-right"></i>Tambah Guru</a>
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+							<li class="">
+                                <a href="addUser.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
                             </li>
 
                         </ul>
-                    </li>
-					<li class="treeview">
-                        <a href="report.php">
-                            <i class="fa fa-dashboard"></i>  <span>Laporan Kehadiran</span>
-                        </a>
                     </li>
                 </ul>
             </section>
@@ -315,8 +368,8 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-            Kemaskini maklumat guru            
-        </h1> 
+					Update selected record
+				</h1> 
             </section>
 
             <!-- Main content -->
@@ -325,7 +378,7 @@ include("auth.php");
 							<div class="col-md-12">
 								<div class="box box-info">
 									<div class="box-header with-border">
-											<h3 class="box-title">Kemaskini</h3>
+											<h3 class="box-title">Update</h3>
 											
 									</div>
 										<div class="box-body">
@@ -348,68 +401,72 @@ include("auth.php");
 											<form action="" method="POST">
 												
 												<div class="container">
+												  <input type="hidden" name="id" value="<?PHP echo $id; ?>" required>	
 												  <label><b>Institute or company name</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan ID guru" name="idTeacher" value="<?PHP echo $name; ?>" required>
+												  <input type="text" placeholder="Update institute or company name" name="itname" value="<?PHP echo $name; ?>" required>
 												  <br>
 
 												  <label><b>Address</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $address; ?>"  required>
+												  <input type="text" placeholder="Update location" name="location" value="<?PHP echo $address; ?>"  required>
 												  <br>
 												  
 												  <label><b>Postcode</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $postcode; ?>"  required>
+												  <input type="text" placeholder="Update postcode" name="postcode" value="<?PHP echo $postcode; ?>">
 												  <br>
 												  
 												  <label><b>State</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $state; ?>"  required>
+												  <input type="text" placeholder="Update state" name="state" value="<?PHP echo $state; ?>"  required>
 												  <br>
 												  <label><b>Phone Number</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $phone; ?>"  required>
+												  <input type="text" placeholder="Update phone number" name="pnumber" value="<?PHP echo $phone; ?>">
 												  <br>
 												  
 												  <label><b>Email</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $email; ?>"  required>
+												  <input type="text" placeholder="Update email" name="email" value="<?PHP echo $email; ?>">
 												  <br>
 												  
 												  <label><b>Website</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $website; ?>"  required>
+												  <input type="text" placeholder="Update website" name="website" value="<?PHP echo $website; ?>">
 												  <br>
 												  
 												  <label><b>Category</b></label>
 												  <br>
-												  <input type="text" placeholder="Masukkan nama guru" name="nameTeacher" value="<?PHP echo $category; ?>"  required>
-												  <br>
-													
-												  <button type="submit">Update</button>
-												  <br>
-												</div>
-
-												<div  style="background-color:#f1f1f1">
-												  <button type="button" onclick="location.href = 'teacherList.php';" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-												  
-												</div>
+												  <select type="text" name="category">
+													  <option style="color:red" value="<?PHP echo $category; ?>" selected><?PHP echo $category; ?></option>
+													  <option value="Latihan Industri">Latihan Industri</option>
+													  <option value="Latihan Mengajar">Latihan Mengajar</option>
+												  </select>
+												  <button type="up" name="submit">Update</button>
 											</form>
+													<button type="button" onclick="window.location.href='ITlist.php';">Cancel</button>
+												</div>	
 											<?PHP
 											require ('config.php');
 
-												if (isset($_POST['idTeacher'])){
-												$idTeacher = $_POST['idTeacher'];
-												$nameTeacher = $_POST['nameTeacher'];
-												$pwd = $_POST['pwd'];
-												$idT = $_POST['idT'];
+												if (isset($_POST['submit'])){
+												$id = $_POST['id'];	
+												$itname = $_POST['itname'];
+												$location = $_POST['location'];
+												$postcode = $_POST['postcode'];
+												$state = $_POST['state'];
+												$pnumber = $_POST['pnumber'];
+												$email = $_POST['email'];
+												$website = $_POST['website'];
+												$category = $_POST['category'];
 
-												$sql = "UPDATE teacher SET iduser='$idTeacher', fullname='$nameTeacher', password='$pwd'  WHERE iduser = '$idT'";
+												$sql = "UPDATE li_lm_list SET name='$itname', alamat='$location', poskod='$postcode', negeri='$state',
+														phone='$pnumber', email='$email', website='$website', category='$category' WHERE id = '$id'";
 												if(mysqli_query($link, $sql)){
 													echo '<script type="text/javascript">
-																alert("Rekod berjaya dikemaskini");
-																window.location.href="teacherList.php";
+																alert("Record sucessfully updated");
+																window.location.href="ITlist.php";
 														 </script>';
 													} else{
 														echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -429,13 +486,12 @@ include("auth.php");
 				
             </section>
             <!-- /.content -->
-			
         </div>
-		
-		<div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+        <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div>
     <!-- ./wrapper -->
-
+	
+	
     <!-- jQuery 2.1.4 -->
     <script src="./style-file/jQuery-2.1.4.min.js.download"></script>
     <!-- Bootstrap 3.3.2 JS -->
@@ -459,23 +515,21 @@ include("auth.php");
     <!-- Demo -->
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
 	
-	<!-- alert message -->
-	
 	<script>
-		var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+	// Get the modal
+	var modal = document.getElementById('id01');
 
-		function validatePassword(){
-		  if(password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Passwords Don't Match");
-		  } else {
-			confirm_password.setCustomValidity('');
-		  }
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
 		}
-
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
+	}
 	</script>
 	
+
+
+
 </body>
 
 </html>

@@ -3,19 +3,19 @@
 		require('config.php');
 
 		// If form submitted, insert values into the database.
-		if (isset($_POST['username'])){
+		if (isset($_POST['submit'])){
 			
 			//removes backslashes
-			$username = stripslashes($_REQUEST['username']);
+			$username = stripslashes($_REQUEST['id_admin']);
 			//escapes special characters in a string
 			$username = mysqli_real_escape_string($link, $username);
 			$password = stripslashes($_REQUEST['password']);
 			$password = mysqli_real_escape_string($link, $password);
 			//Checking is user existing in the database or not
-			$fullname = stripslashes($_REQUEST['$fullname']);
-			$fullname = mysqli_real_escape_string($link, $_REQUEST['$fullname']);
+			$fullname = stripslashes($_REQUEST['$name']);
+			$fullname = mysqli_real_escape_string($link, $_REQUEST['$name']);
 			
-			$query = "SELECT * FROM admin WHERE username='$username'and password='$password'";
+			$query = "SELECT * FROM admin WHERE id_admin='$username'and password='$password'";
 			
 			$result = mysqli_query($link, $query);
 			$rows = mysqli_num_rows($result);
@@ -30,8 +30,8 @@
 			
 			else{
 				echo '<script type="text/javascript">
-							alert("ID atau kata laluan salah");
-							window.location.href="index.php";
+							alert("Incorrect username or password");
+							window.location.href="login-admin.php";
 					 </script>';
 			}
     }
@@ -52,7 +52,7 @@
 			<br><br>
 			<table border="0" cellspacing="1" cellpadding="0" width="98%">
 						<tbody><tr>
-			 <td align="right">Username</td><td align="center"><input name="username" type="text" required></td>
+			 <td align="right">Username</td><td align="center"><input name="id_admin" type="text" required></td>
 			</tr>
 			<tr>
 			 <td align="right">Password</td><td align="center"><input name="password" type="password" required></td>
