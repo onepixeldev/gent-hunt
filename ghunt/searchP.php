@@ -1,5 +1,5 @@
 <?php
-	$sql = "SELECT * FROM li_lm_list ORDER BY name ASC";
+	$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
 					
 	if (isset($_POST['submitf'])) {
 		// Capture that in a variable by that name

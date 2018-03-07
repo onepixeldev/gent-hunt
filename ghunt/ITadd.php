@@ -368,7 +368,7 @@ include("auth.php");
 											<h3 class="box-title">New record</h3>
 									</div>
 										<div class="box-body">
-											<form action="insert.php" style="border:1px solid #ccc" method="POST">
+											<form action="insertIT.php" style="border:1px solid #ccc" method="POST">
 											  <div class="container">
 												<br><label><b>Institute or company name</b></label><br>
 												<input type="text" placeholder="Institute or company name" name="intname" required>

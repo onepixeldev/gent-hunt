@@ -42,7 +42,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hv"><a href="index-user.php">UTAMA</a>
                     </li>
-                    <li class="hv"><a href="#features-sec">DIREKTORI LATIHAN INDUSTRI & MENGAJAR</a>
+                    <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI & MENGAJAR</a>
                     </li>
                     <li class="hv"><a href="#faculty-sec">IDOLA KEUSAHAWANAN</a>
                     </li>
