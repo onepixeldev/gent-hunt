@@ -43,7 +43,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hv"><a href="#home">UTAMA</a>
                     </li>
-                    <li class="hv"><a href="#features-sec">DIREKTORI LATIHAN INDUSTRI &amp; MENGAJAR</a>
+                    <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI &amp; MENGAJAR</a>
                     </li>
                     <li class="hv"><a href="#faculty-sec">IDOLA KEUSAHAWANAN</a>
                     </li>
@@ -136,87 +136,48 @@
 
         </div>
         <!--/.HEADER LINE END-->
-
+        <div class="row">
+		<!--FEATURED LIST-->	
 		<?php 
 		 require ('config.php');
 		 
 			// Query LM
-			$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%Latihan Mengajar%' LIMIT 1";
+			$sql = "SELECT * FROM featured_it LIMIT 3";
+			
 			$result = mysqli_query($link, $sql);
-			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-			//printf ("%s (%s)\n", $row[0], $row[1]);
-			$name1 = $row["name"];
-			$address1 = $row["alamat"];
-			$postkod1 = $row["poskod"];
-			$state1 = $row["negeri"];
-			$cat1 = $row["category"];
+			if (mysqli_num_rows($result) > 0) {
+			// output data of each row
+			while($row = mysqli_fetch_assoc($result)) {
+				echo
+					'
+					<div class="col-lg-4  col-md-4 col-sm-4">
+					<div class="about-div">
+						<i class="fa fa-briefcase fa-4x icon-round-border"></i>
+						<h3>'.$row["name"].'</h3>
+						<hr>
+						<i class="fa fa-map-marker"></i> &nbsp;'.$row["alamat"].' &nbsp;'.$row["poskod"].'
+						<br>
+						<i class="fa fa-globe"></i> &nbsp;'.$row["negeri"].'
+						<hr>
+						<i class="fa fa-tag"></i> &nbsp;'.$row["category"].'<br>
+						<a href="#" class="btn btn-info">Maklumat Lanjut</a>
+					</div>
+					</div>
+					';
+				}
+			} else {
+				echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+						<p style="font-weight: bold;">Tiada rekod</p>
+					  </div>';
+			}
+			mysqli_close($link);
 			
-			$sql2 = "SELECT * FROM li_lm_list WHERE negeri NOT LIKE '%{$state1}%' LIMIT 1";
-			$result2 = mysqli_query($link, $sql2);
-			$row = mysqli_fetch_array($result2, MYSQLI_ASSOC);
-			//printf ("%s (%s)\n", $row[0], $row[1]);
-			$name2 = $row["name"];
-			$address2 = $row["alamat"];
-			$postkod2 = $row["poskod"];
-			$state2 = $row["negeri"];
-			$cat2 = $row["category"];
 			
-			// Query LI
-			$sql3 = "SELECT * FROM li_lm_list WHERE category LIKE '%Latihan Industri%' AND negeri NOT LIKE '%{$state1}%' AND negeri NOT LIKE '%{$state2}%' LIMIT 1";
-			$result3 = mysqli_query($link, $sql3);
-			$row = mysqli_fetch_array($result3, MYSQLI_ASSOC);
-			
-			$name3 = $row["name"];
-			$address3 = $row["alamat"];
-			$postkod3 = $row["poskod"];
-			$state3 = $row["negeri"];
-			$cat3 = $row["category"];
-		 ?>
-        <div class="row">
-		<!--FEATURED LIST-->	
-		    <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="4" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                <div class="about-div">
-                    <i class="fa fa-briefcase fa-4x icon-round-border"></i>
-                    <h3><?php echo $name1 ?></h3>
-                    <hr>
-					<i class="fa fa-map-marker"></i> &nbsp;<?php echo $address1 ?> &nbsp;<?php echo $postkod1 ?>
-					<br>
-					<i class="fa fa-globe"></i> &nbsp;<?php echo $state1 ?>
-					<hr>
-                    <i class="fa fa-tag"></i> &nbsp;<?php echo $cat1 ?><br>
-                    <a href="#" class="btn btn-info btn-set">Maklumat Lanjut</a>
-                </div>
-            </div>
-            <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s" data-scroll-reveal-id="5" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-				<div class="about-div">
-                    <i class="fa fa-briefcase fa-4x icon-round-border"></i>
-                    <h3><?php echo $name2 ?></h3>
-                    <hr>
-					<i class="fa fa-map-marker"></i> &nbsp;<?php echo $address2 ?> &nbsp;<?php echo $postkod2 ?>
-					<br>
-					<i class="fa fa-globe"></i> &nbsp;<?php echo $state2 ?>
-					<hr>
-                    <i class="fa fa-tag"></i> &nbsp;<?php echo $cat2 ?><br>
-                    <a href="#" class="btn btn-info btn-set">Maklumat Lanjut</a>
-                </div>
-            </div>
-            <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s" data-scroll-reveal-id="6" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                <div class="about-div">
-                    <i class="fa fa-briefcase fa-4x icon-round-border"></i>
-                    <h3><?php echo $name3 ?></h3>
-                    <hr>
-					<i class="fa fa-map-marker"></i> &nbsp;<?php echo $address3 ?> &nbsp;<?php echo $postkod3 ?>
-					<br>
-					<i class="fa fa-globe"></i> &nbsp;<?php echo $state3 ?>
-					<hr>
-                    <i class="fa fa-tag"></i> &nbsp;<?php echo $cat3 ?><br>
-                    <a href="#" class="btn btn-info btn-set">Maklumat Lanjut</a>
-                </div>
-            </div>
+		?>
 		<!--/.FEATURED LIST END-->
 		
         </div>
-		<a href="d-list.php" class="btn btn-info btn-set" style="float:right">Lebih lagi</a>
+		<a href="d-list.php" class="btn btn-info" >Direktori></a>
     </div>
     <!-- FEATURES SECTION END-->
     <div id="faculty-sec">

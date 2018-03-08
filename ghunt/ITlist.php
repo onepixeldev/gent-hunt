@@ -31,8 +31,20 @@ include("auth.php");
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 	
     <style>
+		
+		.searchBtn{
+			margin-top: -1px;
+			width:3%;
+			float:right;
+		}
+		
+		.button2:hover{
+			background-color: #008CBA;
+			color: white;
+		}
+	
 		/* Full-width input fields */
-		input[type=text], input[type=password], input[type=email], select[name=sortC] {	
+		input[type=text], input[type=password], input[type=email], select[name=sortC], input[name=locf], select[name=catf] {	
 			padding: 12px 20px;
 			margin: 8px 0;
 			display: inline-block;
@@ -365,16 +377,30 @@ include("auth.php");
 								<div class="box box-info">
 									<div class="box-header with-border">
 											<form action="ITlist.php" method="POST">
-												<input class="form-control" type="text" placeholder="Search directory" name="searchdir" style="width: 150px;">
-												<button type="submit" name="search" class="btn btn-info" style="margin: auto; width: 40px; height: 35px;"><i class="fa fa-search"></i></button>
+												<input placeholder="Search directory" name="searchdir" style="float:right">
+												<button type="submit" name="search" class="btn btn-info searchBtn button2"><i class="fa fa-search"></i></button>
 											</form>
-											<p><b>Sort directory list</b></p>
+											<p><font color="#428bca">Sort directory list</font></p>
 											<form action="" method="post" >
 												<select type="text" name="sortC" onchange="submit()" >
 												  <option value="" selected>Select sort option</option>
 												  <option value="alpA" onchange="submit()" >alphabetically</option>
 												  <option value="latestR">by latest added record</option>
 												</select>
+											</form>
+											<form action="" method="POST">
+												<p><font color="#428bca">Filter</font></p>
+												<p>Location</p>
+												<input type="text" placeholder="Location" name="locf">
+												<p style="font-style: semi-bold;">Category</p>
+												<select name="catf">
+												  <option value="" selected>Choose category</option>
+												  <option value="Latihan Industri">Latihan Industri</option>
+												  <option value="Latihan Mengajar">Latihan Mengajar</option>
+												</select>
+												<br>
+												
+												<button type="submit" class="btn btn-info button2" style="float:left; width: 4%" name="submitf"><i class="fa fa-filter"></i></button>
 											</form>
 									</div>
 										<div class="box-body">
@@ -384,6 +410,7 @@ include("auth.php");
 														<th style="width: 10px" class="text-center">No</th>
 														<th class="text-center">Record information</th>
 														<th class="text-center">Update record</th>
+														<th class="text-center">Add to featured list</th>
 														<th class="text-center">Remove record</th>
 													</tr>
 												</tbody>
@@ -406,6 +433,62 @@ include("auth.php");
 														}
 														elseif ($sortC == "latestR"){
 															$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
+														}
+													}
+													
+													elseif (isset($_POST['submitf'])) {
+														// Capture that in a variable by that name
+														$location = $_POST['locf'];
+														$catf = $_POST['catf'];
+														
+														if (!empty($catf) && empty($location)) {
+															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC";
+														}
+														if (empty($catf) && !empty($location)) {
+															$sql = "SELECT * FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC";
+														}
+														if (!empty($catf) && !empty($location)) {
+															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC";
+														}
+													}
+													
+													elseif (isset($_POST['idf'])){
+		
+														$id = $_POST['idf'];
+														
+														$sql = "SELECT * FROM featured_it";
+														
+														$resultft = mysqli_query($link, $sql);
+														
+														if (mysqli_num_rows($resultft) >= 3) {
+														
+															echo '<script>
+																alert("Featured list already reaching limit.");
+																window.location.href="Itlist.php";
+																</script>';
+														} 
+														elseif (mysqli_num_rows($resultft) < 3) {
+															$id = $_POST['idf'];
+															$name = $_POST['namef'];
+															$address = $_POST['addressf'];
+															$postcode = $_POST['postcodef'];
+															$state = $_POST['statef'];
+															$phone = $_POST['phonef'];
+															$email = $_POST['emailf'];
+															$website = $_POST['websitef'];
+															$category = $_POST['categoryf'];
+															
+															$sql= "INSERT INTO featured_it (itID, name, alamat, poskod, negeri, phone, email, website, category)
+															VALUES ('$id', '$name', '$address', '$postcode', '$state', '$phone', '$email', '$website', '$category')";
+															
+															if(mysqli_query($link, $sql)){
+																echo '<script type="text/javascript">
+																		alert("Added to featured list.");
+																		window.location.href="ITlist.php";
+																	 </script>';
+															} else{
+																echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+															}
 														}
 													}
 													
@@ -438,6 +521,20 @@ include("auth.php");
 																		<input type="hidden" name="category" value="'.$row["category"].'">
 																		<button type="submit" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
 																	</form>
+																	</td>
+																	<td class="text-center" >
+																		<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');"> 
+																			<input type="hidden" name="idf" value="'.$row["id"].'">
+																			<input type="hidden" name="namef" value="'.$row["name"].'">
+																			<input type="hidden" name="addressf" value="'.$row["alamat"].'">
+																			<input type="hidden" name="postcodef" value="'.$row["poskod"].'">
+																			<input type="hidden" name="statef" value="'.$row["negeri"].'">
+																			<input type="hidden" name="phonef" value="'.$row["phone"].'">
+																			<input type="hidden" name="emailf" value="'.$row["email"].'">
+																			<input type="hidden" name="websitef" value="'.$row["website"].'">
+																			<input type="hidden" name="categoryf" value="'.$row["category"].'">
+																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width:auto;">Featured this</button>
+																		</form>
 																	</td>
 																	<td class="text-center" >
 																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
