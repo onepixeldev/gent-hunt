@@ -162,8 +162,9 @@
 									<i class="fa fa-globe"></i> &nbsp;'.$row["negeri"].'
 									<hr>
 									<i class="fa fa-tag"></i> &nbsp;'.$row["category"].'<br>
-									<form action="details.php">
-										<a href="#" class="btn btn-info">Maklumat Lanjut</a>
+									<form action="details.php" method="post">
+									    <input type="hidden" name="ftd" value="'.$row["itID"].'">
+										<button type="submit" class="btn btn-info">Maklumat Lanjut</a>
 									</form>
 								</div>
 							</div>

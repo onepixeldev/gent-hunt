@@ -2,6 +2,11 @@
 	
 	require('config.php');
 	
+	if (isset($_POST['ftd'])) {
+		$ftd = $_POST["ftd"];
+		$sql = "SELECT * FROM li_lm_list WHERE id = '$ftd'";
+	}
+	
 	if (isset($_POST['idCN'])) {
 		$idCN = $_POST["idCN"];
 		$sql = "SELECT * FROM li_lm_list WHERE id = '$idCN'";
