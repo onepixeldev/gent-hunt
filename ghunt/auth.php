@@ -3,7 +3,7 @@
 	require('config.php');
 	
 	if(!isset($_SESSION["username"])){
-		header("Location: index.php");
+		header("Location: ghunt-admin-login.php");
 		session_write_close();
 		exit(); 
 	}

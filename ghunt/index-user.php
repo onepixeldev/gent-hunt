@@ -130,8 +130,7 @@
     <div id="features-sec" class="container set-pad">
         <div class="row text-center">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">DIREKTORI LATIHAN INDUSTRI &amp; MENGAJAR</h1>
-                <p data-scroll-reveal="enter from the bottom after 0.3s" data-scroll-reveal-id="3" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">Senarai latihan industri yang ditawarkan oleh syarikat dalam dan luar UPSI.</p>
+                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">LATIHAN INDUSTRI &amp; MENGAJAR</h1>
             </div>
 
         </div>
@@ -167,7 +166,7 @@
 				}
 			} else {
 				echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
-						<p style="font-weight: bold;">Tiada rekod</p>
+						<p style="float:left; font-weight: bold;">Tiada rekod</p>
 					  </div>';
 			}
 			mysqli_close($link);
@@ -177,7 +176,7 @@
 		<!--/.FEATURED LIST END-->
 		
         </div>
-		<a href="d-list.php" class="btn btn-info" >Direktori></a>
+		<center><a href="d-list.php" class="btn btn-info" >Direktori</a></center><br>
     </div>
     <!-- FEATURES SECTION END-->
     <div id="faculty-sec">

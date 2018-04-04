@@ -7,7 +7,7 @@ include("auth.php");
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>gHunt | Admin</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome Icons -->
@@ -368,231 +368,35 @@ include("auth.php");
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-							<div class="col-md-12" style="float: left">
+							<div class="col-md-12">
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
 									<ul class="nav nav-tabs">
-										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
+										<li class=""><a href="ITlist.php" onclick="window.location.href = 'ITlist.php';" data-toggle="tab" aria-expanded="true">Directory</a>
 										</li>
-										<li class=""><a href="FTlist.php" onclick="window.location.href = 'FTlist.php';" data-toggle="tab" aria-expanded="false">Featured</a>
+										<li class="active"><a href="#" data-toggle="tab" aria-expanded="false">Featured</a>
 										</li>
 									</ul>
 									<div class="tab-content">
 										
-										<div class="tab-pane active" id="tab_1">
+										<div class="tab-pane" id="tab_1">
 											<div class="box-body">
-											
-													<div id="div_tab1" class="col-md-12">
-													
-										<div>
-											<form action="ITlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="searchdir" style="float:left">
-												<button type="submit" name="search" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
-											</form>
-											
-											<div style="float: left; width: 16%">
-											<p><font color="#428bca">Sort directory list</font></p>
-											<form action="" method="post" >
-												<select type="text" name="sortC" onchange="submit()" >
-												  <option value="" selected>Select sort option</option>
-												  <option value="alpA" onchange="submit()" >alphabetically</option>
-												  <option value="latestR">by latest added record</option>
-												</select>
-											</form>
-											<form action="" method="POST">
-												<p><font color="#428bca">Filter</font></p>
-												<p>Location</p>
-												<input type="text" placeholder="Location" name="locf">
-												<p style="font-style: semi-bold;">Category</p>
-												<select name="catf">
-												  <option value="" selected>Choose category</option>
-												  <option value="Latihan Industri">Latihan Industri</option>
-												  <option value="Latihan Mengajar">Latihan Mengajar</option>
-												</select>
-												<br>
-												<button type="submit" class="btn btn-info button2" style="float:left; width: auto" name="submitf">Filter</button>
-											</form>
-											<br>
-											<br>
-											</div>
-										</div>
-													
-											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box;">
-												<tbody>
-													<tr>
-														<th style="width: 10px" class="text-center">No</th>
-														<th class="text-center" style="width: 70%">Record information</th>
-														<th class="text-center">Selection</th>
-													</tr>
-												</tbody>
-												<tbody id="table" >
-													
-													<?php
-													require('config.php');	
-													
-													// display directory list
-													$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
-													
-													// search query
-													if (isset($_POST['search'])){
-														$search = $_POST['searchdir'];
-														$sql = "SELECT * FROM li_lm_list WHERE name LIKE '%$search%' OR negeri LIKE '%$search%' OR alamat LIKE '%$search%' OR poskod LIKE '%$search%' OR category LIKE '%$search%' ORDER BY id DESC";
-													}
-													
-													// sort query
-													elseif (isset($_POST['sortC'])){
-														$sortC = $_POST['sortC'];
-														if ($sortC == "alpA"){
-															$sql = "SELECT * FROM li_lm_list ORDER BY name ASC";
-														}
-														elseif ($sortC == "latestR"){
-															$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
-														}
-													}
-													
-													// filter query
-													elseif (isset($_POST['submitf'])) {
-														// Capture that in a variable by that name
-														$location = $_POST['locf'];
-														$catf = $_POST['catf'];
-														// filter condition
-														if (!empty($catf) && empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC";
-														}
-														if (empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC";
-														}
-														if (!empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC";
-														}
-													}
-													
-													// add to featured list
-													elseif (isset($_POST['submitfeat'])){
-														
-														$sql = "SELECT * FROM featured_it";
-														
-														$resultft = mysqli_query($link, $sql);
-														
-														// featured list limit
-														if (mysqli_num_rows($resultft) >= 3) {
-														
-															echo '<script>
-																alert("Featured list already reaching limit.");
-																window.location.href="Itlist.php";
-																</script>';
-														} 
-														elseif (mysqli_num_rows($resultft) < 3) {
-															
-															$idf = $_POST['idf'];
-															$namef = $_POST['namef'];
-															$addressf = $_POST['addressf'];
-															$postcodef = $_POST['postcodef'];
-															$statef = $_POST['statef'];
-															$phonef = $_POST['phonef'];
-															$emailf = $_POST['emailf'];
-															$websitef = $_POST['websitef'];
-															$categoryf = $_POST['categoryf'];
-															
-															$sqlcomp = "SELECT * FROM featured_it WHERE itID = '$idf'";
-															$resultcomp = mysqli_query($link, $sqlcomp);
-																
-																// if record already exist on featured
-																if (mysqli_num_rows($resultcomp) == 1){
-																	echo '<script type="text/javascript">
-																				alert("This record already exist on featured list.\\nPlease select another record.");
-																				window.location.href="ITlist.php";
-																		 </script>';
-																}
-																else{
-																	$sql1 = "INSERT INTO featured_it (itID, name, alamat, poskod, negeri, phone, email, website, category)
-																	VALUES ('$idf', '$namef', '$addressf', '$postcodef', '$statef', '$phonef', '$emailf', '$websitef', '$categoryf')";
-																	$resultfeat = mysqli_query($link, $sql1);
-																	if($resultfeat){
-																		echo '<script type="text/javascript">
-																				alert("Added to featured list.");
-																				window.location.href="ITlist.php";
-																			 </script>';
-																	} else{
-																		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-																	}
-																}
-														}
-													}
-													
-													// main table
-													$result = mysqli_query($link, $sql);
-													$counter = 1;
-													if (mysqli_num_rows($result) > 0) {
-														// output data of each row
-														while($row = mysqli_fetch_assoc($result)) {
-															echo '<tr>
-																	<td class="text-center" ><strong>'.$counter.'</strong></td>
-																	<td class="text-left">
-																	<p><strong>Name:</strong> '.$row["name"].'</p><br>
-																	<p><strong>Address:</strong> '.$row["alamat"].'</p><br>
-																	<p><strong>Postcode:</strong> '.$row["poskod"].'</p><br>
-																	<p><strong>State:</strong> '.$row["negeri"].'</p><br>
-																	<p><strong>Phone number:</strong> '.$row["phone"].'</p><br>
-																	<p><strong>Email:</strong> '.$row["email"].'</p><br>
-																	<p><strong>Website:</strong> '.$row["website"].'</p><br>
-																	<p><strong>Category:</strong> '.$row["category"].'</p></td>
-																	<td class="text-center" >
-																	<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');"> 
-																		<input type="hidden" name="idf" value="'.$row["id"].'">
-																		<input type="hidden" name="namef" value="'.$row["name"].'">
-																		<input type="hidden" name="addressf" value="'.$row["alamat"].'">
-																		<input type="hidden" name="postcodef" value="'.$row["poskod"].'">
-																		<input type="hidden" name="statef" value="'.$row["negeri"].'">
-																		<input type="hidden" name="phonef" value="'.$row["phone"].'">
-																		<input type="hidden" name="emailf" value="'.$row["email"].'">
-																		<input type="hidden" name="websitef" value="'.$row["website"].'">
-																		<input type="hidden" name="categoryf" value="'.$row["category"].'">
-																		<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width:auto;">Featured this</button>
-																	</form>
-																	
-																	<form action="updateIT.php" method="POST">
-																		<input type="hidden" name="id" value="'.$row["id"].'">
-																		<input type="hidden" name="name" value="'.$row["name"].'">
-																		<input type="hidden" name="address" value="'.$row["alamat"].'">
-																		<input type="hidden" name="postcode" value="'.$row["poskod"].'">
-																		<input type="hidden" name="state" value="'.$row["negeri"].'">
-																		<input type="hidden" name="phone" value="'.$row["phone"].'">
-																		<input type="hidden" name="email" value="'.$row["email"].'">
-																		<input type="hidden" name="website" value="'.$row["website"].'">
-																		<input type="hidden" name="category" value="'.$row["category"].'">
-																		<button type="submit" name="submitUp" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
-																	</form>
-																	
-																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																		<input type="hidden" name="idIT" value="'.$row["id"].'">
-																		<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
-																	</form>
-																 </tr>';
-																 $counter++;
-														}
-													} else {
-														echo "No record";
-													}
-													mysqli_close($link);
-													?>			
-												</tbody>
-											</table>
-													</div>
+												<div id="div_tab1" class="col-md-12">
+												</div>
 											</div>
 										</div>
 										<!-- /.tab-pane -->
 
-										<div class="tab-pane" id="tab_2">
+										<div class="tab-pane active" id="tab_2">
 											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:130px;">Kehadiran Keluar</h1>
+												<h1 style="color: #f44336; margin-left:auto;">Featured information will be displayed on homepage (maximum 3).</h1>
 											
 												<div id="div_tab2" class="col-md-12">
 													<table class="table table-bordered table-hover">
 													<tbody>
 														<tr>
 															<th style="width: 10px" class="text-center">No</th>
-															<th class="text-center">Featured information</th>
+															<th class="text-center" style="width: 80%">Featured information</th>
 															<th class="text-center">Remove from featured list</th>
 														</tr>
 													</tbody>
@@ -620,9 +424,9 @@ include("auth.php");
 																			<p><strong>Website:</strong> '.$row["website"].'</p><br>
 																			<p><strong>Category:</strong> '.$row["category"].'</p></td>
 																			<td class="text-center" >
-																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																					<input type="hidden" name="idIT" value="'.$row["itID"].'">
-																					<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
+																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Remove this record from featured list?\');"> 
+																					<input type="hidden" name="idFeat" value="'.$row["itID"].'">
+																					<button type="submit" name="delFeat" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
 																				</form>
 																			</td>
 																		 </tr>';

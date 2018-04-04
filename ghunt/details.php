@@ -64,44 +64,12 @@
 
     <!--HOME SECTION TAG LINE END-->
     <div id="features-sec" class="container set-pad">
-        <div class="row text-center">
-            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">DIREKTORI LATIHAN INDUSTRI & LATIHAN MENGAJAR</h1>
-            </div>
-
-        </div>
+	<br>
+	<br>
         <!--/.HEADER LINE END-->
-		
-        <div style="box-sizing: border-box; width: 20%; float: left;">
-	
-				<p><font color="#428bca">Search</font></p>
-				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="d-list.php" method="POST">
-						<input class="form-control" type="text" placeholder="Search.." name="search">
-						<br>
-						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-				<form action="d-list.php" method="POST">
-					<hr style="height:2px;border:none;background-color:#e0e0d1;" />
-					<p><font color="#428bca">Filter</font></p>
-					<p>Lokasi</p>
-					<input type="text" class="form-control" placeholder="Lokasi" name="locf">
-					<p style="font-style: semi-bold;">Kategori</p>
-					<select class="form-control" name="catf">
-					  <option value="" selected>Pilih kategori</option>
-					  <option value="Latihan Industri">Latihan Industri</option>
-					  <option value="Latihan Mengajar">Latihan Mengajar</option>
-					</select>
-					<br>
-					
-					<button type="submit" class="btn btn-info" style="margin: auto;" name="submitf"><i class="fa fa-filter"></i></button>
-				</form>
-        </div>
-		<div style="box-sizing: border-box; width: 80%; float: left;">
+		<div style="box-sizing: border-box; width: 80%; margin: 0 auto;">
 				<?php
-					require('config.php');
-					require('searchP.php');
+					require('MoreDetailsPro.php');
 				?>
 		</div>
 		

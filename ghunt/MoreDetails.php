@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>GENT-HUNT</title>
@@ -17,9 +17,6 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600" rel="stylesheet" type="text/css">
     
 	<style>
-	* {
-		box-sizing: border-box;
-	}
 		.hv:hover {
 			background-color: #080808;
 		}
@@ -72,38 +69,73 @@
         </div>
         <!--/.HEADER LINE END-->
 		
-        <div style="box-sizing: border-box; width: 20%; float: left;">
-	
-				<p><font color="#428bca">Search</font></p>
-				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="d-list.php" method="POST">
-						<input class="form-control" type="text" placeholder="Search.." name="search">
-						<br>
-						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-				<form action="d-list.php" method="POST">
-					<hr style="height:2px;border:none;background-color:#e0e0d1;" />
-					<p><font color="#428bca">Filter</font></p>
-					<p>Lokasi</p>
-					<input type="text" class="form-control" placeholder="Lokasi" name="locf">
-					<p style="font-style: semi-bold;">Kategori</p>
-					<select class="form-control" name="catf">
-					  <option value="" selected>Pilih kategori</option>
-					  <option value="Latihan Industri">Latihan Industri</option>
-					  <option value="Latihan Mengajar">Latihan Mengajar</option>
-					</select>
-					<br>
-					
-					<button type="submit" class="btn btn-info" style="margin: auto;" name="submitf"><i class="fa fa-filter"></i></button>
-				</form>
-        </div>
-		<div style="box-sizing: border-box; width: 80%; float: left;">
+        <div class="row">
+				
 				<?php
-					require('config.php');
-					require('searchP.php');
+					include('config.php');				
+					$id = $_POST['idIT'];
+					$sql = "SELECT * FROM li_lm_list WHERE id = '$id'";
+					$result = mysqli_query($link, $sql);
+					
+					$counter = 1;
+					
+					if (mysqli_num_rows($result) > 0) {
+						// output data of each row
+						while($row = mysqli_fetch_assoc($result)) {
+							echo
+								'<div class="col-xs-12 col-md-9 col-lg-9  col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+										<div class="jobs-list-item _old">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
+														<a href="#">
+															<span class="thumbnail no-bottom-margin">
+																<i class="fa fa-briefcase fa-4x icon-round-border"></i>
+																<!--/<img  src="assets/img/edge_logo.png" alt="">-->
+															</span>
+														</a>
+													</div>
+
+													<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
+														<h3 class="position">
+															'.$counter.'.
+															<a class="job-title ng-binding" href="#">'.$row["name"].'</a>
+														</h3>
+														<div class="job-details">
+															<hr>
+															<div class="address">
+																<span>
+																	<i class="fa fa-map-marker"></i> '.$row["alamat"].', '.$row["poskod"].'
+																</span>
+															</div>
+															<br>
+															<span>
+																<i class="fa fa-globe"></i> '.$row["negeri"].' 
+															</span>
+															<hr>
+															<i class="fa fa-tag"></i> '.$row["category"].'
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								';
+								$counter ++;
+						}
+					} else {
+						echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+								<p style="font-weight: bold;">Tiada rekod</p>
+							  </div>';
+					}
+					mysqli_close($link);
 				?>
-		</div>
+				
+				
+            </div>
+			
+			
+        </div>
 		
     </div>
     <!-- FEATURES SECTION END-->

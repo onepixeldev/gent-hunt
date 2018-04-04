@@ -314,11 +314,6 @@ include("auth.php");
                                 <a href="ITadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
-							<li class="">
-                                <a href="ITfeat.php">
-                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
-                            </li>
-
                         </ul>
                     </li>
                     <li class="treeview">

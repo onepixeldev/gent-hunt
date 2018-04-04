@@ -30,30 +30,26 @@
 		// output data of each row
 		while($row = mysqli_fetch_assoc($result)) {
 			echo
-				'<div class="col-xs-12 col-md-9 col-lg-9  col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+				'<div class="col-lg-11">
 						<div class="jobs-list-item _old">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
-										<a href="#">
-											<span class="thumbnail no-bottom-margin">
+											<span class="thumbnail no-bottom-margin" style="width: 110px;">
 												<i class="fa fa-briefcase fa-4x icon-round-border"></i>
 												<!--/<img  src="assets/img/edge_logo.png" alt="">-->
 											</span>
-										</a>
 									</div>
 
 									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
-										<h3 class="position">
-											'.$counter.'.
-											<a class="job-title ng-binding" href="#">'.$row["name"].'</a>
-										</h3>
+										<form id="clickName" action="details.php" method="post"> 
+											<h3 class="position">
+												'.$counter.'.
+												<input type="hidden" name="idCN" value="'.$row["id"].'">
+												<a href="#" onclick="document.getElementById(\'clickName\').submit()" name="subName" class="job-title ng-binding">'.$row["name"].'</a>
+											</h3>
+										</form>
 										<div class="job-details">
-											<!--/
-											<div>
-												<a class="company-name"  href="#"><i class="fa fa-building-o" aria-hidden="true"></i> Bumi Bina Resources</a>
-											</div>
-											-->
 											<hr>
 											<div class="address">
 												<span>
@@ -69,9 +65,12 @@
 										</div>
 									</div>
 
-									<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 job-actions ng-scope">
+									<div style="float: right;">
 										<div class="col-apply">
-											<a class="btn btn-info" style="margin: 100px -10px 0;">Maklumat lanjut</a>
+											<form action="details.php" method="post"> 
+												<input type="hidden" name="idIT" value="'.$row["id"].'">
+												<button type="submit" name="more" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
+											</form>
 										</div>
 									</div>
 								</div>

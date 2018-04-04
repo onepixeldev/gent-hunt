@@ -327,11 +327,6 @@ include("auth.php");
                                 <a href="ITadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
-							<li class="">
-                                <a href="ITfeat.php">
-                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
-                            </li>
-
                         </ul>
                     </li>
                     <li class="treeview">
@@ -384,7 +379,7 @@ include("auth.php");
 										<div class="box-body">
 											<?PHP
 											require ('config.php');
-											if (isset($_POST['id'])){
+											if (isset($_POST['submitUp'])){
 												$id = $_POST['id'];
 												$name = $_POST['name'];
 												$address = $_POST['address'];
@@ -451,27 +446,53 @@ include("auth.php");
 											require ('config.php');
 
 												if (isset($_POST['submit'])){
-												$id = $_POST['id'];	
-												$itname = $_POST['itname'];
-												$location = $_POST['location'];
-												$postcode = $_POST['postcode'];
-												$state = $_POST['state'];
-												$pnumber = $_POST['pnumber'];
-												$email = $_POST['email'];
-												$website = $_POST['website'];
-												$category = $_POST['category'];
+													$id = $_POST['id'];	
+													$itname = $_POST['itname'];
+													$location = $_POST['location'];
+													$postcode = $_POST['postcode'];
+													$state = $_POST['state'];
+													$pnumber = $_POST['pnumber'];
+													$email = $_POST['email'];
+													$website = $_POST['website'];
+													$category = $_POST['category'];
 
-												$sql = "UPDATE li_lm_list SET name='$itname', alamat='$location', poskod='$postcode', negeri='$state',
-														phone='$pnumber', email='$email', website='$website', category='$category' WHERE id = '$id'";
-												if(mysqli_query($link, $sql)){
-													echo '<script type="text/javascript">
-																alert("Record sucessfully updated");
+													$sql = "UPDATE li_lm_list SET name='$itname', alamat='$location', poskod='$postcode', negeri='$state',
+															phone='$pnumber', email='$email', website='$website', category='$category' WHERE id = '$id'";
+													
+													if(mysqli_query($link, $sql)){
+														
+														echo '<script type="text/javascript">
+																	alert("Directory record sucessfully updated");
+															 </script>';
+														
+														$sqlSelF = "SELECT * FROM featured_it WHERE itID = '$id'";
+													
+														$resultselF = mysqli_query($link, $sqlSelF);
+															
+														if(mysqli_num_rows($resultselF) == 1){
+															
+															// attempt insert query execution
+															$sqlupF = "UPDATE featured_it SET name='$itname', alamat='$location', poskod='$postcode', negeri='$state',
+																	phone='$pnumber', email='$email', website='$website', category='$category' WHERE itID = '$id'";
+															if(mysqli_query($link, $sqlupF)){
+																echo '<script type="text/javascript">
+																		alert("Record information on featured list succesfully updated");
+																	 </script>';
+															} else{
+																echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
+															}
+														}
+														
+														echo '<script type="text/javascript">
 																window.location.href="ITlist.php";
-														 </script>';
-													} else{
-														echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+															</script>';
+													} 
+													
+													else{
+															echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+													}
 												}
-												}
+												
 												mysqli_close($link);
 											?>
 																	

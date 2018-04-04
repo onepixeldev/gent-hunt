@@ -83,13 +83,13 @@
                                         <label for="user">Username</label>
                                     </div>
                                     <div class="input-field-login icon">
-										<i class="fa fa-user" style="position: absolute; left: 9px; top: 29px; font-size:29px;"></i><input name="id_admin" autofocus="autofocus" placeholder="Enter username." class="std_textbox" type="text" required>
+										<i class="fa fa-user" style="position: absolute; left: 9px; top: 32px; font-size:29px;"></i><input name="id_admin" autofocus="autofocus" placeholder="Enter username." class="std_textbox" type="text" required>
                                     </div>
                                     <div class="input-req-login login-password-field-label">
                                         <label for="pass">Password</label>
                                     </div>
                                     <div class="input-field-login icon">
-                                        <i class="fa fa-unlock-alt" style="position: absolute; left: 9px; top: 122px; font-size:29px;"></i><input name="password" placeholder="Enter password." class="std_textbox" type="password" required>
+                                        <i class="fa fa-unlock-alt" style="position: absolute; left: 9px; top: 127px; font-size:29px;"></i><input name="password" placeholder="Enter password." class="std_textbox" type="password" required>
                                     </div>
                                     <div class="controls">
                                         <div class="login-btn">
