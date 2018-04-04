@@ -36,11 +36,13 @@
 											<div style="width: 30%; float: right;"">
 												<div class="job-details">
 														<span>
-															<i class="fa fa-map-marker"></i> '.$row["alamat"].', '.$row["poskod"].'
+															<i class="fa fa-map-marker" style="color: #5BC0DE;"></i>&nbsp; '.$row["alamat"].', '.$row["poskod"].'
 														<br>
-														<i class="fa fa-globe"></i> '.$row["negeri"].' 
 														<br>
-														<i class="fa fa-tag"></i> '.$row["category"].'
+														<br>
+															<i class="fa fa-globe" style="color: #5BC0DE;"></i>&nbsp; '.$row["negeri"].' 
+														<br>
+															<i class="fa fa-tag" style="color: #5BC0DE;"></i>&nbsp; '.$row["category"].'
 														</span>
 												</div>
 											</div>

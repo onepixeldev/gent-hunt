@@ -194,7 +194,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                     <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line" data-scroll-reveal-id="7" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">IDOLA KEUSAHAWANAN</h1>
                     <p data-scroll-reveal="enter from the bottom after 0.3s" data-scroll-reveal-id="8" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo.
+                        sample text
                     </p>
                 </div>
 
@@ -211,7 +211,7 @@
                         <hr>
                         <h4>Desigining <br> Department</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo .
+                            sample text
 
                         </p>
                     </div>
@@ -223,7 +223,7 @@
                         <hr>
                         <h4>Enginering <br> Department</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo .
+                            sample text
 
                         </p>
                     </div>
@@ -235,7 +235,7 @@
                         <hr>
                         <h4>Management <br> Department</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo .
+                            sample text
 
                         </p>
                     </div>
@@ -260,10 +260,10 @@
                 <h2><strong>Our Location </strong></h2>
                 <hr>
                 <div "=" ">
-                        <h4>234/80 -UFG , New Street,</h4>
-                        <h4>Switzerland.</h4>
-                        <h4><strong>Call:</strong>  + 67-098-907-1269 / 70 / 71 </h4>
-                        <h4><strong>Email: </strong>info@yourdomain.com</h4>
+                        <h4></h4>
+                        <h4></h4>
+                        <h4><strong>Call:</strong> </h4>
+                        <h4><strong>Email: </strong></h4>
                     </div>
 
 
@@ -281,12 +281,12 @@
                     </div>
 
 
-                </div>
-                 </div>
+				 </div>
+				 </div>
 				 </div>
      <!-- CONTACT SECTION END-->
     <div id="footer ">
-          © 2014 yourdomain.com | All Rights Reserved |  <a href="http://binarytheme.com " style="color: #fff " target="_blank ">Design by : binarytheme.com</a>
+         
     </div>
     
     
