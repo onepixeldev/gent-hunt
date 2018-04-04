@@ -149,19 +149,24 @@
 			while($row = mysqli_fetch_assoc($result)) {
 				echo
 					'
-					<div class="col-lg-4  col-md-4 col-sm-4">
-					<div class="about-div">
-						<i class="fa fa-briefcase fa-4x icon-round-border"></i>
-						<h3>'.$row["name"].'</h3>
-						<hr>
-						<i class="fa fa-map-marker"></i> &nbsp;'.$row["alamat"].' &nbsp;'.$row["poskod"].'
-						<br>
-						<i class="fa fa-globe"></i> &nbsp;'.$row["negeri"].'
-						<hr>
-						<i class="fa fa-tag"></i> &nbsp;'.$row["category"].'<br>
-						<a href="#" class="btn btn-info">Maklumat Lanjut</a>
-					</div>
-					</div>
+							<div class="col-lg-4  col-md-4 col-sm-4">
+								<div class="about-div">
+									<span class="thumbnail no-bottom-margin" style="width: 65px;">
+										<i class="fa fa-briefcase fa-4x"></i>
+									</span>
+									
+									<h3 style="color: #5BC0DE;">'.$row["name"].'</h3>
+									<hr>
+									<i class="fa fa-map-marker"></i> &nbsp;'.$row["alamat"].' &nbsp;'.$row["poskod"].'
+									<br>
+									<i class="fa fa-globe"></i> &nbsp;'.$row["negeri"].'
+									<hr>
+									<i class="fa fa-tag"></i> &nbsp;'.$row["category"].'<br>
+									<form action="details.php">
+										<a href="#" class="btn btn-info">Maklumat Lanjut</a>
+									</form>
+								</div>
+							</div>
 					';
 				}
 			} else {
@@ -176,8 +181,11 @@
 		<!--/.FEATURED LIST END-->
 		
         </div>
-		<center><a href="d-list.php" class="btn btn-info" >Direktori</a></center><br>
-    </div>
+			<br>
+			<br>
+			<center><a href="d-list.php" class="btn btn-info" >Direktori</a></center>
+			<br>
+		</div>
     <!-- FEATURES SECTION END-->
     <div id="faculty-sec">
         <div class="container set-pad">
