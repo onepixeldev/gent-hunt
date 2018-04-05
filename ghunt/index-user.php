@@ -157,11 +157,11 @@
 									
 									<h3 style="color: #5BC0DE;">'.$row["name"].'</h3>
 									<hr>
-									<i class="fa fa-map-marker"></i> &nbsp;'.$row["alamat"].' &nbsp;'.$row["poskod"].'
+									<i class="fa fa-map-marker" style="color: #5BC0DE;"></i> &nbsp;'.$row["alamat"].' &nbsp;'.$row["poskod"].'
 									<br>
-									<i class="fa fa-globe"></i> &nbsp;'.$row["negeri"].'
+									<i class="fa fa-globe" style="color: #5BC0DE;"></i> &nbsp;'.$row["negeri"].'
 									<hr>
-									<i class="fa fa-tag"></i> &nbsp;'.$row["category"].'<br>
+									<i class="fa fa-tag" style="color: #5BC0DE;"></i> &nbsp;'.$row["category"].'<br>
 									<form action="details.php" method="post">
 									    <input type="hidden" name="ftd" value="'.$row["itID"].'">
 										<button type="submit" class="btn btn-info">Maklumat Lanjut</a>

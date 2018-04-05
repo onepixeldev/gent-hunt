@@ -157,7 +157,6 @@ h1::after {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    cursor: pointer;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
     -o-transition: 0.3s;
