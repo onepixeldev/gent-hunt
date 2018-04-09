@@ -202,45 +202,66 @@
             <!--/.HEADER LINE END-->
 
             <div class="row">
+			<?php 
+			 require ('config.php');
+			 
+				// Query 
+				$sql = "SELECT entlist.id_ent, entlist.name_ent, entlist.location, image_ent.pic
+						FROM entlist
+						LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent;";
+				
+				$result = mysqli_query($link, $sql);
+				if (mysqli_num_rows($result) > 0) {
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)) {
+					echo
+						'
+								
+								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
+									<div class="faculty-div">
+										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
+										<h3 align="left">'.$row["name_ent"].'</h3>
+										<hr>
+										<h4 align="left">Desigining <br> Department</h4>
+										<p>
+											sample text
 
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
+									<div class="faculty-div">
+										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
+										<h3>'.$row["name_ent"].'</h3>
+										<hr>
+										<h4>Desigining <br> Department</h4>
+										<p>
+											sample text
 
-                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                    <div class="faculty-div">
-                        <img src="assets/img/faculty/1.jpg" class="img-rounded">
-                        <h3>ROXI CHI LUENA </h3>
-                        <hr>
-                        <h4>Desigining <br> Department</h4>
-                        <p>
-                            sample text
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
+									<div class="faculty-div">
+										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
+										<h3>'.$row["name_ent"].'</h3>
+										<hr>
+										<h4>Desigining <br> Department</h4>
+										<p>
+											sample text
 
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s" data-scroll-reveal-id="10" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                    <div class="faculty-div">
-                        <img src="assets/img/faculty/2.jpg" class="img-rounded">
-                        <h3>JANE DEO ALEX</h3>
-                        <hr>
-                        <h4>Enginering <br> Department</h4>
-                        <p>
-                            sample text
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s" data-scroll-reveal-id="11" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                    <div class="faculty-div">
-                        <img src="assets/img/faculty/3.jpg" class="img-rounded">
-                        <h3>RUBY DECORSA</h3>
-                        <hr>
-                        <h4>Management <br> Department</h4>
-                        <p>
-                            sample text
-
-                        </p>
-                    </div>
-                </div>
-
+										</p>
+									</div>
+								</div>
+						';
+					}
+				} else {
+					echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+							<p style="float:left; font-weight: bold;">Tiada rekod</p>
+						  </div>';
+				}
+				mysqli_close($link);
+			?>
             </div>
         </div>
     </div>

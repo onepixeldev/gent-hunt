@@ -29,7 +29,7 @@
 										<div class="panel-body">
 											<div style="width: 70%; float: left">
 												<span>
-													<img src="paris.jpg" alt="Logo" width="128" height="128" style="float: left">
+													<img src="images/logo/office-building-icon.png" alt="Company logo" width="128" height="128" style="float: left; border:3px solid grey">
 													<p class="position" style="padding-left:3em; padding-bottom:60px; width: 40%; float: left"><strong>'.$row["name"].'</strong></p>
 												</span>
 											</div>
