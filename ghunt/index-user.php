@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index-user.php">
                     <img class="logo-custom" src="assets/img/logo_gh.png" alt="" height="60" width="65">
                 </a>
             </div>
@@ -45,7 +45,7 @@
                     </li>
                     <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI &amp; MENGAJAR</a>
                     </li>
-                    <li class="hv"><a href="#faculty-sec">IDOLA KEUSAHAWANAN</a>
+                    <li class="hv"><a href="ent-list.php">IDOLA KEUSAHAWANAN</a>
                     </li>
                     <li>
                     </li>
@@ -151,8 +151,8 @@
 					'
 							<div class="col-lg-4  col-md-4 col-sm-4">
 								<div class="about-div">
-									<span class="thumbnail no-bottom-margin" style="width: 65px;">
-										<i class="fa fa-briefcase fa-4x"></i>
+									<span class="thumbnail no-bottom-margin" style="width: 110px;">
+										<i class="fa fa-briefcase fa-4x icon-round-border"></i>
 									</span>
 									
 									<h3 style="color: #5BC0DE;">'.$row["name"].'</h3>
@@ -208,7 +208,7 @@
 				// Query 
 				$sql = "SELECT entlist.id_ent, entlist.name_ent, entlist.location, image_ent.pic
 						FROM entlist
-						LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent;";
+						LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent";
 				
 				$result = mysqli_query($link, $sql);
 				if (mysqli_num_rows($result) > 0) {
@@ -223,30 +223,6 @@
 										<h3 align="left">'.$row["name_ent"].'</h3>
 										<hr>
 										<h4 align="left">Desigining <br> Department</h4>
-										<p>
-											sample text
-
-										</p>
-									</div>
-								</div>
-								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-									<div class="faculty-div">
-										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
-										<h3>'.$row["name_ent"].'</h3>
-										<hr>
-										<h4>Desigining <br> Department</h4>
-										<p>
-											sample text
-
-										</p>
-									</div>
-								</div>
-								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-									<div class="faculty-div">
-										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
-										<h3>'.$row["name_ent"].'</h3>
-										<hr>
-										<h4>Desigining <br> Department</h4>
 										<p>
 											sample text
 
@@ -295,7 +271,7 @@
                     <h2><strong>Social Conectivity </strong></h2>
         <hr>
                     <div>
-                        <a href="# ">  <img src="assets/img/Social/facebook.png " alt=" "> </a>
+					 <a href="# ">  <img src="assets/img/Social/facebook.png " alt=" "> </a>
                      <a href="# "> <img src="assets/img/Social/google-plus.png " alt=" "></a>
                      <a href="# "> <img src="assets/img/Social/twitter.png " alt=" "></a>
                     </div>

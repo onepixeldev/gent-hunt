@@ -47,7 +47,7 @@
                     </li>
                     <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI & MENGAJAR</a>
                     </li>
-                    <li class="hv"><a href="ent-list.php">IDOLA KEUSAHAWANAN</a>
+                    <li class="hv"><a href="#faculty-sec">IDOLA KEUSAHAWANAN</a>
                     </li>
                     <li>
                     </li>
@@ -66,7 +66,7 @@
     <div id="features-sec" class="container set-pad">
         <div class="row text-center">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">DIREKTORI LATIHAN INDUSTRI & LATIHAN MENGAJAR</h1>
+                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">DIREKTORI IDOLA KEUSAHAWANAN</h1>
             </div>
 
         </div>
@@ -101,7 +101,7 @@
 		<div style="box-sizing: border-box; width: 80%; float: left;">
 				<?php
 					require('config.php');
-					require('searchP.php');
+					require('searchENT.php');
 				?>
 		</div>
 		
