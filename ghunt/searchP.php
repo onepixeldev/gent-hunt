@@ -42,13 +42,11 @@
 									</div>
 
 									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
-										<form id="clickName" action="details.php" method="post"> 
-											<h3 class="position">
-												'.$counter.'.
-												<input type="hidden" name="idCN" value="'.$row["id"].'">
-												<a href="#" onclick="document.getElementById(\'clickName\').submit()" name="subName" class="job-title ng-binding">'.$row["name"].'</a>
+											<h3 class="position" style="color: #5BC0DE;">
+												<span style="color:black">'.$counter.'.</span> 
+												'.$row["name"].'
+												
 											</h3>
-										</form>
 										<div class="job-details">
 											<hr>
 											<div class="address">

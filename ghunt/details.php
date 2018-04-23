@@ -47,7 +47,7 @@
                     </li>
                     <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI & MENGAJAR</a>
                     </li>
-                    <li class="hv"><a href="#faculty-sec">IDOLA KEUSAHAWANAN</a>
+                    <li class="hv"><a href="ent-list.php">IDOLA KEUSAHAWANAN</a>
                     </li>
                     <li>
                     </li>

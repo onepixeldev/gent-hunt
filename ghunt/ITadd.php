@@ -323,18 +323,13 @@ include("auth.php");
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
-                                <a href="teacherList.php">
+                                <a href="ITlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
-                            <li class="">
-                                <a href="addUser.php">
+                            <li class="active">
+                                <a href="ENTadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
-							<li class="">
-                                <a href="addUser.php">
-                                    <i class="fa fa-long-arrow-right"></i>Manage featured list</a>
-                            </li>
-
                         </ul>
                     </li>
                 </ul>
