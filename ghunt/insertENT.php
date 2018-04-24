@@ -1,25 +1,53 @@
 <?php
 		require('config.php');
 		
-		$intname = mysqli_real_escape_string($link, $_REQUEST['intname']);
-		$location = mysqli_real_escape_string($link, $_REQUEST['location']);
-		$postcode = mysqli_real_escape_string($link, $_REQUEST['postcode']);
-		$state = mysqli_real_escape_string($link, $_REQUEST['state']);
-		$pnumber = mysqli_real_escape_string($link, $_REQUEST['pnumber']);
-		$email = mysqli_real_escape_string($link, $_REQUEST['email']);
-		$website = mysqli_real_escape_string($link, $_REQUEST['website']);
-		$category = mysqli_real_escape_string($link, $_REQUEST['category']);
-		 
-		// attempt insert query execution
-		$sql = "INSERT into `li_lm_list` (name, alamat, poskod, negeri, phone, email, website, category) 
-				VALUES ('$intname', '$location', '$postcode', '$state', '$pnumber', '$email', '$website', '$category')";
-		if(mysqli_query($link, $sql)){
+		
+		$entName = mysqli_real_escape_string($link, $_REQUEST['entName']);
+		$entLocation = mysqli_real_escape_string($link, $_REQUEST['entLocation']);
+		$comName = mysqli_real_escape_string($link, $_REQUEST['comName']);
+		$pos = mysqli_real_escape_string($link, $_REQUEST['pos']);
+		$cDetails = mysqli_real_escape_string($link, $_REQUEST['cDetails']);
+		$sProfile = mysqli_real_escape_string($link, $_REQUEST['sProfile']);
+		
+		$image = $_FILES['image']['name'];
+		$filename = $_FILES['image']['tmp_name'];
+		$target_dir = "uploads/";
+		$target = $target_dir .basename($_FILES['image']['name']);
+		$uploadOk = 1;
+		
+		$imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
+		
+		
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
 			echo '<script type="text/javascript">
-					alert("New IT record succesfully added to directory");
-					window.location.href="ITlist.php";
-				 </script>';	 
-		} else{
-			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+					alert("Sorry, only JPG, JPEG, & PNG files are allowed.");
+				 </script>';
+			$uploadOk = 0;
+		}
+		
+		if ($_FILES["image"]["size"] > 500000) {
+			echo '<script type="text/javascript">
+					alert("Sorry, your file is too large.");
+				 </script>';
+			$uploadOk = 0;
+		}
+		
+		//$content = file_get_contents($image);
+		
+		if($uploadOk == 1){
+			$sql = "INSERT into `entlist` (name_ent, location, businessName, Position, career, on_social_pro, pic, image_name) 
+					VALUES ('$entName', '$entLocation', '$comName', '$pos', '$cDetails', '$sProfile', '$target', '$image')";
+			
+			move_uploaded_file($filename,$target);	
+				
+			if(mysqli_query($link, $sql)){
+			echo '<script type="text/javascript">
+					alert("New ENT record succesfully added to directory");
+					
+				</script>';	 
+			} else{
+				echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			}
 		}
 		
 		mysqli_close($link);

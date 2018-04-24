@@ -1,9 +1,5 @@
 <?php
-	$sql = "SELECT entlist.id_ent, entlist.name_ent, entlist.location, image_ent.pic, business.BusinessName, 
-			business.Position
-			FROM entlist
-			LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent
-			LEFT JOIN business ON entlist.id_ent=business.id_ent";
+	$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
 					
 	if (isset($_POST['submitf'])) {
 		// Capture that in a variable by that name
@@ -32,7 +28,10 @@
 	
 	if (mysqli_num_rows($result) > 0) {
 		// output data of each row
+		
 		while($row = mysqli_fetch_assoc($result)) {
+			//$pic = $row["pic"];
+			//$pic_src = "uploads/".$pic;
 			echo
 				'<div class="col-lg-11">
 						<div class="jobs-list-item _old">
@@ -40,7 +39,7 @@
 								<div class="panel-body">
 									<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
 											<span class="thumbnail no-bottom-margin" style="width: 110px;">
-												<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded">
+												<img src="'.$row["pic"].'">
 											</span>
 									</div>
 
@@ -60,7 +59,7 @@
 												</span>
 											</div>
 											<span>
-												<i class="fa fa-building"></i> '.$row["BusinessName"].' 
+												<i class="fa fa-building"></i> '.$row["businessName"].' 
 											</span>
 											<hr style="height:0px; background-color: #31B0D5;">
 											<i class="fa fa-tag"></i> '.$row["Position"].'

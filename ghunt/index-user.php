@@ -206,7 +206,7 @@
 			 require ('config.php');
 			 
 				// Query 
-				$sql = "SELECT entlist.id_ent, entlist.name_ent, entlist.location, image_ent.pic
+				$sql = "SELECT entlist.pic, entlist.name_ent, entlist.location, image_ent.pic
 						FROM entlist
 						LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent";
 				

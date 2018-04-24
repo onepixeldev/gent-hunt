@@ -363,12 +363,11 @@ include("auth.php");
 											<h3 class="box-title">New record</h3>
 									</div>
 										<div class="box-body">
-											<form action="insertENT.php" style="border:1px solid #ccc" method="POST">
+											<form action="insertENT.php" style="border:1px solid #ccc" method="POST" enctype="multipart/form-data">
 											  <div class="container">
 											  
 												Select image to upload:
-												<input type="file" name="fileToUpload" id="fileToUpload">
-												<input type="submit" value="Upload Image" name="submit">
+												<input type="file" name="image">
 											  
 												<br><label><b>Name</b></label><br>
 												<input type="text" placeholder="Name" name="entName" required>
