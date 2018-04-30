@@ -434,7 +434,7 @@ include("auth.php");
 													// add to featured list
 													elseif (isset($_POST['submitfeat'])){
 														
-														$sql = "SELECT * FROM featured_it";
+														$sql = "SELECT * FROM featured_ent";
 														
 														$resultft = mysqli_query($link, $sql);
 														
@@ -443,39 +443,38 @@ include("auth.php");
 														
 															echo '<script>
 																alert("Featured list already reaching limit.");
-																window.location.href="Itlist.php";
+																window.location.href="ENTlist.php";
 																</script>';
-														} 
+														}
+														
 														elseif (mysqli_num_rows($resultft) < 3) {
 															
 															$idf = $_POST['idf'];
-															$namef = $_POST['namef'];
-															$addressf = $_POST['addressf'];
-															$postcodef = $_POST['postcodef'];
-															$statef = $_POST['statef'];
-															$phonef = $_POST['phonef'];
-															$emailf = $_POST['emailf'];
-															$websitef = $_POST['websitef'];
-															$categoryf = $_POST['categoryf'];
 															
-															$sqlcomp = "SELECT * FROM featured_it WHERE itID = '$idf'";
+															$sqlcomp = "SELECT * FROM featured_ent WHERE id_ent = '$idf'";
 															$resultcomp = mysqli_query($link, $sqlcomp);
 																
 																// if record already exist on featured
 																if (mysqli_num_rows($resultcomp) == 1){
 																	echo '<script type="text/javascript">
 																				alert("This record already exist on featured list.\\nPlease select another record.");
-																				window.location.href="ITlist.php";
+																				window.location.href="ENTlist.php";
 																		 </script>';
 																}
 																else{
-																	$sql1 = "INSERT INTO featured_it (itID, name, alamat, poskod, negeri, phone, email, website, category)
-																	VALUES ('$idf', '$namef', '$addressf', '$postcodef', '$statef', '$phonef', '$emailf', '$websitef', '$categoryf')";
+																	
+																	$sqltab = "SELECT * FROM entlist WHERE id_ent = '$idf'";
+																	$resulttab = mysqli_query($link, $sqltab);
+																	$reslist = mysqli_fetch_assoc($resulttab);
+																	echo $reslist['id_ent'];
+																	
+																	$sql1 = "INSERT INTO featured_ent (id_ent, name_ent, location, businessName, Position, 	pic)
+																	VALUES ( '".$reslist[id_ent]."', '".$reslist['name_ent']."', '".$reslist['location']."', '".$reslist['businessName']."', '".$reslist['Position']."', '".$reslist['pic']."')";
 																	$resultfeat = mysqli_query($link, $sql1);
 																	if($resultfeat){
 																		echo '<script type="text/javascript">
 																				alert("Added to featured list.");
-																				window.location.href="ITlist.php";
+																				window.location.href="ENTlist.php";
 																			 </script>';
 																	} else{
 																		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -506,7 +505,7 @@ include("auth.php");
 																	<td class="text-center">
 																	
 																	<div>
-																		<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');" style="margin-bottom:0px"> 
+																		<form action="ENTlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage on Entrepreneur Idol section?\');" style="margin-bottom:0px"> 
 																			<input type="hidden" name="idf" value="'.$row["id_ent"].'">
 																			<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Featured this</button>
 																		</form>
