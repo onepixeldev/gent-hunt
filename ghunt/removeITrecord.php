@@ -43,6 +43,22 @@
 		}
 	}
 	
+	if (isset($_POST['delENT'])){
+		
+		$idENT = $_POST['idENT'];
+		$sqlDel = "DELETE FROM entlist WHERE id_ent = '$idENT'";
+		
+		if(mysqli_query($link, $sqlDel)){
+			echo '<script type="text/javascript">
+					alert("Record sucessfully removed from ENT record.");
+					window.location.href="ENTlist.php";
+				 </script>';
+		}
+		else{
+			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+		}
+	}
+	
 	
 	
 	mysqli_close($link);

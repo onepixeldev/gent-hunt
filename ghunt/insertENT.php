@@ -26,7 +26,7 @@
 			$uploadOk = 0;
 		}
 		
-		if ($fileSize > 500) {
+		if ($fileSize > 500000) {
 			echo '<script type="text/javascript">
 					alert("Sorry, image size must not more than 500kb");
 				 </script>';

@@ -369,7 +369,7 @@ include("auth.php");
 									<ul class="nav nav-tabs">
 										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
 										</li>
-										<li class=""><a href="FTlist.php" onclick="window.location.href = 'FTlist.php';" data-toggle="tab" aria-expanded="false">Featured</a>
+										<li class=""><a href="FTlist.php" onclick="window.location.href = 'FTENTlist.php';" data-toggle="tab" aria-expanded="false">Featured</a>
 										</li>
 									</ul>
 									<div class="tab-content">
@@ -380,7 +380,7 @@ include("auth.php");
 													<div id="div_tab1" class="col-md-12">
 													
 										<div>
-											<form action="ITlist.php" method="POST" style="float: right;">
+											<form action="ENTlist.php" method="POST" style="float: right;">
 												<input placeholder="Search directory" name="searchdir" style="float:left">
 												<button type="submit" name="search" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
 											</form>
@@ -417,7 +417,7 @@ include("auth.php");
 													// search query
 													if (isset($_POST['search'])){
 														$search = $_POST['searchdir'];
-														$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR poskod LIKE '%$search%' OR position LIKE '%$search%' ORDER BY id DESC";
+														$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR position LIKE '%$search%' OR position LIKE '%$search%' ORDER BY id_ent DESC";
 													}
 													
 													// sort query
@@ -517,8 +517,8 @@ include("auth.php");
 																		</form>
 																		
 																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
-																			<input type="hidden" name="idIT" value="'.$row["id_ent"].'">
-																			<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
+																			<input type="hidden" name="idENT" value="'.$row["id_ent"].'">
+																			<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
 																		</form>
 																	</div>
 																	

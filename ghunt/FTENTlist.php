@@ -311,13 +311,13 @@ include("auth.php");
                             <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
-					<li class="treeview active">
+					<li class="treeview">
                         <a href="#">
                             <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: block;">
-                            <li class="active">
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
                                 <a href="ITlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
@@ -327,13 +327,13 @@ include("auth.php");
                             </li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview active">
                         <a href="#">
                             <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: none;">
-                            <li class="">
+                        <ul class="treeview-menu" style="display: block;">
+                            <li class="active">
                                 <a href="ENTlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
@@ -367,7 +367,7 @@ include("auth.php");
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
 									<ul class="nav nav-tabs">
-										<li class=""><a href="ITlist.php" onclick="window.location.href = 'ITlist.php';" data-toggle="tab" aria-expanded="true">Directory</a>
+										<li class=""><a href="ENTlist.php" onclick="window.location.href = 'ENTlist.php';" data-toggle="tab" aria-expanded="true">Directory</a>
 										</li>
 										<li class="active"><a href="#" data-toggle="tab" aria-expanded="false">Featured</a>
 										</li>
