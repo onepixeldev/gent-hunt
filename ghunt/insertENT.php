@@ -11,6 +11,7 @@
 		
 		$image = $_FILES['image']['name'];
 		$filename = $_FILES['image']['tmp_name'];
+		$fileSize = $_FILES["image"]["size"];
 		$target_dir = "uploads/";
 		$target = $target_dir .basename($_FILES['image']['name']);
 		$uploadOk = 1;
@@ -25,9 +26,9 @@
 			$uploadOk = 0;
 		}
 		
-		if ($_FILES["image"]["size"] > 500000) {
+		if ($fileSize > 500) {
 			echo '<script type="text/javascript">
-					alert("Sorry, your file is too large.");
+					alert("Sorry, image size must not more than 500kb");
 				 </script>';
 			$uploadOk = 0;
 		}
