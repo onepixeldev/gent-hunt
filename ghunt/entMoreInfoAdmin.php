@@ -356,7 +356,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Entrepreneur idol directory
+					Entrepreneur idol details
 				</h1> 
             </section>
 
@@ -366,12 +366,6 @@ include("auth.php");
 							<div class="col-md-12" style="float: left">
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
-										</li>
-										<li class=""><a href="FTlist.php" onclick="window.location.href = 'FTENTlist.php';" data-toggle="tab" aria-expanded="false">Featured</a>
-										</li>
-									</ul>
 									<div class="tab-content">
 										
 										<div class="tab-pane active" id="tab_1">
@@ -380,157 +374,84 @@ include("auth.php");
 													<div id="div_tab1" class="col-md-12">
 													
 										<div>
-											<form action="ENTlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="searchdir" style="float:left">
-												<button type="submit" name="search" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
-											</form>
-											
-											<div style="float: left; width: 16%">
-											<p><font color="#428bca">Sort directory list</font></p>
-											<form action="" method="post" >
-												<select type="text" name="sortC" onchange="submit()" >
-												  <option value="" selected>Select sort option</option>
-												  <option value="alpA" onchange="submit()" >alphabetically</option>
-												  <option value="latestR">by latest added record</option>
-												</select>
-											</form>
-											<br>
-											<br>
-											</div>
-										</div>
-													
-											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 60%; clear:left">
-												<tbody>
-													<tr>
-														<th class="text-center" style="width: 10%">Record information</th>
-														<th class="text-center" style="width: 4%">Selection</th>
-													</tr>
-												</tbody>
-												<tbody id="table" >
-													
-													<?php
+											<?php
 													require('config.php');	
 													
+													if (isset($_POST['submitMD'])){
+													$id_ent = $_POST["id"];
+													
 													// display directory list
-													$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
+													$sql = "SELECT * FROM entlist WHERE id_ent = '$id_ent'";
 													
-													// search query
-													if (isset($_POST['search'])){
-														$search = $_POST['searchdir'];
-														$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR position LIKE '%$search%' OR position LIKE '%$search%' ORDER BY id_ent DESC";
-													}
-													
-													// sort query
-													elseif (isset($_POST['sortC'])){
-														$sortC = $_POST['sortC'];
-														if ($sortC == "alpA"){
-															$sql = "SELECT * FROM entlist ORDER BY name ASC";
-														}
-														elseif ($sortC == "latestR"){
-															$sql = "SELECT * FROM entlist ORDER BY id DESC";
-														}
-													}
-													
-													// add to featured list
-													elseif (isset($_POST['submitfeat'])){
-														
-														$sql = "SELECT * FROM featured_ent";
-														
-														$resultft = mysqli_query($link, $sql);
-														
-														// featured list limit
-														if (mysqli_num_rows($resultft) >= 3) {
-														
-															echo '<script>
-																alert("Featured list already reaching limit.");
-																window.location.href="ENTlist.php";
-																</script>';
-														}
-														
-														elseif (mysqli_num_rows($resultft) < 3) {
-															
-															$idf = $_POST['idf'];
-															
-															$sqlcomp = "SELECT * FROM featured_ent WHERE id_ent = '$idf'";
-															$resultcomp = mysqli_query($link, $sqlcomp);
-																
-																// if record already exist on featured
-																if (mysqli_num_rows($resultcomp) == 1){
-																	echo '<script type="text/javascript">
-																				alert("This record already exist on featured list.\\nPlease select another record.");
-																				window.location.href="ENTlist.php";
-																		 </script>';
-																}
-																else{
-																	
-																	$sqltab = "SELECT * FROM entlist WHERE id_ent = '$idf'";
-																	$resulttab = mysqli_query($link, $sqltab);
-																	$reslist = mysqli_fetch_assoc($resulttab);
-																	
-																	$sql1 = "INSERT INTO featured_ent (id_ent, name_ent, location, businessName, Position, 	pic)
-																	VALUES ( '".$reslist[id_ent]."', '".$reslist['name_ent']."', '".$reslist['location']."', '".$reslist['businessName']."', '".$reslist['Position']."', '".$reslist['pic']."')";
-																	$resultfeat = mysqli_query($link, $sql1);
-																	if($resultfeat){
-																		echo '<script type="text/javascript">
-																				alert("Added to featured list.");
-																				window.location.href="ENTlist.php";
-																			 </script>';
-																	} else{
-																		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-																	}
-																}
-														}
-													}
-													
-													// main table
 													$result = mysqli_query($link, $sql);
-													$counter = 1;
+													$MDres = mysqli_fetch_assoc($result);
+													
 													if (mysqli_num_rows($result) > 0) {
-														// output data of each row
-														while($row = mysqli_fetch_assoc($result)) {
-															echo '<tr>
-																	<td class="text-left">
-																	
-																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
-																			<span class="thumbnail no-bottom-margin" style="width: 110px;">
-																				<img src="'.$row["pic"].'">
-																			</span>
+														
+														echo
+															'<div class="col-lg-12">
+																	<div class="jobs-list-item _old">
+																		<div class="panel panel-default">
+																			<div class="panel-body">
+																				<div style="width: 20%; float: left">
+																					<span>
+																						<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey">
+																					</span>
+																				</div>
+																				<table>
+																				<tr>
+																					<div style="width: 50%; float: left;"">
+																						<div class="job-details">
+																						<td class="text-left">
+																								<span>
+																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> '.$MDres['name_ent'].' </p>
+																								<hr style="height:1px; background-color: #31B0D5;">
+																									<p> <strong>Business name <span style="display:inline-block; width: 40px;"></span>:</strong> '.$MDres['businessName'].' </p>
+																								<br>
+																									<p> <strong>Position <span style="display:inline-block; width: 94px;"></span>:</strong> '.$MDres['Position'].' </p>
+																								<br>
+																									<p> <strong>Online social profile <span style="display:inline-block; width: 5px;"></span>:</strong> '.$MDres['on_social_pro'].' </p>	
+																								</span>
+																						</div>
+																					</div>
+																				</tr>
+																				</table>
+																			</div>
+																		</div>
 																	</div>
-																	
-																	<div style="">
-																		<p class="job-details">'.$counter.'. <strong>'.$row["name_ent"].'</strong></p><br>
+																</div>
+																
+																
+																<div class="col-lg-12" style="width: 100%; float: left">
+																	<div class="jobs-list-item _old">
+																		<div class="panel panel-default">
+																			<div class="panel-body">
+																				<div style="float: left;"">
+																					<div class="job-details">
+																							<span>
+																							
+																							</span>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
-																	
-																	<td class="text-center">
-																	
-																	<div>
-																		<form action="ENTlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage on Entrepreneur Idol section?\');" style="margin-bottom:0px"> 
-																			<input type="hidden" name="idf" value="'.$row["id_ent"].'">
-																			<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Featured this</button>
-																		</form>
-																		
-																		<form action="entMoreInfoAdmin.php" method="POST" style="margin-bottom:0px">
-																			<input type="hidden" name="id" value="'.$row["id_ent"].'">
-																			<button type="submit" name="submitMD" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
-																		</form>
-																		
-																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
-																			<input type="hidden" name="idENT" value="'.$row["id_ent"].'">
-																			<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
-																		</form>
-																	</div>
-																	
-																 </tr>';
-																 $counter++;
+																</div>
+															';
+													}
+													else {
+														echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+																<p style="font-weight: bold;">Tiada rekod</p>
+															  </div>';
 														}
-													} else {
-														echo "No record";
 													}
 													mysqli_close($link);
-													?>			
-												</tbody>
-											</table>
-													</div>
+													?>
+										</div>
+													
+																
+												
+												</div>
 											</div>
 										</div>
 										<!-- /.tab-pane -->
