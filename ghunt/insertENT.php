@@ -44,7 +44,7 @@
 			if(mysqli_query($link, $sql)){
 			echo '<script type="text/javascript">
 					alert("New ENT record succesfully added to directory");
-					
+					window.location.href="ENTlist.php";
 				</script>';	 
 			} else{
 				echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);

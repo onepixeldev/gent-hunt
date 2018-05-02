@@ -74,10 +74,10 @@
 		
         <div style="box-sizing: border-box; width: 20%; float: left;">
 	
-				<p><font color="#428bca">Search</font></p>
+				<p><font color="#428bca">Carian</font></p>
 				<div style=" overflow: hidden; white-space: nowrap;">
 					<form action="d-list.php" method="POST">
-						<input class="form-control" type="text" placeholder="Search.." name="search">
+						<input class="form-control" type="text" placeholder="Search..." name="search">
 						<br>
 						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
 					</form>

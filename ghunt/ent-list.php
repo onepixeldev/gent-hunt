@@ -74,29 +74,14 @@
 		
         <div style="box-sizing: border-box; width: 20%; float: left;">
 	
-				<p><font color="#428bca">Search</font></p>
+				<p><font color="#428bca">Carian</font></p>
 				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="d-list.php" method="POST">
+					<form action="ent-list.php" method="POST">
 						<input class="form-control" type="text" placeholder="Search.." name="search">
 						<br>
 						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
 					</form>
 				</div>
-				<form action="d-list.php" method="POST">
-					<hr style="height:2px;border:none;background-color:#e0e0d1;" />
-					<p><font color="#428bca">Filter</font></p>
-					<p>Lokasi</p>
-					<input type="text" class="form-control" placeholder="Lokasi" name="locf">
-					<p style="font-style: semi-bold;">Kategori</p>
-					<select class="form-control" name="catf">
-					  <option value="" selected>Pilih kategori</option>
-					  <option value="Latihan Industri">Latihan Industri</option>
-					  <option value="Latihan Mengajar">Latihan Mengajar</option>
-					</select>
-					<br>
-					
-					<button type="submit" class="btn btn-info" style="margin: auto;" name="submitf"><i class="fa fa-filter"></i></button>
-				</form>
         </div>
 		<div style="box-sizing: border-box; width: 80%; float: left;">
 				<?php

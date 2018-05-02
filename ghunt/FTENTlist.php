@@ -420,7 +420,7 @@ include("auth.php");
 																			<p><strong>Category:</strong> '.$row["category"].'</p></td>
 																			<td class="text-center" >
 																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Remove this record from featured list?\');"> 
-																					<input type="hidden" name="idFeat" value="'.$row["itID"].'">
+																					<input type="hidden" name="idFeatEnt" value="'.$row["itID"].'">
 																					<button type="submit" name="delFeat" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
 																				</form>
 																			</td>

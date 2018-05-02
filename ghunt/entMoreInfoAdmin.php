@@ -393,29 +393,26 @@ include("auth.php");
 																	<div class="jobs-list-item _old">
 																		<div class="panel panel-default">
 																			<div class="panel-body">
-																				<div style="width: 20%; float: left">
-																					<span>
-																						<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey">
-																					</span>
-																				</div>
-																				<table>
-																				<tr>
-																					<div style="width: 50%; float: left;"">
-																						<div class="job-details">
-																						<td class="text-left">
-																								<span>
-																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> '.$MDres['name_ent'].' </p>
-																								<hr style="height:1px; background-color: #31B0D5;">
-																									<p> <strong>Business name <span style="display:inline-block; width: 40px;"></span>:</strong> '.$MDres['businessName'].' </p>
-																								<br>
-																									<p> <strong>Position <span style="display:inline-block; width: 94px;"></span>:</strong> '.$MDres['Position'].' </p>
-																								<br>
-																									<p> <strong>Online social profile <span style="display:inline-block; width: 5px;"></span>:</strong> '.$MDres['on_social_pro'].' </p>	
-																								</span>
-																						</div>
+																				
+																				<div class="job-details" style="width: 100%; float: left; text-align:left">
+																					<div> 
+																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
 																					</div>
-																				</tr>
-																				</table>
+																					
+																					<div>
+																						<span style=" display:inline-block; width: 50%;">
+																								<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> '.$MDres['name_ent'].' </p>
+																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> '.$MDres['businessName'].' </p>
+																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> '.$MDres['Position'].' </p>
+																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> '.$MDres['on_social_pro'].' </p>
+																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																						</span>
+																					</div>
+																				</div>
+																				
 																			</div>
 																		</div>
 																	</div>
@@ -429,7 +426,10 @@ include("auth.php");
 																				<div style="float: left;"">
 																					<div class="job-details">
 																							<span>
-																							
+																							<p><strong>Career Details</strong></p>
+																							<div class="fr-view">
+																							  '.$MDres['career'].'
+																							</div>
 																							</span>
 																					</div>
 																				</div>

@@ -1,26 +1,10 @@
 <?php
 	$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
-					
-	if (isset($_POST['submitf'])) {
-		// Capture that in a variable by that name
-		$location = $_POST['locf'];
-		$catf = $_POST['catf'];
-		
-		if (!empty($catf) && empty($location)) {
-			$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC";
-		}
-		if (empty($catf) && !empty($location)) {
-			$sql = "SELECT * FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC";
-		}
-		if (!empty($catf) && !empty($location)) {
-			$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC";
-		}
-	}
 	
 	if (isset($_POST['search'])){
 		$counter = 1;
 		$search = $_POST['search'];
-		$sql = "SELECT * FROM li_lm_list WHERE name LIKE '%$search%' OR negeri LIKE '%$search%' OR alamat LIKE '%$search%' OR poskod LIKE '%$search%' OR category LIKE '%$search%' ORDER BY name ASC";
+		$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR Position LIKE '%$search%' ORDER BY name_ent ASC";
 	}
 	$result = mysqli_query($link, $sql);
 	
@@ -69,8 +53,8 @@
 									<div style="float: right;">
 										<div class="col-apply">
 											<form action="details.php" method="post"> 
-												<input type="hidden" name="idIT" value="'.$row["id_ent"].'">
-												<button type="submit" name="more" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
+												<input type="hidden" name="idENT" value="'.$row["id_ent"].'">
+												<button type="submit" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
 											</form>
 										</div>
 									</div>
