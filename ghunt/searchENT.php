@@ -36,16 +36,16 @@
 											</h3>
 										</form>
 										<div class="job-details">
-											<hr style="height:1px; background-color: #31B0D5;">
+											<hr style="height:0px; background-color: #31B0D5;">
 											<div class="address">
 												<span>
-													<i class="fa fa-map-marker"></i> '.$row["location"].'
+													<i class="fa fa-map-marker" style="margin-left: 1px;"></i>&nbsp; '.$row["location"].'
 												</span>
 											</div>
 											<span>
 												<i class="fa fa-building"></i> '.$row["businessName"].' 
 											</span>
-											<hr style="height:0px; background-color: #31B0D5;">
+											<br>
 											<i class="fa fa-tag"></i> '.$row["Position"].'
 										</div>
 									</div>

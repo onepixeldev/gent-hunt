@@ -402,6 +402,7 @@ include("auth.php");
 											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 60%; clear:left">
 												<tbody>
 													<tr>
+														<th class="text-center" style="width: 1%">No</th>
 														<th class="text-center" style="width: 10%">Record information</th>
 														<th class="text-center" style="width: 4%">Selection</th>
 													</tr>
@@ -424,10 +425,10 @@ include("auth.php");
 													elseif (isset($_POST['sortC'])){
 														$sortC = $_POST['sortC'];
 														if ($sortC == "alpA"){
-															$sql = "SELECT * FROM entlist ORDER BY name ASC";
+															$sql = "SELECT * FROM entlist ORDER BY name_ent ASC";
 														}
 														elseif ($sortC == "latestR"){
-															$sql = "SELECT * FROM entlist ORDER BY id DESC";
+															$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
 														}
 													}
 													
@@ -468,7 +469,7 @@ include("auth.php");
 																	$reslist = mysqli_fetch_assoc($resulttab);
 																	
 																	$sql1 = "INSERT INTO featured_ent (id_ent, name_ent, location, businessName, Position, 	pic)
-																	VALUES ( '".$reslist[id_ent]."', '".$reslist['name_ent']."', '".$reslist['location']."', '".$reslist['businessName']."', '".$reslist['Position']."', '".$reslist['pic']."')";
+																	VALUES ( '".$reslist['id_ent']."', '".$reslist['name_ent']."', '".$reslist['location']."', '".$reslist['businessName']."', '".$reslist['Position']."', '".$reslist['pic']."')";
 																	$resultfeat = mysqli_query($link, $sql1);
 																	if($resultfeat){
 																		echo '<script type="text/javascript">
@@ -489,6 +490,8 @@ include("auth.php");
 														// output data of each row
 														while($row = mysqli_fetch_assoc($result)) {
 															echo '<tr>
+																	<td class="text-center">
+																		<p>'.$counter.'.</p>
 																	<td class="text-left">
 																	
 																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
@@ -498,7 +501,7 @@ include("auth.php");
 																	</div>
 																	
 																	<div style="">
-																		<p class="job-details">'.$counter.'. <strong>'.$row["name_ent"].'</strong></p><br>
+																		<p class="job-details"><strong>Name:</strong>&nbsp;'.$row["name_ent"].'</strong></p><br>
 																	</div>
 																	
 																	<td class="text-center">

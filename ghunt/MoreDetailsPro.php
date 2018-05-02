@@ -82,10 +82,11 @@
 				}
 	}
 	
-	/*if (isset($_POST['idCN'])) {
+	// click name
+	if (isset($_POST['idCN'])) {
 		$idCN = $_POST["idCN"];
 		$sql = "SELECT * FROM li_lm_list WHERE id = '$idCN'";
-	}*/
+	}
 	
 	if (isset($_POST['more'])) {
 		$idIT = $_POST["idIT"];
@@ -189,16 +190,16 @@
 											<div>
 												<span style=" display:inline-block; width: 75%;">
 														<p> <strong>Nama <span style="display:inline-block; width: 151px;"></span>:</strong> '.$row['name_ent'].' </p>
-													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200;">
+													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200px;">
 													
 														<p> <strong>Nama Perniagaan/Syarikat <span style="display:inline-block; width: 4px;"></span>:</strong> '.$row['businessName'].' </p>
-													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200;">
+													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200px;">
 													
 														<p> <strong>Pangkat <span style="display:inline-block; width: 135px;"></span>:</strong> '.$row['Position'].' </p>
-													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200;">
+													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200px;">
 													
 														<p> <strong>Profil sosial <span style="display:inline-block; width: 111px;"></span>:</strong> '.$row['on_social_pro'].' </p>
-													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200;">
+													<hr style="height:1px; background-color: #DDDDDD; margin-top: 0; margin-left: 200px;">
 												</span>
 											</div>
 										</div>

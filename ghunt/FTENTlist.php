@@ -356,7 +356,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Industrial and Teaching training directory
+					Entrepreneur idol directory
 				</h1> 
             </section>
 
@@ -387,12 +387,12 @@ include("auth.php");
 												<h1 style="color: #f44336; margin-left:auto;">Featured information will be displayed on homepage (maximum 3).</h1>
 											
 												<div id="div_tab2" class="col-md-12">
-													<table class="table table-bordered table-hover">
+													<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 50%; clear:left">
 													<tbody>
 														<tr>
-															<th style="width: 10px" class="text-center">No</th>
-															<th class="text-center" style="width: 80%">Featured information</th>
-															<th class="text-center">Remove from featured list</th>
+															<th style="width: 1%" class="text-center">No</th>
+															<th class="text-center" style="width: 30%">Featured information</th>
+															<th class="text-center" style="width: 10%">Selection</th>
 														</tr>
 													</tbody>
 													<tbody id="table">
@@ -400,7 +400,7 @@ include("auth.php");
 															<?php
 															require('config.php');	
 
-															$sql = "SELECT * FROM featured_it ORDER BY featID DESC";
+															$sql = "SELECT * FROM featured_ent ORDER BY feat_ent_id DESC";
 															
 															$result = mysqli_query($link, $sql);
 															$counter = 1;
@@ -408,22 +408,29 @@ include("auth.php");
 																// output data of each row
 																while($row = mysqli_fetch_assoc($result)) {
 																	echo '<tr>
-																			<td class="text-center" ><strong>'.$counter.'</strong></td>
+																			<td class="text-center">
+																				<p>'.$counter.'.</p>
 																			<td class="text-left">
-																			<p><strong>Name:</strong> '.$row["name"].'</p><br>
-																			<p><strong>Address:</strong> '.$row["alamat"].'</p><br>
-																			<p><strong>Postcode:</strong> '.$row["poskod"].'</p><br>
-																			<p><strong>State:</strong> '.$row["negeri"].'</p><br>
-																			<p><strong>Phone number:</strong> '.$row["phone"].'</p><br>
-																			<p><strong>Email:</strong> '.$row["email"].'</p><br>
-																			<p><strong>Website:</strong> '.$row["website"].'</p><br>
-																			<p><strong>Category:</strong> '.$row["category"].'</p></td>
-																			<td class="text-center" >
-																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Remove this record from featured list?\');"> 
-																					<input type="hidden" name="idFeatEnt" value="'.$row["itID"].'">
-																					<button type="submit" name="delFeat" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
+																			
+																			<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
+																					<span class="thumbnail no-bottom-margin" style="width: 110px;">
+																						<img src="'.$row["pic"].'">
+																					</span>
+																			</div>
+																			
+																			<div style="">
+																				<p class="job-details"><strong>Name:</strong>&nbsp;'.$row["name_ent"].'</p><br>
+																			</div>
+																			
+																			<td class="text-center">
+																			
+																			<div>
+																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
+																					<input type="hidden" name="idENT" value="'.$row["id_ent"].'">
+																					<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
 																				</form>
-																			</td>
+																			</div>
+																			
 																		 </tr>';
 																		 $counter++;
 																}
