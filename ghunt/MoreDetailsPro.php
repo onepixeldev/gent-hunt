@@ -97,9 +97,17 @@
 	}
 	
 	// from ent list
-	if (isset($_POST['idENT'])) {
-		$idENT = $_POST["idENT"];
-		$sql = "SELECT * FROM entlist WHERE id_ent = '$idENT'";
+	if (isset($_POST['idENT']) || isset($_POST['ftENT'])) {
+		
+		if(isset($_POST['idENT'])){
+			$idENT = $_POST["idENT"];
+			$sql = "SELECT * FROM entlist WHERE id_ent = '$idENT'";
+		}
+		
+		if(isset($_POST['ftENT'])){
+			$idENT = $_POST["ftENT"];
+			$sql = "SELECT * FROM entlist WHERE id_ent = '$idENT'";
+		}
 		
 		$result = mysqli_query($link, $sql);
 		
@@ -147,7 +155,7 @@
 										<div style="float: left;"">
 											<div class="job-details">
 													<span>
-													<p><strong>Career Details</strong></p>
+													<p><strong>Butiran Kerjaya</strong></p>
 													<div class="fr-view">
 													  '.$row['career'].'
 													</div>

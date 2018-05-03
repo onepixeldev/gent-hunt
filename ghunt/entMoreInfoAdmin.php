@@ -407,10 +407,16 @@ include("auth.php");
 																						<span style=" display:inline-block; width: 50%;">
 																								<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> '.$MDres['name_ent'].' </p>
 																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																							
+																								<p> <strong>Location<span style="display:inline-block; width: 97px;"></span>:</strong> '.$MDres['location'].' </p>
+																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																							
 																								<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> '.$MDres['businessName'].' </p>
 																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																							
 																								<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> '.$MDres['Position'].' </p>
 																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																							
 																								<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> '.$MDres['on_social_pro'].' </p>
 																							<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
 																						</span>

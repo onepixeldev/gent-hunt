@@ -376,7 +376,7 @@ include("auth.php");
 										<div class="tab-pane active" id="tab_1">
 											<div class="box-body">
 											
-													<div id="div_tab1" class="col-md-12">
+										<div id="div_tab1" class="col-md-12">
 													
 										<div>
 											<?php
@@ -396,7 +396,8 @@ include("auth.php");
 														
 														echo
 															'
-															<form action="updateENT.php" method="POST">
+															<form action="updateENT.php" method="POST" enctype="multipart/form-data">
+																<input type="hidden" name="idENT" value="'.$MDres['id_ent'].'">
 																<div class="col-lg-12">
 																	<br>
 																		<div class="jobs-list-item _old">
@@ -404,24 +405,32 @@ include("auth.php");
 																				<div class="panel-body">
 																					<div class="job-details" style="width: 100%; float: left; text-align:left">
 																						<div> 
-																							Update profile image:
-																							<input class="btn btn-warning btn-lg" style="width: 25%" type="file" name="imageUP">
+																								Update profile image:
+																								<input class="btn btn-warning btn-lg" style="width: 25%" type="file" name="imageUP" value="'.$MDres['pic'].'">
 																							<br>
 																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
 																						</div>
 																						
 																						<div>
 																							<span style=" display:inline-block; width: 50%;">
-																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> <input type="text" name="nameUP" value="'.$MDres['name_ent'].'"> </p>
+																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> 
+																									<input type="text" name="nameUP" value="'.$MDres['name_ent'].'"> </p>
 																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
 																								
-																									<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> <input type="text" name="bnUP" value="'.$MDres['businessName'].'"> </p>
+																									<p> <strong>Location <span style="display:inline-block; width: 96px;"></span>:</strong> 
+																									<input type="text" name="locUP" value="'.$MDres['location'].'"> </p>
 																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
 																								
-																									<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> <input type="text" name="posUP" value="'.$MDres['Position'].'"> </p>
+																									<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> 
+																									<input type="text" name="bnUP" value="'.$MDres['businessName'].'"> </p>
 																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
 																								
-																									<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> <input type="text" name="ospUP" value="'.$MDres['on_social_pro'].'"> </p>
+																									<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> 
+																									<input type="text" name="posUP" value="'.$MDres['Position'].'"> </p>
+																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								
+																									<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> 
+																									<input type="text" name="ospUP" value="'.$MDres['on_social_pro'].'"> </p>
 																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
 																							</span>
 																						</div>
@@ -441,7 +450,7 @@ include("auth.php");
 																						<div class="job-details">
 																								<span>
 																								<p><strong>Career Details</strong></p>
-																								  <textarea id="froala-editor" name="cDetails">'.$MDres['career'].'</textarea>
+																								  <textarea id="froala-editor" name="cdUP">'.$MDres['career'].'</textarea>
 																								</span>
 																						</div>
 																					</div>
@@ -462,12 +471,116 @@ include("auth.php");
 														}
 													}
 													mysqli_close($link);
-													?>
+											?>
 										</div>
+											<?PHP
+											require ('config.php');
+
+												if (isset($_POST['updateDetails'])){
+													$idENT = $_POST['idENT'];	
+													$entName = mysqli_real_escape_string($link, $_POST['nameUP']);
+													$entLocation = mysqli_real_escape_string($link, $_POST['locUP']);
+													$comName = mysqli_real_escape_string($link, $_POST['bnUP']);
+													$pos = mysqli_real_escape_string($link, $_POST['posUP']);
+													$sProfile = mysqli_real_escape_string($link, $_POST['ospUP']);
+													$cDetails = mysqli_real_escape_string($link, $_POST['cdUP']);
 													
-																
+													$image = $_FILES['imageUP']['name'];
+													$filename = $_FILES['imageUP']['tmp_name'];
+													$fileSize = $_FILES["imageUP"]["size"];
+													$target_dir = "uploads/";
+													$target = $target_dir .basename($_FILES['imageUP']['name']);
+													$uploadOk = 1;
+													
+													$imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
+													
+													if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+														echo '<script type="text/javascript">
+																alert("Sorry, only JPG, JPEG, & PNG files are allowed.");
+															 </script>';
+														$uploadOk = 0;
+													}
+													
+													if ($fileSize > 500000) {
+														echo '<script type="text/javascript">
+																alert("Sorry, image size must not more than 500kb");
+															 </script>';
+														$uploadOk = 0;
+													}
+													
+													//$content = file_get_contents($image);
+													
+													if($uploadOk == 1){
+														$sql = "UPDATE entlist SET pic='$target' WHERE id_ent = '$idENT'";
+														
+														move_uploaded_file($filename,$target);	
+															
+														if(mysqli_query($link, $sql)){
+														echo '<script type="text/javascript">
+																alert("Profile image updated.");
+															</script>';	
+														// check if exist in featured list
+														$sqlUPF = "SELECT * FROM featured_ent WHERE id_ent = '$idENT'";
+														$resultUPF = mysqli_query($link, $sqlUPF);
+														
+														if(mysqli_num_rows($resultUPF) == 1){
+															$sqlupF = "UPDATE featured_ent SET pic='$target' WHERE id_ent = '$idENT'";
+															if(mysqli_query($link, $sqlupF)){
+																echo '<script type="text/javascript">
+																		alert("Profile image updated on featured list.");
+																	 </script>';
+																} else{
+																	echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
+																}
+															
+															} 
+															else {
+																echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+															}
+														}
+													}
+													
+													// update details
+													$sql = "UPDATE entlist SET name_ent='$entName', location='$entLocation', businessName='$comName', Position='$pos',
+															on_social_pro='$sProfile', career='$cDetails' WHERE id_ent = '$idENT'";
+													
+													if(mysqli_query($link, $sql)){
+														
+														echo '<script type="text/javascript">
+																	alert("Entrepreneur directory record sucessfully updated");
+															 </script>';
+														
+														// check if exist in featured list
+														$sqlSelF = "SELECT * FROM featured_ent WHERE id_ent = '$idENT'";
+													
+														$resultselF = mysqli_query($link, $sqlSelF);
+															
+														if(mysqli_num_rows($resultselF) == 1){
+															
+															// attempt insert query execution
+															$sqlupF = "UPDATE featured_ent SET name_ent='$entName', location='$entLocation', businessName='$comName', Position='$pos' WHERE id_ent = '$idENT'";
+															if(mysqli_query($link, $sqlupF)){
+																echo '<script type="text/javascript">
+																		alert("Record information on entrepreneur featured list succesfully updated");
+																	 </script>';
+															} else{
+																echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
+															}
+														}
+														
+														echo '<script type="text/javascript">
+																window.location.href="ENTlist.php";
+															</script>';
+													} 
+													
+													else{
+															echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+													}
+												}
 												
-												</div>
+												mysqli_close($link);
+											?>	
+										</div>
 											</div>
 										</div>
 										<!-- /.tab-pane -->

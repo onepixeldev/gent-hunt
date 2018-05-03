@@ -218,11 +218,15 @@
 										<img src="'.$row['pic'].'" class="img-rounded" width="228" height="228">
 										<h3 align="left">'.$row["name_ent"].'</h3>
 										<hr>
-										<h4 align="left">'.$row["businessName"].' <br> '.$row["Position"].'</h4>
+										<h4 align="left"><i class="fa fa-briefcase" style="color: #5BC0DE;"></i> '.$row["businessName"].' <br> <i class="fa fa-tags" style="color: #5BC0DE;"></i> '.$row["Position"].'</h4>
 										<p>
-											'.$row["location"].'
-
+											<i class="fa fa-map-marker" style="color: #5BC0DE;"></i> '.$row["location"].'
 										</p>
+										
+										<form action="details.php" method="post">
+											<input type="hidden" name="ftENT" value="'.$row['id_ent'].'">
+										<button type="submit" class="btn btn-info">Maklumat Lanjut</a>
+									</form>
 									</div>
 								</div>
 						';
