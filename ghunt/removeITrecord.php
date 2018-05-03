@@ -1,18 +1,21 @@
 <?php
 	include('config.php');	
-		
+	
+	// check if data exist in featured list for li & lm list
 	if (isset($_POST['idIT'])){
 		
 		$id = $_POST['idIT'];
 		$sqlsel = "SELECT * FROM featured_it WHERE itID = '$id'";
 		$resultsel = mysqli_query($link, $sqlsel);
 		
+		// if exist
 		if(mysqli_num_rows($resultsel) == 1){
 			echo '<script type="text/javascript">
-					alert("Please remove this record on featured list first before removing it from directory.");
+					alert("Please remove this record from featured list before removing it from directory.");
 					window.location.href="FTlist.php";
 				 </script>';
 		}
+		// if not delete
 		else{	
 			// attempt insert query execution
 			$sql = "DELETE FROM li_lm_list WHERE id = '$id'";
@@ -27,6 +30,7 @@
 		}
 	}
 	
+	// delete featured li & lm
 	if (isset($_POST['delFeat'])){
 		
 		$idFeat = $_POST['idFeat'];
@@ -39,11 +43,12 @@
 				 </script>';
 		}
 		else{
-			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			echo "ERROR: Could not able to execute $sqlDel. " . mysqli_error($link);
 		}
 	}
 	
-	if (isset($_POST['delFeatEnt'])){
+	// del featured ent list
+	if (isset($_POST['idFeatEnt'])){
 		
 		$idFeatEnt = $_POST['idFeatEnt'];
 		$sqlDel = "DELETE FROM featured_ent WHERE feat_ent_id = '$idFeatEnt'";
@@ -55,30 +60,37 @@
 				 </script>';
 		}
 		else{
-			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			echo "ERROR: Could not able to execute $sqlDel. " . mysqli_error($link);
 		}
 	}
 	
+	// del ent list directory record
 	if (isset($_POST['delENT'])){
 		
 		$idENT = $_POST['idENT'];
-		$sqlDel = "DELETE FROM entlist WHERE id_ent = '$idENT'";
+		$sqlDel = "SELECT * FROM featured_ent WHERE id_ent = '$idENT'";
+		$featent = mysqli_query($link, $sqlDel);
 		
-		if(mysqli_num_rows($resultsel) == 1){
+		// check if record exist on featured ent list
+		if(mysqli_num_rows($featent) == 1){
 			echo '<script type="text/javascript">
-					alert("Please remove this record on featured list first before removing it from directory.");
+					alert("Please remove this record from featured list before removing it from directory.");
 					window.location.href="FTENTlist.php";
 				 </script>';
 		}
 		
-		if(mysqli_query($link, $sqlDel)){
-			echo '<script type="text/javascript">
-					alert("Record sucessfully removed from ENT record.");
-					window.location.href="ENTlist.php";
-				 </script>';
-		}
-		else{
-			echo "alert('Could not remove the record. Pleas');" . mysqli_error($link);
+		// if not delete
+		else{	
+			
+			$sql = "DELETE FROM entlist WHERE id_ent = '$idENT'";
+			if(mysqli_query($link, $sql)){
+				echo '<script type="text/javascript">
+						alert("Record sucessfully removed from directory");
+						window.location.href="ENTlist.php";
+					 </script>';
+			} else{
+				echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			}
 		}
 	}
 	

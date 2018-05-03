@@ -193,9 +193,7 @@
             <div class="row text-center">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                     <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line" data-scroll-reveal-id="7" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">IDOLA KEUSAHAWANAN</h1>
-                    <p data-scroll-reveal="enter from the bottom after 0.3s" data-scroll-reveal-id="8" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                        sample text
-                    </p>
+                    
                 </div>
 
             </div>
@@ -206,25 +204,23 @@
 			 require ('config.php');
 			 
 				// Query 
-				$sql = "SELECT entlist.pic, entlist.name_ent, entlist.location, image_ent.pic
-						FROM entlist
-						LEFT JOIN image_ent ON entlist.id_ent=image_ent.id_ent";
+				$sqlENT = "SELECT * FROM featured_ent LIMIT 3";
 				
-				$result = mysqli_query($link, $sql);
+				$resultENT = mysqli_query($link, $sqlENT);
 				if (mysqli_num_rows($result) > 0) {
 				// output data of each row
-				while($row = mysqli_fetch_assoc($result)) {
+				while($row = mysqli_fetch_assoc($resultENT)) {
 					echo
 						'
 								
 								<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="9" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
 									<div class="faculty-div">
-										<img src="data:image/jpeg;base64,'.base64_encode( $row['pic'] ).'" class="img-rounded" width="228" height="228">
+										<img src="'.$row['pic'].'" class="img-rounded" width="228" height="228">
 										<h3 align="left">'.$row["name_ent"].'</h3>
 										<hr>
-										<h4 align="left">Desigining <br> Department</h4>
+										<h4 align="left">'.$row["businessName"].' <br> '.$row["Position"].'</h4>
 										<p>
-											sample text
+											'.$row["location"].'
 
 										</p>
 									</div>

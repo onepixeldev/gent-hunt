@@ -7,7 +7,7 @@ include("auth.php");
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>gHunt | Admin</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome Icons -->
@@ -29,6 +29,11 @@ include("auth.php");
 	<!-- fonr awesome -->
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+	
+	<!-- Flora-editor css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+	<link href="./froala_editor_2.8.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="./froala_editor_2.8.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 	
     <style>
 		
@@ -316,7 +321,7 @@ include("auth.php");
                             <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: none;">
+                        <ul class="treeview-menu">
                             <li class="">
                                 <a href="ITlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
@@ -356,93 +361,119 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Entrepreneur idol directory
+					Edit entrepreneur details
 				</h1> 
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-							<div class="col-md-12">
+							<div class="col-md-12" style="float: left">
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
-									<ul class="nav nav-tabs">
-										<li class=""><a href="ENTlist.php" onclick="window.location.href = 'ENTlist.php';" data-toggle="tab" aria-expanded="true">Directory</a>
-										</li>
-										<li class="active"><a href="#" data-toggle="tab" aria-expanded="false">Featured</a>
-										</li>
-									</ul>
 									<div class="tab-content">
 										
-										<div class="tab-pane" id="tab_1">
+										<div class="tab-pane active" id="tab_1">
 											<div class="box-body">
-												<div id="div_tab1" class="col-md-12">
+											
+													<div id="div_tab1" class="col-md-12">
+													
+										<div>
+											<?php
+													require('config.php');	
+													
+													if (isset($_POST['editENT'])){
+														
+													$id_ent = $_POST["ideditENT"];
+													
+													// display directory list
+													$sql = "SELECT * FROM entlist WHERE id_ent = '$id_ent'";
+													
+													$result = mysqli_query($link, $sql);
+													$MDres = mysqli_fetch_assoc($result);
+													
+													if (mysqli_num_rows($result) > 0) {
+														
+														echo
+															'
+															<form action="updateENT.php" method="POST">
+																<div class="col-lg-12">
+																	<br>
+																		<div class="jobs-list-item _old">
+																			<div class="panel panel-default">
+																				<div class="panel-body">
+																					<div class="job-details" style="width: 100%; float: left; text-align:left">
+																						<div> 
+																							Update profile image:
+																							<input class="btn btn-warning btn-lg" style="width: 25%" type="file" name="imageUP">
+																							<br>
+																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
+																						</div>
+																						
+																						<div>
+																							<span style=" display:inline-block; width: 50%;">
+																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> <input type="text" name="nameUP" value="'.$MDres['name_ent'].'"> </p>
+																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								
+																									<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> <input type="text" name="bnUP" value="'.$MDres['businessName'].'"> </p>
+																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								
+																									<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> <input type="text" name="posUP" value="'.$MDres['Position'].'"> </p>
+																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																								
+																									<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> <input type="text" name="ospUP" value="'.$MDres['on_social_pro'].'"> </p>
+																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
+																							</span>
+																						</div>
+																					</div>
+																					
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	
+																	
+																	<div class="col-lg-12" style="width: 100%; float: left">
+																		<div class="jobs-list-item _old">
+																			<div class="panel panel-default">
+																				<div class="panel-body">
+																					<div style="float: left;"">
+																						<div class="job-details">
+																								<span>
+																								<p><strong>Career Details</strong></p>
+																								  <textarea id="froala-editor" name="cDetails">'.$MDres['career'].'</textarea>
+																								</span>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																		<center>
+																		  <button type="submit" class="signupbtn" name="updateDetails" style="width:20%">Update Details</button>
+																		</center>
+															</form>
+															';
+													}
+													else {
+														echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+																<p style="font-weight: bold;">Tiada rekod</p>
+															  </div>';
+														}
+													}
+													mysqli_close($link);
+													?>
+										</div>
+													
+																
+												
 												</div>
 											</div>
 										</div>
 										<!-- /.tab-pane -->
 
-										<div class="tab-pane active" id="tab_2">
-											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:auto;">Featured information will be displayed on homepage (maximum 3).</h1>
+										<div class="tab-pane" id="tab_2">
 											
-												<div id="div_tab2" class="col-md-12">
-													<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 50%; clear:left">
-													<tbody>
-														<tr>
-															<th style="width: 1%" class="text-center">No</th>
-															<th class="text-center" style="width: 30%">Featured information</th>
-															<th class="text-center" style="width: 10%">Selection</th>
-														</tr>
-													</tbody>
-													<tbody id="table">
-														
-															<?php
-															require('config.php');	
-
-															$sql = "SELECT * FROM featured_ent ORDER BY feat_ent_id DESC";
-															
-															$result = mysqli_query($link, $sql);
-															$counter = 1;
-															if (mysqli_num_rows($result) > 0) {
-																// output data of each row
-																while($row = mysqli_fetch_assoc($result)) {
-																	echo '<tr>
-																			<td class="text-center">
-																				<p>'.$counter.'.</p>
-																			<td class="text-left">
-																			
-																			<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
-																					
-																						<img src="'.$row["pic"].'" alt="Profile Image" width="98" height="98" style="float: left; border:3px solid grey; margin-right: 10px">
-																					
-																			</div>
-																			
-																			<div style="">
-																				<p class="job-details"><strong>Name:</strong>&nbsp;'.$row["name_ent"].'</p><br>
-																			</div>
-																			
-																			<td class="text-center">
-																			
-																			<div>
-																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record from featured ENT list?\');" style="margin-bottom:0px"> 
-																					<input type="hidden" name="idFeatEnt" value="'.$row["feat_ent_id"].'">
-																					<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
-																				</form>
-																			</div>
-																			
-																		 </tr>';
-																		 $counter++;
-																}
-															} else {
-																echo "No record";
-															}
-															mysqli_close($link);
-															?>			
-														</tbody>
-													</table>
-												</div>
-											</div>
 										</div>
 										<!-- /.tab-pane -->
 									</div>
@@ -496,6 +527,12 @@ include("auth.php");
 	}
 	</script>
 	
+	
+	<!-- Include Editor JS files. -->
+    <script type="text/javascript" src="./froala_editor_2.8.0/js/froala_editor.pkgd.min.js"></script>
+	
+	<!-- Initialize the f-editor. -->
+    <script> $(function() { $('textarea#froala-editor').froalaEditor() }); </script>
 
 
 

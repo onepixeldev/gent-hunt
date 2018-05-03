@@ -22,9 +22,7 @@
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
-											<span class="thumbnail no-bottom-margin" style="width: 110px;">
-												<img src="'.$row["pic"].'">
-											</span>
+										<img src="'.$row["pic"].'" alt="Profile Image" width="110" height="110" class="thumbnail no-bottom-margin">
 									</div>
 
 									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
@@ -36,7 +34,7 @@
 											</h3>
 										</form>
 										<div class="job-details">
-											<hr style="height:0px; background-color: #31B0D5;">
+											<hr style="height:2px; background-color: #DDDDDD;">
 											<div class="address">
 												<span>
 													<i class="fa fa-map-marker" style="margin-left: 1px;"></i>&nbsp; '.$row["location"].'

@@ -444,10 +444,11 @@ include("auth.php");
 														
 															echo '<script>
 																alert("Featured list already reaching limit.");
-																window.location.href="ENTlist.php";
+																window.location.href="FTENTlist.php";
 																</script>';
 														}
 														
+														// if less than 3 record
 														elseif (mysqli_num_rows($resultft) < 3) {
 															
 															$idf = $_POST['idf'];
@@ -474,7 +475,7 @@ include("auth.php");
 																	if($resultfeat){
 																		echo '<script type="text/javascript">
 																				alert("Added to featured list.");
-																				window.location.href="ENTlist.php";
+																				window.location.href="FTENTlist.php";
 																			 </script>';
 																	} else{
 																		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -495,9 +496,9 @@ include("auth.php");
 																	<td class="text-left">
 																	
 																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
-																			<span class="thumbnail no-bottom-margin" style="width: 110px;">
-																				<img src="'.$row["pic"].'">
-																			</span>
+																			
+																				<img src="'.$row["pic"].'" alt="Profile Image" width="98" height="98" style="float: left; border:3px solid grey; margin-right: 10px">
+																			
 																	</div>
 																	
 																	<div style="">

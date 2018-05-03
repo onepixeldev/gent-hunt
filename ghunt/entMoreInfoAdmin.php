@@ -390,13 +390,17 @@ include("auth.php");
 														
 														echo
 															'<div class="col-lg-12">
+																<form action="updateENT.php" method="post"> 
+																	<input type="hidden" name="ideditENT" value="'.$MDres["id_ent"].'">
+																	<button type="submit" name="editENT" class="btn btn-warning btn-lg" style="background-color: #179BD7; width: 5%; height: 4%; font-size: 10px; padding: 0px 0px 0px 0px;">Edit info</button>
+																</form>
+																<br>
 																	<div class="jobs-list-item _old">
 																		<div class="panel panel-default">
 																			<div class="panel-body">
-																				
 																				<div class="job-details" style="width: 100%; float: left; text-align:left">
 																					<div> 
-																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
+																						<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
 																					</div>
 																					
 																					<div>
@@ -457,59 +461,7 @@ include("auth.php");
 										<!-- /.tab-pane -->
 
 										<div class="tab-pane" id="tab_2">
-											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:130px;">Kehadiran Keluar</h1>
 											
-												<div id="div_tab2" class="col-md-12">
-													<table class="table table-bordered table-hover">
-													<tbody>
-														<tr>
-															<th style="width: 10px" class="text-center">No</th>
-															<th class="text-center">Featured information</th>
-															<th class="text-center">Remove from featured list</th>
-														</tr>
-													</tbody>
-													<tbody id="table">
-														
-															<?php
-															require('config.php');	
-
-															$sql = "SELECT * FROM featured_it ORDER BY featID DESC";
-															
-															$result = mysqli_query($link, $sql);
-															$counter = 1;
-															if (mysqli_num_rows($result) > 0) {
-																// output data of each row
-																while($row = mysqli_fetch_assoc($result)) {
-																	echo '<tr>
-																			<td class="text-center" ><strong>'.$counter.'</strong></td>
-																			<td class="text-left">
-																			<p><strong>Name:</strong> '.$row["name"].'</p><br>
-																			<p><strong>Address:</strong> '.$row["alamat"].'</p><br>
-																			<p><strong>Postcode:</strong> '.$row["poskod"].'</p><br>
-																			<p><strong>State:</strong> '.$row["negeri"].'</p><br>
-																			<p><strong>Phone number:</strong> '.$row["phone"].'</p><br>
-																			<p><strong>Email:</strong> '.$row["email"].'</p><br>
-																			<p><strong>Website:</strong> '.$row["website"].'</p><br>
-																			<p><strong>Category:</strong> '.$row["category"].'</p></td>
-																			<td class="text-center" >
-																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																					<input type="hidden" name="idIT" value="'.$row["itID"].'">
-																					<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
-																				</form>
-																			</td>
-																		 </tr>';
-																		 $counter++;
-																}
-															} else {
-																echo "No record";
-															}
-															mysqli_close($link);
-															?>			
-														</tbody>
-													</table>
-												</div>
-											</div>
 										</div>
 										<!-- /.tab-pane -->
 									</div>
@@ -562,9 +514,6 @@ include("auth.php");
 		}
 	}
 	</script>
-	
-
-
 
 </body>
 

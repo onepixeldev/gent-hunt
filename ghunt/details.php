@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index-user.php">
                     <img class="logo-custom" src="assets/img/logo_gh.png" alt="" height="60" width="65">
                 </a>
             </div>
