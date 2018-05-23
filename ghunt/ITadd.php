@@ -323,7 +323,7 @@ include("auth.php");
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="">
-                                <a href="ITlist.php">
+                                <a href="ENTlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
                             <li class="active">
