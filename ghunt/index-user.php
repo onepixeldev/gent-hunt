@@ -53,7 +53,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
     <!--NAVBAR SECTION END-->
@@ -92,6 +91,15 @@
                                     
                                 </li>
                                 <!-- End Slider 03 -->
+								
+								<!-- Slider 04 -->
+                                <li style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;" class="flex-active-slide">
+                                    <h3>PUSAT INFO LATIHAN INDUSTRI &amp; MENGAJAR</h3>
+                                    <h1>STATUS UPSIPRENEUR</h1>
+                                    
+                                    
+                                </li>
+                                <!-- End Slider 04 -->
                             </ul>
                             <ol class="flex-control-nav flex-control-paging">
                                 <li><a class="">1</a>
@@ -171,9 +179,9 @@
 					';
 				}
 			} else {
-				echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
+				echo '<center>
 						<p style="float:left; font-weight: bold;">Tiada rekod</p>
-					  </div>';
+					  </center>';
 			}
 			mysqli_close($link);
 			
@@ -239,6 +247,10 @@
 				mysqli_close($link);
 			?>
             </div>
+			<br>
+			<br>
+			<center><a href="ent-list.php" class="btn btn-info" >Direktori</a></center>
+			<br>
         </div>
     </div>
     <!-- FACULTY SECTION END-->
