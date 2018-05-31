@@ -1,5 +1,7 @@
 <?php
-	$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
+	require('paginationIT.php');
+
+	//$sql = "SELECT * FROM li_lm_list ORDER BY id DESC";
 					
 	if (isset($_POST['submitf'])) {
 		// Capture that in a variable by that name
@@ -22,13 +24,14 @@
 		$search = $_POST['search'];
 		$sql = "SELECT * FROM li_lm_list WHERE name LIKE '%$search%' OR negeri LIKE '%$search%' OR alamat LIKE '%$search%' OR poskod LIKE '%$search%' OR category LIKE '%$search%' ORDER BY name ASC";
 	}
-	$result = mysqli_query($link, $sql);
+	//$result = mysqli_query($link, $sql);
 	
 	$counter = 1;
 	
-	if (mysqli_num_rows($result) > 0) {
+	//if (mysqli_num_rows($result) > 0) {
 		// output data of each row
-		while($row = mysqli_fetch_assoc($result)) {
+		//while($row = mysqli_fetch_assoc($result)) 
+		while($crow = mysqli_fetch_array($nquery)) {
 			echo
 				'<div class="col-lg-11">
 						<div class="jobs-list-item _old">
@@ -43,30 +46,30 @@
 
 									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
 											<h3 class="position" style="color: #5BC0DE;">
-												<span style="color:black">'.$counter.'.</span> 
-												'.$row["name"].'
+												<span style="color:black">'.$crow["id"].'.</span> 
+												'.$crow["name"].'
 												
 											</h3>
 										<div class="job-details">
 											<hr>
 											<div class="address">
 												<span>
-													<i class="fa fa-map-marker"></i> '.$row["alamat"].', '.$row["poskod"].'
+													<i class="fa fa-map-marker"></i> '.$crow["alamat"].', '.$crow["poskod"].'
 												</span>
 											</div>
 											<br>
 											<span>
-												<i class="fa fa-globe"></i> '.$row["negeri"].' 
+												<i class="fa fa-globe"></i> '.$crow["negeri"].' 
 											</span>
 											<hr>
-											<i class="fa fa-tag"></i> '.$row["category"].'
+											<i class="fa fa-tag"></i> '.$crow["category"].'
 										</div>
 									</div>
 
 									<div style="float: right;">
 										<div class="col-apply">
 											<form action="details.php" method="post"> 
-												<input type="hidden" name="idIT" value="'.$row["id"].'">
+												<input type="hidden" name="idIT" value="'.$crow["id"].'">
 												<button type="submit" name="more" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
 											</form>
 										</div>
@@ -74,14 +77,16 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				';
+					</div>';
 				$counter ++;
 		}
-	} else {
+		echo 'gg';
+		echo '<br>';
+		echo'<div id="pagination_controls">'.$paginationCtrls.'</div>';
+	/*} else {
 		echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
 				<p style="font-weight: bold;">Tiada rekod</p>
 			  </div>';
-	}
+	}*/
 	mysqli_close($link);
 ?>

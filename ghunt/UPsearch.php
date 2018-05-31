@@ -77,7 +77,7 @@
 		<center>
 		<div style="box-sizing: border-box; width: 80%;">
 				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="" method="POST">
+					<form action="UPS.php" method="POST">
 						<center><strong><p>No. Matrik</p></strong></center>
 						<input class="form-control" type="text" placeholder="No. Matrik" name="no_mat" style="width: 50%; text-align: center">
 						<center><strong><p>Contoh: D2018101234</p></strong></center>
@@ -91,7 +91,7 @@
 		<div style="margin: 0px 90px;">
 			<div  style="box-sizing: border-box; width: 85%; margin: auto;">
 			<?php
-				require('searchUP.php');
+				
 			?>
 			</div>
 		</div>

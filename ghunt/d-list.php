@@ -76,13 +76,13 @@
 	
 				<p><font color="#428bca">Carian</font></p>
 				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="d-list.php" method="POST">
-						<input class="form-control" type="text" placeholder="Search..." name="search">
+					<form action="d-listS.php" method="POST">
+						<input class="form-control" type="text" placeholder="Cari.." name="search">
 						<br>
 						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
 					</form>
 				</div>
-				<form action="d-list.php" method="POST">
+				<form action="d-listF.php" method="POST">
 					<hr style="height:2px;border:none;background-color:#e0e0d1;" />
 					<p><font color="#428bca">Filter</font></p>
 					<p>Lokasi</p>
@@ -100,11 +100,60 @@
         </div>
 		<div style="box-sizing: border-box; width: 80%; float: left;">
 				<?php
-					require('config.php');
-					require('searchP.php');
+					require('paginationIT.php');
+					
+					while($crow = mysqli_fetch_array($nquery)) {
+					echo
+						'<div class="col-lg-11">
+								<div class="jobs-list-item _old">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
+													<span class="thumbnail no-bottom-margin" style="width: 110px;">
+														<i class="fa fa-briefcase fa-4x icon-round-border"></i>
+														<!--/<img  src="assets/img/edge_logo.png" alt="">-->
+													</span>
+											</div>
+
+											<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
+													<h3 class="position" style="color: #5BC0DE;">
+														'.$crow["name"].'
+														
+													</h3>
+												<div class="job-details">
+													<hr>
+													<div class="address">
+														<span>
+															<i class="fa fa-map-marker"></i> '.$crow["alamat"].', '.$crow["poskod"].'
+														</span>
+													</div>
+													<br>
+													<span>
+														<i class="fa fa-globe"></i> '.$crow["negeri"].' 
+													</span>
+													<hr>
+													<i class="fa fa-tag"></i> '.$crow["category"].'
+												</div>
+											</div>
+
+											<div style="float: right;">
+												<div class="col-apply">
+													<form action="details.php" method="post"> 
+														<input type="hidden" name="idIT" value="'.$crow["id"].'">
+														<button type="submit" name="more" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>';
+					}
 				?>
+				
 		</div>
-		
+		<center><div><?php echo $paginationCtrls; ?></div></center>
+		<br>
     </div>
     <!-- FEATURES SECTION END-->
     

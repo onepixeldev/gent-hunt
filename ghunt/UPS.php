@@ -66,77 +66,95 @@
     <div id="features-sec" class="container set-pad">
         <div class="row text-center">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">DIREKTORI IDOLA KEUSAHAWANAN</h1>
+                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line" data-scroll-reveal-id="2" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">SEMAK STATUS UPSIPRENEUR</h1>
             </div>
 
         </div>
         <!--/.HEADER LINE END-->
-		
-        <div style="box-sizing: border-box; width: 20%; float: left;">
-	
-				<p><font color="#428bca">Carian</font></p>
+		<br>
+		<br>
+		<br>
+		<center>
+		<div style="box-sizing: border-box; width: 80%;">
 				<div style=" overflow: hidden; white-space: nowrap;">
-					<form action="ent-listS.php" method="POST">
-						<input class="form-control" type="text" placeholder="Cari.." name="search">
-						<br>
-						<button type="submit" class="btn btn-info" style="margin: auto;"><i class="fa fa-search"></i></button>
+					<form action="UPS.php" method="POST">
+						<center><strong><p>No. Matrik</p></strong></center>
+						<input class="form-control" type="text" placeholder="No. Matrik" name="no_mat" style="width: 50%; text-align: center">
+						<center><strong><p>Contoh: D2018101234</p></strong></center>
+						<hr style="height:2px;border:none;background-color:#e0e0d1;" />
+						<button type="submit" class="btn btn-info" name="UPsearch" style="margin: auto;">SEMAK</button>
 					</form>
 				</div>
-        </div>
-		<div style="box-sizing: border-box; width: 80%; float: left;">
-				<?php
-					require('paginationENT.php');
-					
-					while($crow = mysqli_fetch_array($nquery)) {
-					echo
-						'<div class="col-lg-11">
-								<div class="jobs-list-item _old">
-									<div class="panel panel-default">
-										<div class="panel-body">
-											<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
-												<img src="'.$crow["pic"].'" alt="Profile Image" width="110" height="110" class="thumbnail no-bottom-margin">
-											</div>
+		</div>
+		</center>
+		
+		<div style="margin: 0px 50px 0px 130px;">
+			<div  style="box-sizing: border-box; width: 100%; margin: auto;">
+			<?php
+				require('paginationUPS.php');
+				
+				while($row = mysqli_fetch_array($nquery)) {
+					echo'
+						<div class="col-lg-11">
+							<div class="jobs-list-item _old">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
+												<span class="thumbnail no-bottom-margin" style="width: 110px;">
+													<i class="fa fa-user fa-4x icon-round-border"></i>
+													<!--/<img  src="assets/img/edge_logo.png" alt="">-->
+												</span>
+										</div>
 
-											<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
-												<form id="clickName" action="details.php" method="post"> 
-													<h3 class="position" style="color: #5BC0DE;">
-														'.$crow["name_ent"].'
-													</h3>
-												</form>
-												<div class="job-details">
-													<hr style="height:2px; background-color: #DDDDDD;">
-													<div class="address">
-														<span>
-															<i class="fa fa-map-marker" style="margin-left: 1px;"></i>&nbsp; '.$crow["location"].'
-														</span>
-													</div>
-													<span>
-														<i class="fa fa-building"></i> '.$crow["businessName"].' 
-													</span>
-													<br>
-													<i class="fa fa-tag"></i> '.$crow["Position"].'
-												</div>
-											</div>
-
-											<div style="float: right;">
-												<div class="col-apply">
-													<form action="details.php" method="post"> 
-														<input type="hidden" name="idENT" value="'.$crow["id_ent"].'">
-														<button type="submit" class="btn btn-info" style="background-color: #31B0D5; width:auto;">Maklumat Lanjut</button>
-													</form>
-												</div>
+										<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
+												<h3 class="position" style="color: #5BC0DE;">
+													'.$row["nama"].'
+												</h3>
+												
+											<div class="job-details">
+												<hr style="height:2px; background-color: #DDDDDD;">
+												<span>
+													<p><strong>No. ID:</strong> '.$row["id"].'</p>
+												</span>
+												<span>
+													<p><strong>No. matrik:</strong> '.$row["no_matrik"].'</p>
+												</span>
+												<span>
+													<p><strong>Semester:</strong> '.$row["semester"].'</p>
+												</span>
+												<span>
+													<p><strong>No. MyKad:</strong> '.$row["no_mykad"].'</p>
+												</span>
+												<span>
+													<p><strong>No. telefon:</strong> '.$row["no_telefon"].'</p>
+												</span>
+												<span>
+													<p><strong>Bumiputera/bukan:</strong> '.$row["bp_bukan"].'</p>
+												</span>
+												<span>
+													<p><strong>Jantina:</strong> '.$row["jantina"].'</p>
+												</span>
+												<span>
+													<p><strong>Bidang pengajian:</strong> '.$row["bidang_p"].'</p>
+												</span>
+												<span>
+													<p><strong>Semester:</strong> '.$row["semester"].'</p>
+												</span>
+												<hr style="height:1px; background-color: #DDDDDD;">
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						';
-					}
-				?>
+					</div>
+					';
+				}
+			?>
+			</div>
 		</div>
-		<center><div><?php echo $paginationCtrls; ?></div></center>
-		<br>
     </div>
+	<center><div><?php echo $paginationCtrls; ?></div></center>
+	<br>
     <!-- FEATURES SECTION END-->
     
     <!-- FACULTY SECTION END-->

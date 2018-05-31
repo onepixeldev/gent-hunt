@@ -85,7 +85,7 @@
         </div>
 		<div style="box-sizing: border-box; width: 80%; float: left;">
 				<?php
-					require('paginationENT.php');
+					require('paginationENTS.php');
 					
 					while($crow = mysqli_fetch_array($nquery)) {
 					echo
@@ -98,11 +98,9 @@
 											</div>
 
 											<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
-												<form id="clickName" action="details.php" method="post"> 
-													<h3 class="position" style="color: #5BC0DE;">
+													<h3 class="position"style="color: #5BC0DE;">
 														'.$crow["name_ent"].'
 													</h3>
-												</form>
 												<div class="job-details">
 													<hr style="height:2px; background-color: #DDDDDD;">
 													<div class="address">

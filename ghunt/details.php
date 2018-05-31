@@ -49,7 +49,7 @@
                     </li>
                     <li class="hv"><a href="ent-list.php">IDOLA KEUSAHAWANAN</a>
                     </li>
-                    <li>
+                    <li class="hv"><a href="UPsearch.php">UPSIPRENEUR</a>
                     </li>
                     <li class="hv"><a href="#contact-sec">MENGENAI KAMI</a>
                     </li>
