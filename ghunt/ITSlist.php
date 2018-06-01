@@ -381,8 +381,8 @@ include("auth.php");
 													
 										<div>
 											<form action="ITSlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="searchdir" style="float:left">
-												<button type="submit" name="search" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
+												<input placeholder="Search directory" name="search" style="float:left">
+												<button type="submit" name="searchdir" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
 											</form>
 											
 											<div style="float: left; width: 16%">
@@ -414,7 +414,7 @@ include("auth.php");
 												<tbody id="table" >
 													
 													<?php
-													require('paginationAITS.php');	
+													require('paginationITS.php');	
 													
 													// add to featured list
 													if (isset($_POST['submitfeat'])){

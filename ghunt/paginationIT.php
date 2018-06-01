@@ -31,7 +31,7 @@
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
  
 	
-	$nquery=mysqli_query($link,"select * from `li_lm_list` $limit");
+	$nquery=mysqli_query($link,"select * from `li_lm_list` ORDER BY name ASC $limit");
 	
 	$paginationCtrls = '';
  

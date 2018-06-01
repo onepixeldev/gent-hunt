@@ -380,29 +380,15 @@ include("auth.php");
 													<div id="div_tab1" class="col-md-12">
 													
 										<div>
-											<form action="ENTlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="searchdir" style="float:left">
-												<button type="submit" name="search" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
+											<form action="ENTSlist.php" method="POST" style="float: right;">
+												<input placeholder="Search directory" name="search" style="float:left">
+												<button type="submit" name="searchdir" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
 											</form>
-											
-											<div style="float: left; width: 16%">
-											<p><font color="#428bca">Sort directory list</font></p>
-											<form action="" method="post" >
-												<select type="text" name="sortC" onchange="submit()" >
-												  <option value="" selected>Select sort option</option>
-												  <option value="alpA" onchange="submit()" >alphabetically</option>
-												  <option value="latestR">by latest added record</option>
-												</select>
-											</form>
-											<br>
-											<br>
-											</div>
 										</div>
 													
 											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 60%; clear:left">
 												<tbody>
 													<tr>
-														<th class="text-center" style="width: 1%">No</th>
 														<th class="text-center" style="width: 10%">Record information</th>
 														<th class="text-center" style="width: 4%">Selection</th>
 													</tr>
@@ -410,26 +396,12 @@ include("auth.php");
 												<tbody id="table" >
 													
 													<?php
-													require('config.php');	
-													
-													// display directory list
-													$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
+													require('paginationENT.php');	
 													
 													// search query
 													if (isset($_POST['search'])){
 														$search = $_POST['searchdir'];
 														$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR position LIKE '%$search%' OR position LIKE '%$search%' ORDER BY id_ent DESC";
-													}
-													
-													// sort query
-													elseif (isset($_POST['sortC'])){
-														$sortC = $_POST['sortC'];
-														if ($sortC == "alpA"){
-															$sql = "SELECT * FROM entlist ORDER BY name_ent ASC";
-														}
-														elseif ($sortC == "latestR"){
-															$sql = "SELECT * FROM entlist ORDER BY id_ent DESC";
-														}
 													}
 													
 													// add to featured list
@@ -485,57 +457,52 @@ include("auth.php");
 													}
 													
 													// main table
-													$result = mysqli_query($link, $sql);
-													$counter = 1;
-													if (mysqli_num_rows($result) > 0) {
-														// output data of each row
-														while($row = mysqli_fetch_assoc($result)) {
-															echo '<tr>
-																	<td class="text-center">
-																		<p>'.$counter.'.</p>
-																	<td class="text-left">
-																	
-																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
-																			
-																				<img src="'.$row["pic"].'" alt="Profile Image" width="98" height="98" style="float: left; border:3px solid grey; margin-right: 10px">
-																			
-																	</div>
-																	
-																	<div style="">
-																		<p class="job-details"><strong>Name:</strong>&nbsp;'.$row["name_ent"].'</strong></p><br>
-																	</div>
-																	
-																	<td class="text-center">
-																	
-																	<div>
-																		<form action="ENTlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage on Entrepreneur Idol section?\');" style="margin-bottom:0px"> 
-																			<input type="hidden" name="idf" value="'.$row["id_ent"].'">
-																			<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Featured this</button>
-																		</form>
+													while($crow = mysqli_fetch_array($nquery)) {
+														echo										
+															'<tr>
+																<td class="text-left">
+																
+																<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
 																		
-																		<form action="entMoreInfoAdmin.php" method="POST" style="margin-bottom:0px">
-																			<input type="hidden" name="id" value="'.$row["id_ent"].'">
-																			<button type="submit" name="submitMD" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
-																		</form>
+																			<img src="'.$crow["pic"].'" alt="Profile Image" width="98" height="98" style="float: left; border:3px solid grey; margin-right: 10px">
 																		
-																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
-																			<input type="hidden" name="idENT" value="'.$row["id_ent"].'">
-																			<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
-																		</form>
-																	</div>
+																</div>
+																
+																<div style="">
+																	<p class="job-details"><strong>Name:</strong>&nbsp;'.$crow["name_ent"].'</strong></p><br>
+																</div>
+																
+																<td class="text-center">
+																
+																<div>
+																	<form action="ENTlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage on Entrepreneur Idol section?\');" style="margin-bottom:0px"> 
+																		<input type="hidden" name="idf" value="'.$crow["id_ent"].'">
+																		<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Featured this</button>
+																	</form>
 																	
-																 </tr>';
-																 $counter++;
-														}
-													} else {
-														echo "No record";
+																	<form action="entMoreInfoAdmin.php" method="POST" style="margin-bottom:0px">
+																		<input type="hidden" name="id" value="'.$crow["id_ent"].'">
+																		<button type="submit" name="submitMD" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
+																	</form>
+																	
+																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
+																		<input type="hidden" name="idENT" value="'.$crow["id_ent"].'">
+																		<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
+																	</form>
+																</div>
+																
+															 </tr>';
 													}
+														
 													mysqli_close($link);
 													?>			
 												</tbody>
 											</table>
 													</div>
 											</div>
+											<br>
+											<center><div><?php echo $paginationCtrls; ?></div></center>
+											<br>
 										</div>
 										<!-- /.tab-pane -->
 

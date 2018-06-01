@@ -24,13 +24,13 @@
 	//$query=mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE name LIKE '%$search%' OR negeri LIKE '%$search%' OR alamat LIKE '%$search%' OR poskod LIKE '%$search%' OR category LIKE '%$search%' ORDER BY id ASC");
 	
 	if (!empty($catf) && empty($location)) {
-		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC");
+		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE category LIKE '%$catf%'");
 	}
 	if (empty($catf) && !empty($location)) {
-		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC");
+		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%'");
 	}
 	if (!empty($catf) && !empty($location)) {
-		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC");
+		$query = mysqli_query($link,"SELECT count(id) FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%')");
 	}
 	
 	$row = mysqli_fetch_row($query);

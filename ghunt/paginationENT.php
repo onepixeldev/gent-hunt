@@ -31,7 +31,7 @@
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
  
 	
-	$nquery=mysqli_query($link,"select * from `entlist` $limit");
+	$nquery=mysqli_query($link,"select * from `entlist` ORDER BY name_ent $limit");
 	
 	$paginationCtrls = '';
  

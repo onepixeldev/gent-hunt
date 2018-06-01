@@ -494,12 +494,20 @@ include("auth.php");
 													
 													$imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
 													
-													if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+													/*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
 														echo '<script type="text/javascript">
 																alert("Sorry, only JPG, JPEG, & PNG files are allowed.");
 															 </script>';
 														$uploadOk = 0;
+													}*/
+													
+													if ($_FILES['imageUP']['size'] == 0 || $_FILES['imageUP']['error'] == 0)
+													{
+														'<script type="text/javascript">
+															alert("lul");
+														 </script>';
 													}
+													
 													
 													if ($fileSize > 500000) {
 														echo '<script type="text/javascript">
