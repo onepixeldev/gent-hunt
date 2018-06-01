@@ -80,7 +80,7 @@
 					<form action="UPS.php" method="POST">
 						<center><strong><p>No. Matrik</p></strong></center>
 						<input class="form-control" type="text" placeholder="No. Matrik" name="no_mat" style="width: 50%; text-align: center">
-						<center><strong><p>Contoh: D2018101234</p></strong></center>
+						<strong><p>Contoh: D2018101234</p></strong>
 						<hr style="height:2px;border:none;background-color:#e0e0d1;" />
 						<button type="submit" class="btn btn-info" name="UPsearch" style="margin: auto;">SEMAK</button>
 					</form>
@@ -88,70 +88,76 @@
 		</div>
 		</center>
 		
-		<div style="margin: 0px 50px 0px 130px;">
-			<div  style="box-sizing: border-box; width: 100%; margin: auto;">
-			<?php
-				require('paginationUPS.php');
-				
-				while($row = mysqli_fetch_array($nquery)) {
-					echo'
-						<div class="col-lg-11">
-							<div class="jobs-list-item _old">
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
-												<span class="thumbnail no-bottom-margin" style="width: 110px;">
-													<i class="fa fa-user fa-4x icon-round-border"></i>
-													<!--/<img  src="assets/img/edge_logo.png" alt="">-->
-												</span>
-										</div>
+		<div>
+		<?php
+			require('paginationUPS.php');
+			
+			if (mysqli_num_rows($nquery) > 0) {	
+			
+			while($row = mysqli_fetch_array($nquery)) {
+				echo'
+					<div style="max-width:800px; margin:0 auto;">
+						<div class="jobs-list-item _old">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope">
+											<span class="thumbnail no-bottom-margin" style="width: 110px;">
+												<i class="fa fa-user fa-4x icon-round-border"></i>
+												<!--/<img  src="assets/img/edge_logo.png" alt="">-->
+											</span>
+									</div>
 
-										<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
-												<h3 class="position" style="color: #5BC0DE;">
-													'.$row["nama"].'
-												</h3>
-												
-											<div class="job-details">
-												<hr style="height:2px; background-color: #DDDDDD;">
-												<span>
-													<p><strong>No. ID:</strong> '.$row["id"].'</p>
-												</span>
-												<span>
-													<p><strong>No. matrik:</strong> '.$row["no_matrik"].'</p>
-												</span>
-												<span>
-													<p><strong>Semester:</strong> '.$row["semester"].'</p>
-												</span>
-												<span>
-													<p><strong>No. MyKad:</strong> '.$row["no_mykad"].'</p>
-												</span>
-												<span>
-													<p><strong>No. telefon:</strong> '.$row["no_telefon"].'</p>
-												</span>
-												<span>
-													<p><strong>Bumiputera/bukan:</strong> '.$row["bp_bukan"].'</p>
-												</span>
-												<span>
-													<p><strong>Jantina:</strong> '.$row["jantina"].'</p>
-												</span>
-												<span>
-													<p><strong>Bidang pengajian:</strong> '.$row["bidang_p"].'</p>
-												</span>
-												<span>
-													<p><strong>Semester:</strong> '.$row["semester"].'</p>
-												</span>
-												<hr style="height:1px; background-color: #DDDDDD;">
-											</div>
+									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-lg-75 job-listing-info">
+											<h3 class="position" style="color: #5BC0DE;">
+												'.$row["nama"].'
+											</h3>
+											
+										<div class="job-details">
+											<hr style="height:2px; background-color: #DDDDDD;">
+											<span>
+												<p><strong>No. ID:</strong> '.$row["id"].'</p>
+											</span>
+											<span>
+												<p><strong>No. matrik:</strong> '.$row["no_matrik"].'</p>
+											</span>
+											<span>
+												<p><strong>Semester:</strong> '.$row["semester"].'</p>
+											</span>
+											<span>
+												<p><strong>No. MyKad:</strong> '.$row["no_mykad"].'</p>
+											</span>
+											<span>
+												<p><strong>No. telefon:</strong> '.$row["no_telefon"].'</p>
+											</span>
+											<span>
+												<p><strong>Bumiputera/bukan:</strong> '.$row["bp_bukan"].'</p>
+											</span>
+											<span>
+												<p><strong>Jantina:</strong> '.$row["jantina"].'</p>
+											</span>
+											<span>
+												<p><strong>Bidang pengajian:</strong> '.$row["bidang_p"].'</p>
+											</span>
+											<span>
+												<p><strong>Semester:</strong> '.$row["semester"].'</p>
+											</span>
+											<hr style="height:1px; background-color: #DDDDDD;">
 										</div>
 									</div>
 								</div>
 							</div>
-					</div>
-					';
-				}
-			?>
-			</div>
+						</div>
+				</div>
+				';
+			}
+			
+			}
+			else {
+				echo '<center><strong>Tiada Rekod</strong></center>';
+			}
+		?>
 		</div>
+		
     </div>
 	<center><div><?php echo $paginationCtrls; ?></div></center>
 	<br>

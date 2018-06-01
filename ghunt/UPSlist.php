@@ -30,11 +30,6 @@ include("auth.php");
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 	
-	<!-- Flora-editor css -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
-	<link href="./froala_editor_2.8.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="./froala_editor_2.8.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-	
     <style>
 		
 		.searchBtn{
@@ -332,13 +327,13 @@ include("auth.php");
                             </li>
                         </ul>
                     </li>
-                    <li class="treeview active">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: block;">
-                            <li class="active">
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
                                 <a href="ENTlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
@@ -346,6 +341,24 @@ include("auth.php");
                                 <a href="ENTadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
+
+                        </ul>
+                    </li>
+					<li class="treeview active">
+                        <a href="#">
+                            <i class="fa fa-id-card-o"></i><span>UPSIPRENEUR</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: block;">
+                            <li class="active">
+                                <a href="UPlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="UPadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>
@@ -361,7 +374,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Edit entrepreneur details
+					UPSIPRENEUR directory
 				</h1> 
             </section>
 
@@ -371,223 +384,86 @@ include("auth.php");
 							<div class="col-md-12" style="float: left">
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
+										</li>
+									</ul>
 									<div class="tab-content">
 										
 										<div class="tab-pane active" id="tab_1">
 											<div class="box-body">
 											
-										<div id="div_tab1" class="col-md-12">
+													<div id="div_tab1" class="col-md-12">
 													
 										<div>
-											<?php
-													require('config.php');	
+											<form action="UPSlist.php" method="POST" style="float: right;">
+												<input placeholder="Search directory" name="search" style="float:left">
+												<button type="submit" name="searchdir" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
+											</form>
+										</div>
 													
-													if (isset($_POST['editENT'])){
-														
-													$id_ent = $_POST["ideditENT"];
+											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 60%; clear:left">
+												<tbody>
+													<tr>
+														<th class="text-center" style="width: 10%">Record information</th>
+														<th class="text-center" style="width: 4%">Selection</th>
+													</tr>
+												</tbody>
+												<tbody id="table" >
 													
-													// display directory list
-													$sql = "SELECT * FROM entlist WHERE id_ent = '$id_ent'";
+													<?php
+													require('paginationSUP.php');
 													
-													$result = mysqli_query($link, $sql);
-													$MDres = mysqli_fetch_assoc($result);
-													
-													if (mysqli_num_rows($result) > 0) {
-														
-														echo
-															'
-															<form action="updateENT.php" method="POST" enctype="multipart/form-data">
-																<input type="hidden" name="idENT" value="'.$MDres['id_ent'].'">
-																<div class="col-lg-12">
-																	<br>
-																		<div class="jobs-list-item _old">
-																			<div class="panel panel-default">
-																				<div class="panel-body">
-																					<div class="job-details" style="width: 100%; float: left; text-align:left">
-																						<div> 
-																								Update profile image:
-																								<input class="btn btn-warning btn-lg" style="width: 25%" type="file" name="imageUP" value="'.$MDres['pic'].'">
-																							<br>
-																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
-																						</div>
-																						
-																						<div>
-																							<span style=" display:inline-block; width: 50%;">
-																									<p> <strong>Name <span style="display:inline-block; width: 114px;"></span>:</strong> 
-																									<input type="text" name="nameUP" value="'.$MDres['name_ent'].'"> </p>
-																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
-																								
-																									<p> <strong>Location <span style="display:inline-block; width: 96px;"></span>:</strong> 
-																									<input type="text" name="locUP" value="'.$MDres['location'].'"> </p>
-																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
-																								
-																									<p> <strong>Business name <span style="display:inline-block; width: 49px;"></span>:</strong> 
-																									<input type="text" name="bnUP" value="'.$MDres['businessName'].'"> </p>
-																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
-																								
-																									<p> <strong>Position <span style="display:inline-block; width: 96px;"></span>:</strong> 
-																									<input type="text" name="posUP" value="'.$MDres['Position'].'"> </p>
-																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
-																								
-																									<p> <strong>Online social profile <span style="display:inline-block; width: 18px;"></span>:</strong> 
-																									<input type="text" name="ospUP" value="'.$MDres['on_social_pro'].'"> </p>
-																								<hr style="height:1px; background-color: #31B0D5; margin-top: 0; margin-left: 160; width:130%">
-																							</span>
-																						</div>
-																					</div>
-																					
-																				</div>
-																			</div>
-																		</div>
+													// main table
+													if (mysqli_num_rows($nquery) > 0) {	
+														while($crow = mysqli_fetch_array($nquery)) {
+															echo										
+																'<tr>
+																	<td class="text-left">
+																	
+																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
+																			
+																		<span class="thumbnail no-bottom-margin" style="width: 55px;">
+																			<i class="fa fa-user fa-4x icon-round-border"></i>
+																		</span>
+																			
 																	</div>
 																	
-																	
-																	<div class="col-lg-12" style="width: 100%; float: left">
-																		<div class="jobs-list-item _old">
-																			<div class="panel panel-default">
-																				<div class="panel-body">
-																					<div style="float: left;"">
-																						<div class="job-details">
-																								<span>
-																								<p><strong>Career Details</strong></p>
-																								  <textarea id="froala-editor" name="cdUP">'.$MDres['career'].'</textarea>
-																								</span>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
+																	<div style="">
+																		<p class="job-details"><strong>ID:</strong>&nbsp;'.$crow["id"].'</strong></p>
+																		<p class="job-details"><strong>Name:</strong>&nbsp;'.$crow["nama"].'</strong></p>
+																		<p class="job-details"><strong>Matric No:</strong>&nbsp;'.$crow["no_matrik"].'</strong></p><br>
 																	</div>
-																		<center>
-																		  <button type="submit" class="signupbtn" name="updateDetails" style="width:20%">Update Details</button>
-																		</center>
-															</form>
-															';
-													}
-													else {
-														echo '<div class="col-xs-12 col-md-9 col-lg-9 col-custom-right right row-2 search-result-container col-md-push-3 col-lg-push-3">
-																<p style="font-weight: bold;">Tiada rekod</p>
-															  </div>';
+																	
+																	<td class="text-center">
+																	
+																	<div>												
+																		<form action="entMoreInfoAdmin.php" method="POST" style="margin-bottom:0px">
+																			<input type="hidden" name="id" value="'.$crow["id"].'">
+																			<button type="submit" name="submitMD" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
+																		</form>
+																		
+																		<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
+																			<input type="hidden" name="idENT" value="'.$crow["id"].'">
+																			<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
+																		</form>
+																	</div>
+																	
+																 </tr>';
 														}
-													}
+													}		
+													
 													mysqli_close($link);
-											?>
-										</div>
-											<?PHP
-											require ('config.php');
-
-												if (isset($_POST['updateDetails'])){
-													$idENT = $_POST['idENT'];	
-													$entName = mysqli_real_escape_string($link, $_POST['nameUP']);
-													$entLocation = mysqli_real_escape_string($link, $_POST['locUP']);
-													$comName = mysqli_real_escape_string($link, $_POST['bnUP']);
-													$pos = mysqli_real_escape_string($link, $_POST['posUP']);
-													$sProfile = mysqli_real_escape_string($link, $_POST['ospUP']);
-													$cDetails = mysqli_real_escape_string($link, $_POST['cdUP']);
-													
-													$image = $_FILES['imageUP']['name'];
-													$filename = $_FILES['imageUP']['tmp_name'];
-													$fileSize = $_FILES["imageUP"]["size"];
-													$target_dir = "uploads/";
-													$target = $target_dir .basename($_FILES['imageUP']['name']);
-													$uploadOk = 1;
-													
-													$imageFileType = strtolower(pathinfo($target,PATHINFO_EXTENSION));
-													
-													if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-														echo '<script type="text/javascript">
-																alert("Sorry, only JPG, JPEG, & PNG files are allowed.");
-															 </script>';
-														$uploadOk = 0;
-													}
-													
-													if ($fileSize > 500000) {
-														echo '<script type="text/javascript">
-																alert("Sorry, image size must not more than 500kb");
-															 </script>';
-														$uploadOk = 0;
-													}
-													
-													//$content = file_get_contents($image);
-													
-													if($uploadOk == 1){
-														$sql = "UPDATE entlist SET pic='$target' WHERE id_ent = '$idENT'";
-														
-														move_uploaded_file($filename,$target);	
-															
-														if(mysqli_query($link, $sql)){
-														echo '<script type="text/javascript">
-																alert("Profile image updated.");
-															</script>';	
-														// check if exist in featured list
-														$sqlUPF = "SELECT * FROM featured_ent WHERE id_ent = '$idENT'";
-														$resultUPF = mysqli_query($link, $sqlUPF);
-														
-														if(mysqli_num_rows($resultUPF) == 1){
-															$sqlupF = "UPDATE featured_ent SET pic='$target' WHERE id_ent = '$idENT'";
-															if(mysqli_query($link, $sqlupF)){
-																echo '<script type="text/javascript">
-																		alert("Profile image updated on featured list.");
-																	 </script>';
-																} else{
-																	echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
-																}
-															
-															} 
-															else {
-																echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-															}
-														}
-													}
-													
-													// update details
-													$sql = "UPDATE entlist SET name_ent='$entName', location='$entLocation', businessName='$comName', Position='$pos',
-															on_social_pro='$sProfile', career='$cDetails' WHERE id_ent = '$idENT'";
-													
-													if(mysqli_query($link, $sql)){
-														
-														echo '<script type="text/javascript">
-																	alert("Entrepreneur directory record sucessfully updated");
-															 </script>';
-														
-														// check if exist in featured list
-														$sqlSelF = "SELECT * FROM featured_ent WHERE id_ent = '$idENT'";
-													
-														$resultselF = mysqli_query($link, $sqlSelF);
-															
-														if(mysqli_num_rows($resultselF) == 1){
-															
-															// attempt insert query execution
-															$sqlupF = "UPDATE featured_ent SET name_ent='$entName', location='$entLocation', businessName='$comName', Position='$pos' WHERE id_ent = '$idENT'";
-															if(mysqli_query($link, $sqlupF)){
-																echo '<script type="text/javascript">
-																		alert("Record information on entrepreneur featured list succesfully updated");
-																	 </script>';
-															} else{
-																echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
-															}
-														}
-														
-														echo '<script type="text/javascript">
-																window.location.href="ENTlist.php";
-															</script>';
-													} 
-													
-													else{
-															echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-													}
-												}
-												
-												mysqli_close($link);
-											?>	
-										</div>
+													?>			
+												</tbody>
+											</table>
+													</div>
 											</div>
+											<br>
+											<center><div><?php echo $paginationCtrls; ?></div></center>
+											<br>
 										</div>
 										<!-- /.tab-pane -->
-
-										<div class="tab-pane" id="tab_2">
-											
-										</div>
 										<!-- /.tab-pane -->
 									</div>
 									<!-- /.tab-content -->
@@ -640,12 +516,6 @@ include("auth.php");
 	}
 	</script>
 	
-	
-	<!-- Include Editor JS files. -->
-    <script type="text/javascript" src="./froala_editor_2.8.0/js/froala_editor.pkgd.min.js"></script>
-	
-	<!-- Initialize the f-editor. -->
-    <script> $(function() { $('textarea#froala-editor').froalaEditor() }); </script>
 
 
 

@@ -396,16 +396,10 @@ include("auth.php");
 												<tbody id="table" >
 													
 													<?php
-													require('paginationENT.php');	
-													
-													// search query
-													if (isset($_POST['search'])){
-														$search = $_POST['searchdir'];
-														$sql = "SELECT * FROM entlist WHERE name_ent LIKE '%$search%' OR location LIKE '%$search%' OR businessName LIKE '%$search%' OR position LIKE '%$search%' OR position LIKE '%$search%' ORDER BY id_ent DESC";
-													}
+													require('paginationENT.php');
 													
 													// add to featured list
-													elseif (isset($_POST['submitfeat'])){
+													if (isset($_POST['submitfeat'])){
 														
 														$sql = "SELECT * FROM featured_ent";
 														
