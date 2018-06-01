@@ -414,25 +414,9 @@ include("auth.php");
 												<tbody id="table" >
 													
 													<?php
-													require('paginationAIT.php');	
+													require('paginationAITF.php');	
 													
-													// filter query
-													if (isset($_POST['submitf'])) {
-														// Capture that in a variable by that name
-														$location = $_POST['locf'];
-														$catf = $_POST['catf'];
-														// filter condition
-														if (!empty($catf) && empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC";
-														}
-														if (empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC";
-														}
-														if (!empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC";
-														}
-													}
-													
+													// add to featured list
 													if (isset($_POST['submitfeat'])){
 														
 														$sql = "SELECT * FROM featured_it";
@@ -486,49 +470,54 @@ include("auth.php");
 													}
 													
 													// main table
-													while($crow = mysqli_fetch_array($nquery)) {
-														echo '<tr>
-																<td class="text-left">
-																<p><strong>Name:</strong> '.$crow["name"].'</p><br>
-																<p><strong>Address:</strong> '.$crow["alamat"].'</p><br>
-																<p><strong>Postcode:</strong> '.$crow["poskod"].'</p><br>
-																<p><strong>State:</strong> '.$crow["negeri"].'</p><br>
-																<p><strong>Phone number:</strong> '.$crow["phone"].'</p><br>
-																<p><strong>Email:</strong> '.$crow["email"].'</p><br>
-																<p><strong>Website:</strong> '.$crow["website"].'</p><br>
-																<p><strong>Category:</strong> '.$crow["category"].'</p></td>
-																<td class="text-center" >
-																<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');"> 
-																	<input type="hidden" name="idf" value="'.$crow["id"].'">
-																	<input type="hidden" name="namef" value="'.$crow["name"].'">
-																	<input type="hidden" name="addressf" value="'.$crow["alamat"].'">
-																	<input type="hidden" name="postcodef" value="'.$crow["poskod"].'">
-																	<input type="hidden" name="statef" value="'.$crow["negeri"].'">
-																	<input type="hidden" name="phonef" value="'.$crow["phone"].'">
-																	<input type="hidden" name="emailf" value="'.$crow["email"].'">
-																	<input type="hidden" name="websitef" value="'.$crow["website"].'">
-																	<input type="hidden" name="categoryf" value="'.$crow["category"].'">
-																	<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width:auto;">Featured this</button>
-																</form>
-																
-																<form action="updateIT.php" method="POST">
-																	<input type="hidden" name="id" value="'.$crow["id"].'">
-																	<input type="hidden" name="name" value="'.$crow["name"].'">
-																	<input type="hidden" name="address" value="'.$crow["alamat"].'">
-																	<input type="hidden" name="postcode" value="'.$crow["poskod"].'">
-																	<input type="hidden" name="state" value="'.$crow["negeri"].'">
-																	<input type="hidden" name="phone" value="'.$crow["phone"].'">
-																	<input type="hidden" name="email" value="'.$crow["email"].'">
-																	<input type="hidden" name="website" value="'.$crow["website"].'">
-																	<input type="hidden" name="category" value="'.$crow["category"].'">
-																	<button type="submit" name="submitUp" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
-																</form>
-																
-																<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																	<input type="hidden" name="idIT" value="'.$crow["id"].'">
-																	<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
-																</form>
-															 </tr>';
+													if (mysqli_num_rows($nquery) > 0) {	
+														while($crow = mysqli_fetch_array($nquery)) {
+															echo '<tr>
+																	<td class="text-left">
+																	<p><strong>Name:</strong> '.$crow["name"].'</p><br>
+																	<p><strong>Address:</strong> '.$crow["alamat"].'</p><br>
+																	<p><strong>Postcode:</strong> '.$crow["poskod"].'</p><br>
+																	<p><strong>State:</strong> '.$crow["negeri"].'</p><br>
+																	<p><strong>Phone number:</strong> '.$crow["phone"].'</p><br>
+																	<p><strong>Email:</strong> '.$crow["email"].'</p><br>
+																	<p><strong>Website:</strong> '.$crow["website"].'</p><br>
+																	<p><strong>Category:</strong> '.$crow["category"].'</p></td>
+																	<td class="text-center" >
+																	<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');"> 
+																		<input type="hidden" name="idf" value="'.$crow["id"].'">
+																		<input type="hidden" name="namef" value="'.$crow["name"].'">
+																		<input type="hidden" name="addressf" value="'.$crow["alamat"].'">
+																		<input type="hidden" name="postcodef" value="'.$crow["poskod"].'">
+																		<input type="hidden" name="statef" value="'.$crow["negeri"].'">
+																		<input type="hidden" name="phonef" value="'.$crow["phone"].'">
+																		<input type="hidden" name="emailf" value="'.$crow["email"].'">
+																		<input type="hidden" name="websitef" value="'.$crow["website"].'">
+																		<input type="hidden" name="categoryf" value="'.$crow["category"].'">
+																		<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width:auto;">Featured this</button>
+																	</form>
+																	
+																	<form action="updateIT.php" method="POST">
+																		<input type="hidden" name="id" value="'.$crow["id"].'">
+																		<input type="hidden" name="name" value="'.$crow["name"].'">
+																		<input type="hidden" name="address" value="'.$crow["alamat"].'">
+																		<input type="hidden" name="postcode" value="'.$crow["poskod"].'">
+																		<input type="hidden" name="state" value="'.$crow["negeri"].'">
+																		<input type="hidden" name="phone" value="'.$crow["phone"].'">
+																		<input type="hidden" name="email" value="'.$crow["email"].'">
+																		<input type="hidden" name="website" value="'.$crow["website"].'">
+																		<input type="hidden" name="category" value="'.$crow["category"].'">
+																		<button type="submit" name="submitUp" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
+																	</form>
+																	
+																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
+																		<input type="hidden" name="idIT" value="'.$crow["id"].'">
+																		<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
+																	</form>
+																 </tr>';
+														}
+													} 
+													else {
+														echo "<center><strong>No record</strong></center>";
 													}
 													
 													mysqli_close($link);
