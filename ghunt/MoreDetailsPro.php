@@ -1,12 +1,6 @@
 <?php
 	
 	require('config.php');
-
-	// click name
-	if (isset($_POST['idCN'])) {
-		$idCN = $_POST["idCN"];
-		$sql = "SELECT * FROM li_lm_list WHERE id = '$idCN'";
-	}
 	
 	// from li & lm list
 	if (isset($_POST['more']) || isset($_POST['ftd'])) {
@@ -56,7 +50,7 @@
 								</div>
 								
 								
-								<div class="col-lg-12" style="width: 50%; float: left">
+								<div class="col-lg-12" style="width: 100%; float: left">
 									<div class="jobs-list-item _old">
 										<div class="panel panel-default">
 											<div class="panel-body">
@@ -68,20 +62,6 @@
 																<p><strong>Website:</strong>&nbsp; '.$row["website"].'</p>
 															</span>
 													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-lg-12" style="width: 50%; float: right">
-									<div class="jobs-list-item _old">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<div style="width: 70%; float: left">
-													<span>
-														<img src="paris.jpg" alt="Logo" width="128" height="128" style="float: left">
-													</span>
 												</div>
 											</div>
 										</div>

@@ -51,8 +51,6 @@
                     </li>
 					<li class="hv"><a href="UPsearch.php">UPSIPRENEUR</a>
                     </li>
-                    <li class="hv"><a href="#contact-sec">MENGENAI KAMI</a>
-                    </li>
                 </ul>
             </div>
 
