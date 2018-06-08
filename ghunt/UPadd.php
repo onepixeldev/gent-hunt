@@ -7,7 +7,7 @@ include("auth.php");
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>gHunt | Admin</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
     <link href="./style-file/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome Icons -->
@@ -31,20 +31,9 @@ include("auth.php");
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 	
     <style>
-		
-		.searchBtn{
-			margin-top: -1px;
-			width:3%;
-			float:right;
-		}
-		
-		.button2:hover{
-			background-color: #008CBA;
-			color: white;
-		}
-	
 		/* Full-width input fields */
-		input[type=text], input[type=password], input[type=email], select[name=sortC], input[name=locf], select[name=catf] {	
+		input[type=text], input[type=password], input[type=email], select[name=category], input[type=number], input[type=date] {
+			width: 54%;
 			padding: 12px 20px;
 			margin: 8px 0;
 			display: inline-block;
@@ -203,7 +192,7 @@ include("auth.php");
 	</div>
 
 	<div  style="background-color:#f1f1f1">
-	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
+	  <button type="button" onclick="document.getwElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
 	  
 	</div>
 	</form>
@@ -311,13 +300,13 @@ include("auth.php");
                             <i class="fa fa-dashboard"></i><span>Dashboard</span>
                         </a>
                     </li>
-					<li class="treeview active">
+					<li class="treeview">
                         <a href="#">
                             <i class="fa fa-briefcase"></i>  <span>IT Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: block;">
-                            <li class="active">
+                        <ul class="treeview-menu">
+                            <li class="">
                                 <a href="ITlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
@@ -329,7 +318,7 @@ include("auth.php");
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-users"></i><span>Ent Directory</span>
+                            <i class="fa fa-user"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
@@ -344,17 +333,17 @@ include("auth.php");
 
                         </ul>
                     </li>
-					<li class="treeview">
+					<li class="treeview active">
                         <a href="#">
                             <i class="fa fa-id-card-o"></i><span>UPSIPRENEUR</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: none;">
+                        <ul class="treeview-menu" style="display: block;">
                             <li class="">
                                 <a href="UPlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
-                            <li class="">
+                            <li class="active">
                                 <a href="UPadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
@@ -396,246 +385,90 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					Industrial and Teaching training directory
+					Add new UPSIPRENEUR record
 				</h1> 
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-							<div class="col-md-12" style="float: left">
-                        <!-- Custom Tabs -->
-								<div class="nav-tabs-custom">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
-										</li>
-										<li class=""><a href="FTlist.php" onclick="window.location.href = 'FTlist.php';" data-toggle="tab" aria-expanded="false">Featured</a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										
-										<div class="tab-pane active" id="tab_1">
-											<div class="box-body">
-											
-													<div id="div_tab1" class="col-md-12">
-													
-										<div>
-											<form action="ITSlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="search" style="float:left">
-												<button type="submit" name="searchdir" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
-											</form>
-											
-											<div style="float: left; width: 16%">
-											<form action="ITFlist.php" method="POST">
-												<p><font color="#428bca">Filter</font></p>
-												<p>Location</p>
-												<input type="text" placeholder="Location" name="locf">
-												<p style="font-style: semi-bold;">Category</p>
-												<select name="catf">
-												  <option value="" selected>Choose category</option>
-												  <option value="Latihan Industri">Latihan Industri</option>
-												  <option value="Latihan Mengajar">Latihan Mengajar</option>
-												</select>
-												<br>
-												<button type="submit" class="btn btn-info button2" style="float:left; width: auto" name="submitf">Filter</button>
-											</form>
-											<br>
-											<br>
-											</div>
-										</div>
-													
-											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box;">
-												<tbody>
-													<tr>
-														<th class="text-center" style="width: 70%">Record information</th>
-														<th class="text-center">Selection</th>
-													</tr>
-												</tbody>
-												<tbody id="table" >
-													
-													<?php
-													require('paginationITS.php');	
-													
-													// add to featured list
-													if (isset($_POST['submitfeat'])){
-														
-														$sql = "SELECT * FROM featured_it";
-														
-														$resultft = mysqli_query($link, $sql);
-														
-														// featured list limit
-														if (mysqli_num_rows($resultft) >= 3) {
-														
-															echo '<script>
-																alert("Featured list already reaching limit.");
-																window.location.href="Itlist.php";
-																</script>';
-														} 
-														elseif (mysqli_num_rows($resultft) < 3) {
-															
-															$idf = $_POST['idf'];
-															$namef = $_POST['namef'];
-															$addressf = $_POST['addressf'];
-															$postcodef = $_POST['postcodef'];
-															$statef = $_POST['statef'];
-															$phonef = $_POST['phonef'];
-															$emailf = $_POST['emailf'];
-															$websitef = $_POST['websitef'];
-															$categoryf = $_POST['categoryf'];
-															
-															$sqlcomp = "SELECT * FROM featured_it WHERE itID = '$idf'";
-															$resultcomp = mysqli_query($link, $sqlcomp);
-																
-																// if record already exist on featured
-																if (mysqli_num_rows($resultcomp) == 1){
-																	echo '<script type="text/javascript">
-																				alert("This record already exist on featured list.\\nPlease select another record.");
-																				window.location.href="ITlist.php";
-																		 </script>';
-																}
-																else{
-																	$sql1 = "INSERT INTO featured_it (itID, name, alamat, poskod, negeri, phone, email, website, category)
-																	VALUES ('$idf', '$namef', '$addressf', '$postcodef', '$statef', '$phonef', '$emailf', '$websitef', '$categoryf')";
-																	$resultfeat = mysqli_query($link, $sql1);
-																	if($resultfeat){
-																		echo '<script type="text/javascript">
-																				alert("Added to featured list.");
-																				window.location.href="ITlist.php";
-																			 </script>';
-																	} else{
-																		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-																	}
-																}
-														}
-													}
-													
-													// main table
-													if (mysqli_num_rows($nquery) > 0) {	
-														while($crow = mysqli_fetch_array($nquery)) {
-															echo '<tr>
-																	<td class="text-left">
-																	<p><strong>Name:</strong> '.$crow["name"].'</p><br>
-																	<p><strong>Address:</strong> '.$crow["alamat"].'</p><br>
-																	<p><strong>Postcode:</strong> '.$crow["poskod"].'</p><br>
-																	<p><strong>State:</strong> '.$crow["negeri"].'</p><br>
-																	<p><strong>Phone number:</strong> '.$crow["phone"].'</p><br>
-																	<p><strong>Email:</strong> '.$crow["email"].'</p><br>
-																	<p><strong>Website:</strong> '.$crow["website"].'</p><br>
-																	<p><strong>Category:</strong> '.$crow["category"].'</p></td>
-																	<td class="text-center" >
-																	<form action="ITlist.php" method="post" onsubmit="return confirm(\'Featured this to homepage?\');"> 
-																		<input type="hidden" name="idf" value="'.$crow["id"].'">
-																		<input type="hidden" name="namef" value="'.$crow["name"].'">
-																		<input type="hidden" name="addressf" value="'.$crow["alamat"].'">
-																		<input type="hidden" name="postcodef" value="'.$crow["poskod"].'">
-																		<input type="hidden" name="statef" value="'.$crow["negeri"].'">
-																		<input type="hidden" name="phonef" value="'.$crow["phone"].'">
-																		<input type="hidden" name="emailf" value="'.$crow["email"].'">
-																		<input type="hidden" name="websitef" value="'.$crow["website"].'">
-																		<input type="hidden" name="categoryf" value="'.$crow["category"].'">
-																		<button type="submit" name="submitfeat" class="btn btn-warning btn-lg" style="background-color: #4CAF50; width:auto;">Featured this</button>
-																	</form>
-																	
-																	<form action="updateIT.php" method="POST">
-																		<input type="hidden" name="id" value="'.$crow["id"].'">
-																		<input type="hidden" name="name" value="'.$crow["name"].'">
-																		<input type="hidden" name="address" value="'.$crow["alamat"].'">
-																		<input type="hidden" name="postcode" value="'.$crow["poskod"].'">
-																		<input type="hidden" name="state" value="'.$crow["negeri"].'">
-																		<input type="hidden" name="phone" value="'.$crow["phone"].'">
-																		<input type="hidden" name="email" value="'.$crow["email"].'">
-																		<input type="hidden" name="website" value="'.$crow["website"].'">
-																		<input type="hidden" name="category" value="'.$crow["category"].'">
-																		<button type="submit" name="submitUp" style="background-color: #179BD7; width:auto;" class="btn btn-warning btn-lg">Update</button>
-																	</form>
-																	
-																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																		<input type="hidden" name="idIT" value="'.$crow["id"].'">
-																		<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
-																	</form>
-																 </tr>';
-														}
-													} 
-													else {
-														echo "<center><strong>No record</strong></center>";
-													}
-													
-													mysqli_close($link);
-													?>			
-												</tbody>
-											</table>
-													</div>
-											</div>
-											<br>
-											<center><div><?php echo $paginationCtrls; ?></div></center>
-											<br>
-										</div>
-										<!-- /.tab-pane -->
-
-										<div class="tab-pane" id="tab_2">
-											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:130px;">Kehadiran Keluar</h1>
-											
-												<div id="div_tab2" class="col-md-12">
-													<table class="table table-bordered table-hover">
-													<tbody>
-														<tr>
-															<th style="width: 10px" class="text-center">No</th>
-															<th class="text-center">Featured information</th>
-															<th class="text-center">Remove from featured list</th>
-														</tr>
-													</tbody>
-													<tbody id="table">
-														
-															<?php
-															require('config.php');	
-
-															$sql = "SELECT * FROM featured_it ORDER BY featID DESC";
-															
-															$result = mysqli_query($link, $sql);
-															$counter = 1;
-															if (mysqli_num_rows($result) > 0) {
-																// output data of each row
-																while($row = mysqli_fetch_assoc($result)) {
-																	echo '<tr>
-																			<td class="text-center" ><strong>'.$counter.'</strong></td>
-																			<td class="text-left">
-																			<p><strong>Name:</strong> '.$row["name"].'</p><br>
-																			<p><strong>Address:</strong> '.$row["alamat"].'</p><br>
-																			<p><strong>Postcode:</strong> '.$row["poskod"].'</p><br>
-																			<p><strong>State:</strong> '.$row["negeri"].'</p><br>
-																			<p><strong>Phone number:</strong> '.$row["phone"].'</p><br>
-																			<p><strong>Email:</strong> '.$row["email"].'</p><br>
-																			<p><strong>Website:</strong> '.$row["website"].'</p><br>
-																			<p><strong>Category:</strong> '.$row["category"].'</p></td>
-																			<td class="text-center" >
-																				<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');"> 
-																					<input type="hidden" name="idIT" value="'.$row["itID"].'">
-																					<button type="submit" class="btn btn-warning btn-lg" style="background-color: #f44336; width:auto;">Remove</button>
-																				</form>
-																			</td>
-																		 </tr>';
-																		 $counter++;
-																}
-															} else {
-																echo "No record";
-															}
-															mysqli_close($link);
-															?>			
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										<!-- /.tab-pane -->
+							<div class="col-md-12">
+								<div class="box box-info">
+									<div class="box-header with-border">
+											<h3 class="box-title">New record</h3>
 									</div>
-									<!-- /.tab-content -->
+										<div class="box-body">
+											<form action="insertIT.php" style="border:1px solid #ccc" method="POST">
+											  <div class="container">
+												<br><label><b>ID</b></label><br>
+												<input type="text" placeholder="ID" name="idUP" required>
+												
+												<br><label><b>Name</b></label><br>
+												<input type="text" placeholder="Name" name="nameUP" required>
+												
+												<br><label><b>Matric no.</b></label><br>
+												<input type="text" placeholder="Matric no." name="matUP" required>
+												
+												<br><label><b>Semester</b></label><br>
+												<input type="number" placeholder="Semester" name="semUP">
+												
+												<br><label><b>MyKad no.</b></label><br>
+												<input type="text" placeholder="Phone number" name="kadUP" required>
+												
+												<br><label><b>Phone no.</b></label><br>
+												<input type="text" placeholder="Phone no." name="fonUP">
+												
+												<br><label><b>Bumiutera/not</b></label><br>
+												<input type="text" placeholder="Bumiutera/not" name="bmUP">
+												
+												<br><label><b>Gender</b></label><br>
+												<input type="text" placeholder="Gender" name="genUP">
+												
+												<br><label><b>Field of study</b></label><br>
+												<input type="text" placeholder="Field of study" name="fosUP">
+												
+												<br><label><b>Business name</b></label><br>
+												<input type="text" placeholder="Business name" name="bsnUP">
+												
+												<br><label><b>Main product</b></label><br>
+												<input type="text" placeholder="Main product" name="mpUP">
+												
+												<br><label><b>IPT SSM no.</b></label><br>
+												<input type="text" placeholder="IPT SSM no" name="isnUP">
+												
+												<br><label><b>Owned business</b></label><br>
+												<input type="text" placeholder="Owned business" name="obUP">
+												
+												<br><label><b>Business type</b></label><br>
+												<input type="text" placeholder="Business type" name="btUP">
+												
+												<br><label><b>Fund source</b></label><br>
+												<input type="text" placeholder="Fund source" name="fsUP">
+												
+												<br><label><b>Business location</b></label><br>
+												<input type="text" placeholder="Business location" name="blUP">
+												
+												<br><label><b>Business start date</b></label><br>
+												<input type="date" placeholder="Business start date" name="bsdUP">
+												
+												<br><label><b>Email</b></label><br>
+												<input type="email" placeholder="Email" name="emUP">
+												
+												<div class="clearfix">
+												  <button type="submit" class="signupbtn" name="addUP">Add record</button>
+												</div>
+											  </div>
+											</form>
+										</div>
+										<div class="overlay" id="overlay" style="display: none;">
+											<i class="fa fa-spinner fa-spin"></i>
+										</div>
 								</div>
-								<!-- nav-tabs-custom -->
 							</div>
                     <!-- /.col -->
                 </div>
-				
+
+
             </section>
             <!-- /.content -->
         </div>

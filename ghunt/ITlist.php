@@ -287,7 +287,7 @@ include("auth.php");
 
         <!-- Left side column. contains the sidebar -->
         <!-- MENU SECTION -->
-        <aside class="main-sidebar">
+       <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar" style="height: auto;">
                 <!-- Sidebar user panel -->
@@ -329,7 +329,7 @@ include("auth.php");
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i><span>Ent Directory</span>
+                            <i class="fa fa-users"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
@@ -341,7 +341,47 @@ include("auth.php");
                                 <a href="ENTadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
+
                         </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-id-card-o"></i><span>UPSIPRENEUR</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
+                                <a href="UPlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="UPadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+
+                        </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-id-badge"></i><span>Coaching & Mentoring</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
+                                <a href="CMlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="CMadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+
+                        </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="mci.php">
+                            <i class="fa fa-info-circle"></i><span>Manage contact information</span>
+                        </a>
                     </li>
                 </ul>
             </section>
@@ -415,23 +455,6 @@ include("auth.php");
 													
 													<?php
 													require('paginationIT.php');	
-													
-													// filter query
-													if (isset($_POST['submitf'])) {
-														// Capture that in a variable by that name
-														$location = $_POST['locf'];
-														$catf = $_POST['catf'];
-														// filter condition
-														if (!empty($catf) && empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' ORDER BY name ASC";
-														}
-														if (empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%' ORDER BY name ASC";
-														}
-														if (!empty($catf) && !empty($location)) {
-															$sql = "SELECT * FROM li_lm_list WHERE category LIKE '%$catf%' AND (poskod LIKE '%$location%' OR alamat LIKE '%$location%' OR negeri LIKE '%$location%') ORDER BY name ASC";
-														}
-													}
 													
 													if (isset($_POST['submitfeat'])){
 														
@@ -545,8 +568,6 @@ include("auth.php");
 
 										<div class="tab-pane" id="tab_2">
 											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:130px;">Kehadiran Keluar</h1>
-											
 												<div id="div_tab2" class="col-md-12">
 													<table class="table table-bordered table-hover">
 													<tbody>

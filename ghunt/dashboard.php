@@ -318,7 +318,7 @@ include("auth.php");
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-user"></i><span>Ent Directory</span>
+                            <i class="fa fa-users"></i><span>Ent Directory</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu" style="display: none;">
@@ -349,6 +349,28 @@ include("auth.php");
                             </li>
 
                         </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-id-badge"></i><span>Coaching & Mentoring</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
+                                <a href="CMlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="CMadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+
+                        </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="mci.php">
+                            <i class="fa fa-info-circle"></i><span>Manage contact information</span>
+                        </a>
                     </li>
                 </ul>
             </section>

@@ -361,6 +361,28 @@ include("auth.php");
 
                         </ul>
                     </li>
+					<li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-id-badge"></i><span>Coaching & Mentoring</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
+                                <a href="CMlist.php">
+                                    <i class="fa fa-long-arrow-right"></i>Manage directory</a>
+                            </li>
+                            <li class="">
+                                <a href="CMadd.php">
+                                    <i class="fa fa-long-arrow-right"></i>Add new record</a>
+                            </li>
+
+                        </ul>
+                    </li>
+					<li class="treeview">
+                        <a href="mci.php">
+                            <i class="fa fa-info-circle"></i><span>Manage contact information</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -437,14 +459,14 @@ include("auth.php");
 																<td class="text-center">
 																
 																<div>												
-																	<form action="entMoreInfoAdmin.php" method="POST" style="margin-bottom:0px">
+																	<form action="admMIUP.php" method="POST" style="margin-bottom:0px">
 																		<input type="hidden" name="id" value="'.$crow["id"].'">
-																		<button type="submit" name="submitMD" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
+																		<button type="submit" name="submitMDUP" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
 																	</form>
 																	
 																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
-																		<input type="hidden" name="idENT" value="'.$crow["id"].'">
-																		<button type="submit" name="delENT" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
+																		<input type="hidden" name="idUP" value="'.$crow["id"].'">
+																		<button type="submit" name="delUP" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
 																	</form>
 																</div>
 																

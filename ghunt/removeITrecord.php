@@ -94,6 +94,41 @@
 		}
 	}
 	
+	// del upsipreneur list
+	if (isset($_POST['delUP'])){
+		
+		$idUP = $_POST['idUP'];
+		
+		$sql = "DELETE FROM upsipreneur WHERE id = '$idUP'";
+		
+		if(mysqli_query($link, $sql)){
+			echo '<script type="text/javascript">
+					alert("Record sucessfully removed from directory");
+					window.location.href="UPlist.php";
+				 </script>';
+		} else{
+			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+		}
+		
+	}
+	
+	if (isset($_POST['delCM'])){
+		
+		$delCM = $_POST['delCM'];
+		
+		$sql = "DELETE FROM `coach-mentor` WHERE idcm = '$delCM'";
+		
+		if(mysqli_query($link, $sql)){
+			echo '<script type="text/javascript">
+					alert("Record sucessfully removed from coach/mentoring directory");
+					window.location.href="CMlist.php";
+				 </script>';
+		} else{
+			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+		}
+		
+	}
+	
 	
 	
 	mysqli_close($link);
