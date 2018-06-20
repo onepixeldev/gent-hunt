@@ -262,35 +262,17 @@
         </div>
         <div class="container">
         <div class="row set-row-pad">
+					
             <div class="col-lg-4 col-md-4 col-sm-4   col-lg-offset-1 col-md-offset-1 col-sm-offset-1 " data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="22" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-
-                <h2><strong>Our Location </strong></h2>
-                <hr>
-                <div "=" ">
-                        <h4></h4>
-                        <h4></h4>
-                        <h4><strong>Call:</strong> </h4>
-                        <h4><strong>Email: </strong></h4>
-                    </div>
-
-
-                </div>
-                 <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 " data-scroll-reveal="enter from the bottom after 0.4s " data-scroll-reveal-id="23 " data-scroll-reveal-initialized="true
-                " data-scroll-reveal-complete="true ">
-
-                    <h2><strong>Social Conectivity </strong></h2>
-        <hr>
-                    <div>
-					 <a href="# ">  <img src="assets/img/Social/facebook.png " alt=" "> </a>
-                     <a href="# "> <img src="assets/img/Social/google-plus.png " alt=" "></a>
-                     <a href="# "> <img src="assets/img/Social/twitter.png " alt=" "></a>
-                    </div>
-                    </div>
-
-
-				 </div>
-				 </div>
-				 </div>
+				<hr>
+					<h4><strong>Lokasi: </strong></h4>
+					<br>
+					<h4><strong>Tel:</strong> </h4>
+					<h4><strong>Emel: </strong></h4>
+					<h4><strong>Fax: </strong></h4>
+				<hr>
+				
+			</div>	 
      <!-- CONTACT SECTION END-->
     <div id="footer ">
          
