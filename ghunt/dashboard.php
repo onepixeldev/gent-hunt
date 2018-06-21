@@ -158,7 +158,7 @@ include("auth.php");
 	<div class="container">
 	  <label><b>ID</b></label>
 	  <br>
-	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
+	  <input type="text" placeholder="ID" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
 	  <br>
 
 	  <label><b>Fullname</b></label>
@@ -189,13 +189,13 @@ include("auth.php");
 	  <button type="submit">Update</button>
 	  <br>
 	  
-	</div>
+</div>
 
-	<div  style="background-color:#f1f1f1">
-	  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-	  
-	</div>
-	</form>
+<div  style="background-color:#f1f1f1">
+  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
+  
+</div>
+</form>
 </div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->

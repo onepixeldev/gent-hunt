@@ -4,7 +4,7 @@ require ('auth.php');
 require ('config.php');
 
 	if (isset($_POST['adminID'])){
-	$adminIDreal = $fn['username'];	
+	$adminIDreal = $fn['id_admin'];	
 		
 	$adminID = $_POST['adminID'];
 	
@@ -16,7 +16,7 @@ require ('config.php');
 	$adminTel = $_POST['adminTel'];
 	$adminPwd = $_POST['adminPwd'];
 
-	$sql = "UPDATE admin SET username='$adminID', fullname='$adminName', email='$adminEmail', phone='$adminTel', password='$adminPwd' WHERE username='$adminIDreal'";
+	$sql = "UPDATE admin SET id_admin='$adminID', name='$adminName', email='$adminEmail', phone='$adminTel', password='$adminPwd' WHERE id_admin='$adminIDreal'";
 	if(mysqli_query($link, $sql)){
 		echo '<script type="text/javascript">
 					alert("Rekod berjaya dikemaskini");

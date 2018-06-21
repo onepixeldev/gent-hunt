@@ -163,44 +163,44 @@ include("auth.php");
 	<div class="container">
 	  <label><b>ID</b></label>
 	  <br>
-	  <input type="text" placeholder="Nombor kad pengenalan" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
+	  <input style="width: 54%;" type="text" placeholder="ID" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
 	  <br>
 
 	  <label><b>Fullname</b></label>
 	  <br>
-	  <input type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
+	  <input style="width: 54%;" type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
 	  <br>
 	  
 	  <label><b>Email</b></label>
 	  <br>
-	  <input type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
+	  <input style="width: 54%;" type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
 	  <br>
 	  
 	  <label><b>Phone Number</b></label>
 	  <br>
-	  <input type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
+	  <input style="width: 54%;" type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
 	  <br>
 	  
 	  <label><b>Password</b></label>
 	  <br>
-	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
+	  <input style="width: 54%;" type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
 	  <br>
 	  
 	  <label><b>Repeat password</b></label>
 	  <br>
-	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
-	  <br>
+	  <input style="width: 54%;" type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
+	  <br>		
 		
 	  <button type="submit">Update</button>
 	  <br>
 	  
 	</div>
 
-	<div  style="background-color:#f1f1f1">
-	  <button type="button" onclick="document.getwElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-	  
-	</div>
-	</form>
+<div  style="background-color:#f1f1f1">
+  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
+  
+</div>
+</form>
 </div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
