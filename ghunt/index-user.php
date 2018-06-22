@@ -265,11 +265,22 @@
 					
             <div class="col-lg-4 col-md-4 col-sm-4   col-lg-offset-1 col-md-offset-1 col-sm-offset-1 " data-scroll-reveal="enter from the bottom after 0.4s" data-scroll-reveal-id="22" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
 				<hr>
-					<h4><strong>Lokasi: </strong></h4>
-					<br>
-					<h4><strong>Tel:</strong> </h4>
-					<h4><strong>Emel: </strong></h4>
-					<h4><strong>Fax: </strong></h4>
+				<?php
+				require ('config.php');
+				
+				$sql = "SELECT * FROM contact_info";
+				
+				$result = mysqli_query($link, $sql);
+				$ci = mysqli_fetch_assoc($result);
+				
+					echo '<span><strong>'.$ci['location'].'</span></strong>
+						  <br><br>
+						  <h4><strong>Tel: '.$ci['tel_no'].'</strong> </h4>
+						  <h4><strong>Emel: '.$ci['email'].'</strong></h4>
+						  <h4><strong>Fax: '.$ci['fax'].'</strong></h4>';
+						
+				mysqli_close($link);	
+				?>
 				<hr>
 				
 			</div>	 
