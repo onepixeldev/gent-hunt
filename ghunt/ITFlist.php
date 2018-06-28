@@ -439,8 +439,6 @@ include("auth.php");
 
 										<div class="tab-pane" id="tab_2">
 											<div class="box-body">
-												<h1 style="color: #f44336; margin-left:130px;">Kehadiran Keluar</h1>
-											
 												<div id="div_tab2" class="col-md-12">
 													<table class="table table-bordered table-hover">
 													<tbody>
