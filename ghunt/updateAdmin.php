@@ -17,15 +17,14 @@ require ('config.php');
 	$adminPwd = $_POST['adminPwd'];
 
 	$sql = "UPDATE admin SET id_admin='$adminID', name='$adminName', email='$adminEmail', phone='$adminTel', password='$adminPwd' WHERE id_admin='$adminIDreal'";
-	if(mysqli_query($link, $sql)){
-		echo '<script type="text/javascript">
-					alert("Rekod berjaya dikemaskini");
-					alert("Sila Log Masuk Semula");
-					window.location.href="logout.php";
-			 </script>';
-		} else{
-			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-	}
+		if(mysqli_query($link, $sql)){
+			echo '<script type="text/javascript">
+						alert("Admin details updated!");
+						window.location.href="dashboard.php";
+				 </script>';
+			} else{
+				echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+		}
 	}
 	mysqli_close($link);
 ?>

@@ -30,6 +30,11 @@ include("auth.php");
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 	
+	<!-- Flora-editor css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+	<link href="./froala_editor_2.8.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="./froala_editor_2.8.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+	
     <style>
 		
 		.searchBtn{
@@ -199,16 +204,15 @@ include("auth.php");
                                 <a href="ENTadd.php">
                                     <i class="fa fa-long-arrow-right"></i>Add new record</a>
                             </li>
-
                         </ul>
                     </li>
-					<li class="treeview active">
+					<li class="treeview">
                         <a href="#">
                             <i class="fa fa-id-card-o"></i><span>UPSIPRENEUR</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu" style="display: block;">
-                            <li class="active">
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="">
                                 <a href="UPlist.php">
                                     <i class="fa fa-long-arrow-right"></i>Manage directory</a>
                             </li>
@@ -236,7 +240,7 @@ include("auth.php");
 
                         </ul>
                     </li>
-					<li class="treeview">
+					<li class="treeview active">
                         <a href="mci.php">
                             <i class="fa fa-info-circle"></i><span>Manage contact information</span>
                         </a>
@@ -254,7 +258,7 @@ include("auth.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-					UPSIPRENEUR directory
+					Edit entrepreneur details
 				</h1> 
             </section>
 
@@ -264,89 +268,102 @@ include("auth.php");
 							<div class="col-md-12" style="float: left">
                         <!-- Custom Tabs -->
 								<div class="nav-tabs-custom">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#" data-toggle="tab" aria-expanded="true">Directory</a>
-										</li>
-									</ul>
 									<div class="tab-content">
 										
 										<div class="tab-pane active" id="tab_1">
 											<div class="box-body">
 											
-													<div id="div_tab1" class="col-md-12">
+										<div id="div_tab1" class="col-md-12">
 													
 										<div>
-											<form action="UPSlist.php" method="POST" style="float: right;">
-												<input placeholder="Search directory" name="search" style="float:left">
-												<button type="submit" name="searchdir" class="btn btn-info searchBtn button2" style="float: right; width: 16%"><i class="fa fa-search"></i></button>
-											</form>
-										</div>
+											<?php
+													require('config.php');
 													
-											<table class="table table-bordered table-hover" style="float: left; box-sizing: border-box; width: 60%; clear:left">
-												<tbody>
-													<tr>
-														<th class="text-center" style="width: 10%">Record information</th>
-														<th class="text-center" style="width: 4%">Selection</th>
-													</tr>
-												</tbody>
-												<tbody id="table" >
+													$sql = "SELECT * FROM contact_info";
 													
-													<?php
-													require('paginationSUP.php');
-													
-													// main table
-													if (mysqli_num_rows($nquery) > 0) {	
-														while($crow = mysqli_fetch_array($nquery)) {
-															echo										
-																'<tr>
-																	<td class="text-left">
-																	
-																	<div class="col-xs-12 col-sm-3 col-md-2 col-lg-05 job-img hidden-xs ng-scope" style=" padding-right: 115px;">
-																			
-																		<span class="thumbnail no-bottom-margin" style="width: 55px;">
-																			<i class="fa fa-user fa-4x icon-round-border"></i>
-																		</span>
-																			
+													$result = mysqli_query($link, $sql);
+													$mci = mysqli_fetch_assoc($result);
+														
+													echo
+														'
+														<form action="updateMCI.php" method="POST">
+															<div class="col-lg-12">
+																<br>
+																	<div class="jobs-list-item _old">
+																		<div class="panel panel-default">
+																			<div class="panel-body">
+																				<div class="job-details" style="width: 100%; float: left; text-align:left">
+																					<div>
+																						<span style=" display:inline-block; width: 50%;">
+																								<strong>Location :</strong> 
+																								<p> 
+																								<textarea rows="6" cols="50" name="locUP">'.$mci['location'].'
+																								</textarea></p>
+																							
+																								<p> <strong>Phone Number :</strong> 
+																								<input type="text" name="telNO" style="width: 45%;" value="'.$mci['tel_no'].'"> </p>
+																							
+																								<p> <strong>Email <span style="display:inline-block; width: 63px;"></span>:</strong> 
+																								<input type="text" name="emel" style="width: 45%;" value="'.$mci['email'].'"> </p>
+																							
+																								<p> <strong>Fax <span style="display:inline-block; width: 75px;"></span>:</strong> 
+																								<input type="text" name="fax" style="width: 45%;" value="'.$mci['fax'].'"> </p>
+																						</span>
+																					</div>
+																				</div>
+																				
+																			</div>
+																		</div>
 																	</div>
-																	
-																	<div style="">
-																		<p class="job-details"><strong>ID:</strong>&nbsp;'.$crow["id"].'</strong></p>
-																		<p class="job-details"><strong>Name:</strong>&nbsp;'.$crow["nama"].'</strong></p>
-																		<p class="job-details"><strong>Matric No:</strong>&nbsp;'.$crow["no_matrik"].'</strong></p><br>
-																	</div>
-																	
-																	<td class="text-center">
-																	
-																	<div>												
-																	<form action="admMIUP.php" method="POST" style="margin-bottom:0px">
-																		<input type="hidden" name="id" value="'.$crow["id"].'">
-																		<button type="submit" name="submitMDUP" style="background-color: #179BD7; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;" class="btn btn-warning btn-lg">More Details</button>
-																	</form>
-																	
-																	<form action="removeITrecord.php" method="post" onsubmit="return confirm(\'Delete this record?\');" style="margin-bottom:0px"> 
-																		<input type="hidden" name="idUP" value="'.$crow["id"].'">
-																		<button type="submit" name="delUP" class="btn btn-warning btn-lg" style="background-color: #f44336; width: 42%; height: 30px; font-size: 10px; padding: 0px 0px 0px 0px;">Remove</button>
-																	</form>
 																</div>
-																	
-																 </tr>';
-														}
-													}
-													else {
-														echo "<center><strong>No record</strong></center>";
-													}		
+																
+															<div>
+															<button type="button" class="signupbtn" style="background-color:red; width:10%" onclick="window.location.href=\'mci.php\';">Cancel</button>
+															<button type="submit" class="signupbtn" name="updateMCI" style="width:20%">Update Details</button>
+															</div>
+														</form>
+														';
+												
+											?>
+										</div>
+											<?PHP
+											require ('config.php');
+
+												if (isset($_POST['updateMCI'])){
+													$locUP = $_POST['locUP'];
+													$telNO = $_POST['telNO'];
+													$emel = $_POST['emel'];
+													$fax = $_POST['fax'];
 													
-													mysqli_close($link);
-													?>			
-												</tbody>
-											</table>
-													</div>
+													// update details
+													$sql = "UPDATE contact_info SET location='$locUP', tel_no='$telNO', email='$emel', fax='$fax'";
+													
+													if(mysqli_query($link, $sql)){
+														
+														echo '<script type="text/javascript">
+																	alert("Contact information sucessfully updated");
+															 </script>';
+														
+														echo '<script type="text/javascript">
+																window.location.href="mci.php";
+															</script>';
+													} 
+													
+													else{
+															echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+													}
+												}
+												
+												mysqli_close($link);
+											?>	
+										</div>
 											</div>
-											<br>
-											<center><div><?php echo $paginationCtrls; ?></div></center>
-											<br>
 										</div>
 										<!-- /.tab-pane -->
+
+										<div class="tab-pane" id="tab_2">
+											
+										</div>
 										<!-- /.tab-pane -->
 									</div>
 									<!-- /.tab-content -->
@@ -386,6 +403,14 @@ include("auth.php");
     <script src="./style-file/bootstrap-datepicker.js.download"></script>
     <!-- Demo -->
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
+
+	<!-- Include Editor JS files. -->
+    <script type="text/javascript" src="./froala_editor_2.8.0/js/froala_editor.pkgd.min.js"></script>
+	
+	<!-- Initialize the f-editor. -->
+    <script> $(function() { $('textarea#froala-editor').froalaEditor() }); </script>
+
+
 
 </body>
 

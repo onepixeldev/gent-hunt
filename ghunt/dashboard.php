@@ -178,18 +178,42 @@ include("auth.php");
 	  
 	  <label><b>Password</b></label>
 	  <br>
-	  <input type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
+	  <input type="password" placeholder="" name="adminPwd" id="password" value="<?PHP echo $fn['password']; ?>" required>
 	  <br>
 	  
 	  <label><b>Repeat password</b></label>
 	  <br>
-	  <input type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
+	  <input type="password" placeholder="" name="adminPwd2" id="confirm_password" value="<?PHP echo $fn['password']; ?>" required>
 	  <br>
 		
+		<input type="checkbox" onclick="showPassword()">Show Password
+	  <br>
 	  <button type="submit">Update</button>
 	  <br>
 	  
-</div>
+		<script>
+			var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+			function validatePassword(){
+			  if(password.value != confirm_password.value) {
+				confirm_password.setCustomValidity("Passwords Don't Match");
+			  } else {
+				confirm_password.setCustomValidity('');
+			  }
+			}
+			password.onchange = validatePassword;
+			confirm_password.onkeyup = validatePassword;
+			
+			function showPassword() {
+				if (password.type === "password" && confirm_password.type === "password") {
+					password.type = "text";
+					confirm_password.type = "text";
+				} else {
+					password.type = "password";
+					confirm_password.type = "password";
+				}
+			}
+		</script>
+	</div>
 
 <div  style="background-color:#f1f1f1">
   <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
@@ -404,9 +428,12 @@ include("auth.php");
 												<h4>Welcome <?PHP echo $fn['name']; ?></h4>
 												<p></p>
 												<p>Make sure all things listed below is done accordingly :</p>
-												<p><i class="icon fa fa-check"></i></p>
-												<p><i class="icon fa fa-check"></i></p>
-												<p><i class="icon fa fa-check"></i></p>
+												<p><i class="icon fa fa-circle"></i> Dashboard</p>
+												<p><i class="icon fa fa-check"></i> Admin information can only be update and view in Dashboard</p>
+												<br>
+												<p><i class="icon fa fa-circle"></i> IT Directory</p>
+												<p><i class="icon fa fa-check"></i> Admin information can only be update and view in Dashboard</p>
+												<br>
 											</div>
 										</table>
 									</div>

@@ -71,148 +71,9 @@ include("auth.php");
 		button:hover {
 			opacity: 0.8;
 		}
-
-		/* Extra styles for the cancel button */
-		.cancelbtn {
-			width: auto;
-			padding: 10px 18px;
-			background-color: #f44336;
-		}
-
-		/* Center the image and position the close button */
-		.imgcontainer {
-			text-align: center;
-			margin: 24px 0 12px 0;
-			position: relative;
-		}
-
-		img.avatar {
-			width: 40%;
-			border-radius: 50%;
-		}
-
-		.container {
-			padding: 16px;
-		}
-
-		span.psw {
-			float: right;
-			padding-top: 16px;
-		}
-
-		/* The Modal (background) */
-		.modal {
-			display: none; /* Hidden by default */
-			position: fixed; /* Stay in place */
-			z-index: 1; /* Sit on top */
-			left: 80px;
-			top: 0;
-			width: 100%; /* Full width */
-			height: 100%; /* Full height */
-			overflow: auto; /* Enable scroll if needed */
-			background-color: rgb(0,0,0); /* Fallback color */
-			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-			padding-top: 60px;
-		}
-
-		/* Modal Content/Box */
-		.modal-content {
-			background-color: #fefefe;
-			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-			border: 1px solid #888;
-			width: 43%; /* Could be more or less, depending on screen size */
-		}
-
-		/* The Close Button (x) */
-		.close {
-			position: absolute;
-			right: 25px;
-			top: 0;
-			color: #000;
-			font-size: 35px;
-			font-weight: bold;
-		}
-
-		.close:hover,
-		.close:focus {
-			color: red;
-			cursor: pointer;
-		}
-
-		/* Add Zoom Animation */
-		.animate {
-			-webkit-animation: animatezoom 0.6s;
-			animation: animatezoom 0.6s
-		}
-
-		@-webkit-keyframes animatezoom {
-			from {-webkit-transform: scale(0)} 
-			to {-webkit-transform: scale(1)}
-		}
-			
-		@keyframes animatezoom {
-			from {transform: scale(0)} 
-			to {transform: scale(1)}
-		}
-
-		/* Change styles for span and cancel button on extra small screens */
-		@media screen and (max-width: 300px) {
-			span.psw {
-			   display: block;
-			   float: none;
-			}
-			.cancelbtn {
-			   width: 100%;
-			}
 		}
 	</style>
 </head>
-<div id="id01" class="modal">
-<form class="modal-content animate" action="updateAdmin.php" method="POST">
-	
-
-	<div class="container">
-	  <label><b>ID</b></label>
-	  <br>
-	  <input style="width: 54%;" type="text" placeholder="ID" name="adminID" maxlength="12" value="<?PHP echo $fn['id_admin']; ?>" required>
-	  <br>
-
-	  <label><b>Fullname</b></label>
-	  <br>
-	  <input style="width: 54%;" type="text" placeholder="Nama penuh" name="adminName" value="<?PHP echo $fn['name']; ?>"  required>
-	  <br>
-	  
-	  <label><b>Email</b></label>
-	  <br>
-	  <input style="width: 54%;" type="email" placeholder="Email" name="adminEmail" value="<?PHP echo $fn['email']; ?>" required>
-	  <br>
-	  
-	  <label><b>Phone Number</b></label>
-	  <br>
-	  <input style="width: 54%;" type="text" placeholder="" name="adminTel" value="<?PHP echo $fn['phone']; ?>" required>
-	  <br>
-	  
-	  <label><b>Password</b></label>
-	  <br>
-	  <input style="width: 54%;" type="text" placeholder="" name="adminPwd" value="<?PHP echo $fn['password']; ?>">
-	  <br>
-	  
-	  <label><b>Repeat password</b></label>
-	  <br>
-	  <input style="width: 54%;" type="text" placeholder="" name="adminPwd2" value="<?PHP echo $fn['password']; ?>">
-	  <br>		
-		
-	  <button type="submit">Update</button>
-	  <br>
-	  
-	</div>
-
-<div  style="background-color:#f1f1f1">
-  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="margin-left:15px;">Cancel</button>
-  
-</div>
-</form>
-</div>
 <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -275,9 +136,6 @@ include("auth.php");
                                 <li class="user-footer">
                                     <div class="pull-right">
                                         <a href="logout.php" style="background-color: #ce1a1a; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Logout</a>
-                                    </div>
-									<div class="pull-left">
-                                        <a onclick="document.getElementById('id01').style.display='block'" style="background-color: #00A65A; width:auto; font-size: 12px; font-weight: bold;" class="btn btn-warning btn-lg">Edit Info</a>
                                     </div>
                                 </li>
                             </ul>
@@ -446,6 +304,7 @@ include("auth.php");
 																						<div> 
 																								Update profile image:
 																								<input class="btn btn-warning btn-lg" style="width: 25%" type="file" name="imageUP" value="'.$MDres['pic'].'">
+																								<button type="submit" class="signupbtn" name="updateIMG" style="width:17%">Update picture</button>
 																							<br>
 																							<img src="'.$MDres['pic'].'" alt="Profile image" width="194" height="194" style="float: left; border:3px solid grey; margin-right: 10px">
 																						</div>
@@ -497,9 +356,13 @@ include("auth.php");
 																			</div>
 																		</div>
 																	</div>
-																		<center>
-																		  <button type="submit" class="signupbtn" name="updateDetails" style="width:20%">Update Details</button>
-																		</center>
+																	<center>
+																		<button type="submit" name="updateDetails" style="width:20%;">Update Details</button>
+																		<br>
+																		<button type="button" style="background-color:red; width:10%" onclick="window.location.href=\'ENTlist.php\';">Cancel</button>
+																	</center>
+																	
+																	
 															</form>
 															';
 													}
@@ -515,14 +378,8 @@ include("auth.php");
 											<?PHP
 											require ('config.php');
 
-												if (isset($_POST['updateDetails'])){
+												if (isset($_POST['updateIMG'])){
 													$idENT = $_POST['idENT'];	
-													$entName = mysqli_real_escape_string($link, $_POST['nameUP']);
-													$entLocation = mysqli_real_escape_string($link, $_POST['locUP']);
-													$comName = mysqli_real_escape_string($link, $_POST['bnUP']);
-													$pos = mysqli_real_escape_string($link, $_POST['posUP']);
-													$sProfile = mysqli_real_escape_string($link, $_POST['ospUP']);
-													$cDetails = mysqli_real_escape_string($link, $_POST['cdUP']);
 													
 													$image = $_FILES['imageUP']['name'];
 													$filename = $_FILES['imageUP']['tmp_name'];
@@ -571,13 +428,26 @@ include("auth.php");
 																} else{
 																	echo "ERROR: Could not able to execute $sqlupF. " . mysqli_error($link);
 																}
-															
+																
+															echo'<script type="text/javascript">
+																	window.location.href="ENTlist.php";
+																</script>';
 															} 
 															else {
 																echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 															}
 														}
 													}
+												}	
+												
+												if (isset($_POST['updateDetails'])){
+													$idENT = $_POST['idENT'];	
+													$entName = mysqli_real_escape_string($link, $_POST['nameUP']);
+													$entLocation = mysqli_real_escape_string($link, $_POST['locUP']);
+													$comName = mysqli_real_escape_string($link, $_POST['bnUP']);
+													$pos = mysqli_real_escape_string($link, $_POST['posUP']);
+													$sProfile = mysqli_real_escape_string($link, $_POST['ospUP']);
+													$cDetails = mysqli_real_escape_string($link, $_POST['cdUP']);
 													
 													// update details
 													$sql = "UPDATE entlist SET name_ent='$entName', location='$entLocation', businessName='$comName', Position='$pos',
@@ -666,19 +536,6 @@ include("auth.php");
     <script src="./style-file/bootstrap-datepicker.js.download"></script>
     <!-- Demo -->
     <script src="./style-file/demo.js.download" type="text/javascript"></script>
-	
-	<script>
-	// Get the modal
-	var modal = document.getElementById('id01');
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-	</script>
-	
 	
 	<!-- Include Editor JS files. -->
     <script type="text/javascript" src="./froala_editor_2.8.0/js/froala_editor.pkgd.min.js"></script>
