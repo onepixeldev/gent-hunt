@@ -37,13 +37,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index-user.php">
+                <a class="navbar-brand" href="index.php">
                     <img class="logo-custom" src="assets/img/logo_gh.png" alt="" height="60" width="65">
                 </a>
             </div>
             <div class="navbar-collapse collapse move-me">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hv"><a href="index-user.php">UTAMA</a>
+                    <li class="hv"><a href="index.php">UTAMA</a>
                     </li>
                     <li class="hv"><a href="d-list.php">DIREKTORI LATIHAN INDUSTRI & MENGAJAR</a>
                     </li>
