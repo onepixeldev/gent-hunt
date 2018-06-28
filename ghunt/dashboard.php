@@ -443,7 +443,7 @@ include("auth.php");
 												<p><i class="icon fa fa-check"></i> Details about <strong>UPSIPRENEUR.</strong> </p>
 												<p><i class="icon fa fa-check"></i> UPSIPRENEUR details can be <strong>modified</strong> in this section</p>
 												<br>
-												<p><i class="icon fa fa-circle"></i> <strong>Coaching & Mentoring(only available in admin side)</strong></p>
+												<p><i class="icon fa fa-circle"></i> <strong>Coaching & Mentoring (only available in admin side)</strong></p>
 												<p><i class="icon fa fa-check"></i> Details about <strong>entrepreneur mentor and coach.</strong> </p>
 												<p><i class="icon fa fa-check"></i> Coaching & Mentoring details can be <strong>modified</strong> in this section</p>
 												<br>
