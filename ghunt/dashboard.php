@@ -428,11 +428,28 @@ include("auth.php");
 												<h4>Welcome <?PHP echo $fn['name']; ?></h4>
 												<p></p>
 												<p>Make sure all things listed below is done accordingly :</p>
-												<p><i class="icon fa fa-circle"></i> Dashboard</p>
+												<p><i class="icon fa fa-circle"></i> <strong>Dashboard</strong></p>
 												<p><i class="icon fa fa-check"></i> Admin information can only be update and view in Dashboard</p>
 												<br>
-												<p><i class="icon fa fa-circle"></i> IT Directory</p>
-												<p><i class="icon fa fa-check"></i> Admin information can only be update and view in Dashboard</p>
+												<p><i class="icon fa fa-circle"></i> <strong>IT Directory</strong></p>
+												<p><i class="icon fa fa-check"></i> Details about <strong>industrial and teaching training.</strong> </p>
+												<p><i class="icon fa fa-check"></i> Industrial and Teaching training details can be <strong>modified</strong> in this section</p>
+												<br>
+												<p><i class="icon fa fa-circle"></i> <strong>ENT Directory</strong></p>
+												<p><i class="icon fa fa-check"></i> Details about <strong>entrepreneur Idol.</strong> </p>
+												<p><i class="icon fa fa-check"></i> Entrepreneur Idol details can be <strong>modified</strong> in this section</p>
+												<br>
+												<p><i class="icon fa fa-circle"></i> <strong>UPSIPRENEUR</strong></p>
+												<p><i class="icon fa fa-check"></i> Details about <strong>UPSIPRENEUR.</strong> </p>
+												<p><i class="icon fa fa-check"></i> UPSIPRENEUR details can be <strong>modified</strong> in this section</p>
+												<br>
+												<p><i class="icon fa fa-circle"></i> <strong>Coaching & Mentoring</strong></p>
+												<p><i class="icon fa fa-check"></i> Details about <strong>entrepreneur mentor and coach.</strong> </p>
+												<p><i class="icon fa fa-check"></i> Coaching & Mentoring details can be <strong>modified</strong> in this section</p>
+												<br>
+												<p><i class="icon fa fa-circle"></i> <strong>Manage contact information</strong></p>
+												<p><i class="icon fa fa-check"></i> Details about <strong>website manager.</strong> </p>
+												<p><i class="icon fa fa-check"></i> Website manager details can be <strong>modified</strong> in this section</p>
 												<br>
 											</div>
 										</table>
