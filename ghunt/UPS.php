@@ -136,9 +136,6 @@
 											<span>
 												<p><strong>Bidang pengajian:</strong> '.$row["bidang_p"].'</p>
 											</span>
-											<span>
-												<p><strong>Semester:</strong> '.$row["semester"].'</p>
-											</span>
 											<hr style="height:1px; background-color: #DDDDDD;">
 										</div>
 									</div>
